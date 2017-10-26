@@ -46,6 +46,20 @@
         <activity android:name=".aty.DwSdEditActivity"/>
         <!-- 允许呼入 -->
         <activity android:name=".aty.YxFrActivity"/>
+        <!-- 免打扰时段 -->
+        <activity android:name=".aty.MdrSdActivity"/>
+        <!-- 编辑免打扰时段 -->
+        <activity android:name=".aty.MdrSdEditActivity"/>
+        <!-- 添加免打扰时段 -->
+        <activity android:name=".aty.MdrSdAddActivity"/>
+        <!-- 定位记录 -->
+        <activity android:name=".aty.DwJlActivity"/>
+        <!-- 闹钟 -->
+        <activity android:name=".aty.NzActivity"/>
+        <!-- 添加闹钟 -->
+        <activity android:name=".aty.NzAddActivity"/>
+        <!-- 编辑闹钟 -->
+        <activity android:name=".aty.NzEditActivity"/>
     </application>
 
 </manifest>

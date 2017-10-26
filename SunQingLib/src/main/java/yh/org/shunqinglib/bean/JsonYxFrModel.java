@@ -80,7 +80,7 @@ public class JsonYxFrModel extends YHModel
     @Override
     public String toString()
     {
-        return "JsonYxBhModel{" +
+        return "JsonYxFrModel{" +
                 "resultCode='" + resultCode + '\'' +
                 ", datas=" + datas +
                 "} " + super.toString();

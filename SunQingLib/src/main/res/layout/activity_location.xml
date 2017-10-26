@@ -392,7 +392,7 @@
                 <TextView
                     android:id="@+id/tv_street"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="正在定位"
                     android:gravity="center"
                     android:textColor="@android:color/black"
@@ -405,7 +405,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="正在定位"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:textColor="@color/main_tab_bottom_notsel"
                     android:textSize="@dimen/text_size_16"/>
 

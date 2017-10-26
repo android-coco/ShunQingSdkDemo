@@ -9,17 +9,18 @@ import java.util.List;
 
 /**
  * Created by yhlyl on 2017/5/13.
- * 定位时段模型
+ * 免打扰时段模型
  */
 
-public class JsonDwSdModel extends YHModel
+public class JsonMdrSdModel extends YHModel
 {
     @SerializedName("result")
     protected String resultCode;//结果Code
     @SerializedName("datas")
-    protected List<DwSdModel> datas;//数据
+    protected List<MdrSdModel> datas;//数据
 
-    public static class DwSdModel implements Serializable{
+    public static class MdrSdModel implements Serializable
+    {
         @SerializedName("id")
         private String id;//数据ID
         @SerializedName("week")
@@ -32,8 +33,6 @@ public class JsonDwSdModel extends YHModel
         private String endHour;// 结束时间的小时
         @SerializedName("end_minute")
         private String endMinute; //结束时间的分钟
-        @SerializedName("times")
-        private String time;//定位上报的周期，秒，默认300（5分钟）
 
         public String getId()
         {
@@ -95,27 +94,17 @@ public class JsonDwSdModel extends YHModel
             this.endMinute = endMinute;
         }
 
-        public String getTime()
-        {
-            return time;
-        }
-
-        public void setTime(String time)
-        {
-            this.time = time;
-        }
 
         @Override
         public String toString()
         {
-            return "DwSdModel{" +
-                    "Id='" + id + '\'' +
+            return "MdrSdModel{" +
+                    "id='" + id + '\'' +
                     ", week='" + week + '\'' +
                     ", startHour='" + startHour + '\'' +
                     ", startMinute='" + startMinute + '\'' +
                     ", endHour='" + endHour + '\'' +
                     ", endMinute='" + endMinute + '\'' +
-                    ", time='" + time + '\'' +
                     '}';
         }
     }
@@ -130,12 +119,12 @@ public class JsonDwSdModel extends YHModel
         this.resultCode = resultCode;
     }
 
-    public List<DwSdModel> getDatas()
+    public List<MdrSdModel> getDatas()
     {
         return datas;
     }
 
-    public void setDatas(List<DwSdModel> datas)
+    public void setDatas(List<MdrSdModel> datas)
     {
         this.datas = datas;
     }
@@ -144,7 +133,7 @@ public class JsonDwSdModel extends YHModel
     @Override
     public String toString()
     {
-        return "JsonDwSdModel{" +
+        return "JsonMdrSdModel{" +
                 "resultCode='" + resultCode + '\'' +
                 ", datas=" + datas +
                 "} " + super.toString();

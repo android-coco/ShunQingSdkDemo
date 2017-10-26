@@ -166,7 +166,7 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
                         {
                             if (StringUtils.isEmpty(jsonData.getDatas()))
                             {
-                                id_empty_text.setText("暂无数据请添加!");
+                                id_empty_text.setText("暂无数据!");
                             } else
                             {
                                 data.addAll(jsonData.getDatas());
@@ -259,7 +259,7 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
                     public void onFailure(int errorNo, String strMsg)
                     {
                         super.onFailure(errorNo, strMsg);
-                        YHViewInject.create().showTips("删除失败");
+                        YHViewInject.create().showTips("添加失败");
                     }
 
                     @Override

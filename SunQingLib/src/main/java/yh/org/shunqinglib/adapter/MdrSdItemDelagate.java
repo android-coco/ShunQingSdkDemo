@@ -6,29 +6,29 @@ import org.yh.library.adapter.rv.YHRecyclerViewHolder;
 import java.util.Arrays;
 
 import yh.org.shunqinglib.R;
-import yh.org.shunqinglib.bean.JsonDwSdModel;
+import yh.org.shunqinglib.bean.JsonMdrSdModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
 
 /**
  * Created by yhlyl on 2017/10/25.
  */
 
-public class DwSdItemDelagate implements I_ItemViewDelegate<JsonDwSdModel.DwSdModel>
+public class MdrSdItemDelagate implements I_ItemViewDelegate<JsonMdrSdModel.MdrSdModel>
 {
     @Override
     public int getItemViewLayoutId()
     {
-        return R.layout.dwsd_item;
+        return R.layout.mdrsd_item;
     }
 
     @Override
-    public boolean isForViewType(JsonDwSdModel.DwSdModel dwSdModel, int i)
+    public boolean isForViewType(JsonMdrSdModel.MdrSdModel mdrSdModel, int i)
     {
         return true;
     }
 
     @Override
-    public void convert(YHRecyclerViewHolder holder, JsonDwSdModel.DwSdModel item, int i)
+    public void convert(YHRecyclerViewHolder holder, JsonMdrSdModel.MdrSdModel item, int i)
     {
         String bh =item.getStartHour();
         String bm =item.getStartMinute();
@@ -82,7 +82,6 @@ public class DwSdItemDelagate implements I_ItemViewDelegate<JsonDwSdModel.DwSdMo
                     break;
             }
         }
-        holder.setText(R.id.timing_interval, item.getTime() + "分");
         holder.setText(R.id.timing_cycle, GlobalUtils.replaceStr(str));
     }
 }

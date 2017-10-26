@@ -37,33 +37,33 @@ public class DwSdEditActivity extends BaseActiciy implements CompoundButton.OnCh
     //星期选择
 //    @BindView(id = R.id.x_1)
     CheckBox x_1;
-//    @BindView(id = R.id.x_2)
+    //    @BindView(id = R.id.x_2)
     CheckBox x_2;
-//    @BindView(id = R.id.x_3)
+    //    @BindView(id = R.id.x_3)
     CheckBox x_3;
-//    @BindView(id = R.id.x_4)
+    //    @BindView(id = R.id.x_4)
     CheckBox x_4;
-//    @BindView(id = R.id.x_5)
+    //    @BindView(id = R.id.x_5)
     CheckBox x_5;
-//    @BindView(id = R.id.x_6)
+    //    @BindView(id = R.id.x_6)
     CheckBox x_6;
-//    @BindView(id = R.id.x_7)
+    //    @BindView(id = R.id.x_7)
     CheckBox x_7;
-//    @BindView(id = R.id.add, click = true)
+    //    @BindView(id = R.id.add, click = true)
     Button add;
 
     //日期选择
 //    @BindView(id = R.id.stime_1, click = true)
     EditText stime_1;
-//    @BindView(id = R.id.stime_2, click = true)
+    //    @BindView(id = R.id.stime_2, click = true)
     EditText stime_2;
-//    @BindView(id = R.id.etime_1, click = true)
+    //    @BindView(id = R.id.etime_1, click = true)
     EditText etime_1;
-//    @BindView(id = R.id.etime_2, click = true)
+    //    @BindView(id = R.id.etime_2, click = true)
     EditText etime_2;
-//    @BindView(id = R.id.times, click = true)
+    //    @BindView(id = R.id.times, click = true)
     EditText times;
-//    @BindView(id = R.id.timingpostion_name)
+    //    @BindView(id = R.id.timingpostion_name)
     EditText timingpostion_name;
     String week = "";//星期
     String rid = "";//数据ID
@@ -103,6 +103,7 @@ public class DwSdEditActivity extends BaseActiciy implements CompoundButton.OnCh
 
         timingpostion_name = (EditText) findViewById(R.id.timingpostion_name);
     }
+
     @Override
     public void initWidget()
     {
@@ -133,6 +134,7 @@ public class DwSdEditActivity extends BaseActiciy implements CompoundButton.OnCh
     {
         super.initData();
         dwSdModel = (JsonDwSdModel.DwSdModel) getIntent().getSerializableExtra(DATA_ACTION);
+        LogUtils.e(TAG, dwSdModel);
         if (null != dwSdModel)
         {
             rid = dwSdModel.getId();
@@ -192,134 +194,140 @@ public class DwSdEditActivity extends BaseActiciy implements CompoundButton.OnCh
             String bh = stime_1.getText().toString().trim();
             String bm = stime_2.getText().toString().trim();
             String eh = etime_1.getText().toString().trim();
-            String em = etime_1.getText().toString().trim();
+            String em = etime_2.getText().toString().trim();
             String times = this.times.getText().toString().trim();
             String name = timingpostion_name.getText().toString().trim();
             if ("".equals(week))
             {
                 YHViewInject.create().showTips("执行周期不能为空！");
-            } else
+            }
+            else
             {
-                if (bh.startsWith("0"))
+                if (bh.startsWith("0") && bh.length() >= 2)
                 {
                     bh = bh.substring(1);
                 }
-                if (bm.startsWith("0"))
+                if (bm.startsWith("0") && bm.length() >= 2)
                 {
                     bm = bm.substring(1);
                 }
-                if (eh.startsWith("0"))
+                if (eh.startsWith("0") && eh.length() >= 2)
                 {
                     eh = eh.substring(1);
                 }
-                if (em.startsWith("0"))
+                if (em.startsWith("0") && em.length() >= 2)
                 {
                     em = em.substring(1);
                 }
                 edit(bh, bm, eh, em, times);
             }
 
-        } else if (i == R.id.stime_1)
+        }
+        else if (i == R.id.stime_1)
         {
             whichTime = 0;
             bh1 = stime_1.getText().toString().trim();
             bm1 = stime_2.getText().toString().trim();
             eh1 = etime_1.getText().toString().trim();
             em1 = etime_2.getText().toString().trim();
-            if (bh1.startsWith("0"))
+            if (bh1.startsWith("0") && bh1.length() >= 2)
             {
                 bh1 = bh1.substring(1);
             }
-            if (bm1.startsWith("0"))
+            if (bm1.startsWith("0") && bm1.length() >= 2)
             {
                 bm1 = bm1.substring(1);
             }
-            if (eh1.startsWith("0"))
+            if (eh1.startsWith("0") && eh1.length() >= 2)
             {
                 eh1 = eh1.substring(1);
             }
-            if (em1.startsWith("0"))
+            if (em1.startsWith("0") && em1.length() >= 2)
             {
                 em1 = em1.substring(1);
             }
             showTime(Integer.parseInt(bh1), Integer.parseInt(bm1));
 
-        } else if (i == R.id.stime_2)
+        }
+        else if (i == R.id.stime_2)
         {
             whichTime = 0;
             bh1 = stime_1.getText().toString().trim();
             bm1 = stime_2.getText().toString().trim();
             eh1 = etime_1.getText().toString().trim();
             em1 = etime_2.getText().toString().trim();
-            if (bh1.startsWith("0"))
+            if (bh1.startsWith("0") && bh1.length() >= 2)
             {
                 bh1 = bh1.substring(1);
             }
-            if (bm1.startsWith("0"))
+            if (bm1.startsWith("0") && bm1.length() >= 2)
             {
                 bm1 = bm1.substring(1);
             }
-            if (eh1.startsWith("0"))
+            if (eh1.startsWith("0") && eh1.length() >= 2)
             {
                 eh1 = eh1.substring(1);
             }
-            if (em1.startsWith("0"))
+            if (em1.startsWith("0") && em1.length() >= 2)
             {
                 em1 = em1.substring(1);
             }
             showTime(Integer.parseInt(bh1), Integer.parseInt(bm1));
 
-        } else if (i == R.id.etime_1)
+        }
+        else if (i == R.id.etime_1)
         {
             whichTime = 1;
             bh1 = stime_1.getText().toString().trim();
             bm1 = stime_2.getText().toString().trim();
             eh1 = etime_1.getText().toString().trim();
             em1 = etime_2.getText().toString().trim();
-            if (bh1.startsWith("0"))
+            if (bh1.startsWith("0") && bh1.length() >= 2)
             {
                 bh1 = bh1.substring(1);
             }
-            if (bm1.startsWith("0"))
+            if (bm1.startsWith("0") && bm1.length() >= 2)
             {
                 bm1 = bm1.substring(1);
             }
-            if (eh1.startsWith("0"))
+            if (eh1.startsWith("0") && eh1.length() >= 2)
             {
                 eh1 = eh1.substring(1);
             }
-            if (em1.startsWith("0"))
+            if (em1.startsWith("0") && em1.length() >= 2)
             {
                 em1 = em1.substring(1);
             }
             showTime(Integer.parseInt(eh1), Integer.parseInt(em1));
 
-        } else if (i == R.id.etime_2)
+        }
+        else if (i == R.id.etime_2)
         {
             whichTime = 1;
             bh1 = stime_1.getText().toString().trim();
             bm1 = stime_2.getText().toString().trim();
             eh1 = etime_1.getText().toString().trim();
             em1 = etime_2.getText().toString().trim();
-            if (bh1.startsWith("0"))
+            if (bh1.startsWith("0") && bh1.length() >= 2)
             {
                 bh1 = bh1.substring(1);
             }
-            if (bm1.startsWith("0"))
+            if (bm1.startsWith("0") && bm1.length() >= 2)
             {
                 bm1 = bm1.substring(1);
             }
-            if (eh1.startsWith("0"))
+            if (eh1.startsWith("0") && eh1.length() >= 2)
             {
                 eh1 = eh1.substring(1);
             }
-            if (em1.startsWith("0"))
+            if (em1.startsWith("0") && em1.length() >= 2)
             {
                 em1 = em1.substring(1);
             }
             showTime(Integer.parseInt(eh1), Integer.parseInt(em1));
 
-        } else if (i == R.id.times)
+        }
+        else if (i == R.id.times)
         {
             getTiems();
 
@@ -352,7 +360,8 @@ public class DwSdEditActivity extends BaseActiciy implements CompoundButton.OnCh
                             EventBus.getDefault().post(new EventBusBean());
                             YHLoadingDialog.cancel();
                             finish();
-                        } else
+                        }
+                        else
                         {
                             YHViewInject.create().showTips("修改失败");
                         }
@@ -404,67 +413,80 @@ public class DwSdEditActivity extends BaseActiciy implements CompoundButton.OnCh
             if (isChecked)
             {
                 week += "1";
-            } else
+            }
+            else
             {
                 week = week.replace("1", "");
             }
 
-        } else if (i == R.id.x_2)
+        }
+        else if (i == R.id.x_2)
         {
             if (isChecked)
             {
                 week += "2";
-            } else
+            }
+            else
             {
                 week = week.replace("2", "");
             }
 
-        } else if (i == R.id.x_3)
+        }
+        else if (i == R.id.x_3)
         {
             if (isChecked)
             {
                 week += "3";
-            } else
+            }
+            else
             {
                 week = week.replace("3", "");
             }
 
-        } else if (i == R.id.x_4)
+        }
+        else if (i == R.id.x_4)
         {
             if (isChecked)
             {
                 week += "4";
-            } else
+            }
+            else
             {
                 week = week.replace("4", "");
             }
 
-        } else if (i == R.id.x_5)
+        }
+        else if (i == R.id.x_5)
         {
             if (isChecked)
             {
                 week += "5";
-            } else
+            }
+            else
             {
                 week = week.replace("5", "");
             }
 
-        } else if (i == R.id.x_6)
+        }
+        else if (i == R.id.x_6)
         {
             if (isChecked)
             {
                 week += "6";
-            } else
+            }
+            else
             {
                 week = week.replace("6", "");
             }
 
-        } else if (i == R.id.x_7)
+        }
+        else if (i == R.id.x_7)
         {
             if (isChecked)
             {
                 week += "7";
-            } else
+            }
+            else
             {
                 week = week.replace("7", "");
             }
@@ -504,14 +526,16 @@ public class DwSdEditActivity extends BaseActiciy implements CompoundButton.OnCh
                     if (hour < 10)
                     {
                         h = "0" + hour;
-                    } else
+                    }
+                    else
                     {
                         h = hour + "";
                     }
                     if (minute < 10)
                     {
                         m = "0" + minute;
-                    } else
+                    }
+                    else
                     {
                         m = minute + "";
                     }
@@ -524,14 +548,16 @@ public class DwSdEditActivity extends BaseActiciy implements CompoundButton.OnCh
                     if (hour < 10)
                     {
                         h1 = "0" + hour;
-                    } else
+                    }
+                    else
                     {
                         h1 = hour + "";
                     }
                     if (minute < 10)
                     {
                         m1 = "0" + minute;
-                    } else
+                    }
+                    else
                     {
                         m1 = minute + "";
                     }

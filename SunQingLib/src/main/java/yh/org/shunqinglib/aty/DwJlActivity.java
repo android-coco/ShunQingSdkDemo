@@ -1,6 +1,5 @@
 package yh.org.shunqinglib.aty;
 
-import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -20,38 +19,36 @@ import org.yh.library.view.YHRecyclerView;
 import org.yh.library.view.loading.dialog.YHLoadingDialog;
 import org.yh.library.view.yhrecyclerview.ProgressStyle;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import yh.org.shunqinglib.R;
-import yh.org.shunqinglib.adapter.DwSdAdapter;
+import yh.org.shunqinglib.adapter.DwJlAdapter;
 import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
-import yh.org.shunqinglib.bean.JsonDwSdModel;
+import yh.org.shunqinglib.bean.JsonDwJlModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
 import yh.org.shunqinglib.view.ActionSheetDialog;
 
 
 /**
- * 定位时段
+ * 定位记录
  */
-public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<JsonDwSdModel
-        .DwSdModel>
+public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<JsonDwJlModel
+        .DwJlModel>
 {
 
-    //    @BindView(id = R.id.recyclerview)
     private YHRecyclerView mRecyclerView;
-    //    @BindView(id = R.id.empty_layout)
     private LinearLayout empty_layout;
-    //    @BindView(id = R.id.id_empty_text)
     private TextView id_empty_text;
-    private DwSdAdapter mAdapter;
-    ArrayList<JsonDwSdModel.DwSdModel> data = null;
+    private DwJlAdapter mAdapter;
+    ArrayList<JsonDwJlModel.DwJlModel> data = null;
+    int page = 1;
+    int TOTAL_DATA = 32;//每页32条数据 少于就加载完毕
 
     @Override
     public void setRootView()
     {
-        setContentView(R.layout.activity_dwsd);
+        setContentView(R.layout.activity_dwjl);
     }
 
     private void initView()
@@ -67,8 +64,7 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
         super.initWidget();
         initView();
         toolbar.setLeftTitleText("返回");
-        toolbar.setMainTitle("定位时段");
-        toolbar.setRightTitleText("");
+        toolbar.setMainTitle("定位记录");
 
         id_empty_text.setText("加载中。。。");
         //lineartlayout
@@ -83,17 +79,17 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.SquareSpin);//可以自定义上拉加载的样式
         mRecyclerView.setFootViewText(getString(R.string.listview_loading), "我是有底线的。");
         // mRecyclerView.setArrowImageView(R.mipmap.iconfont_downgrey);//箭头
-        mAdapter = new DwSdAdapter();
+        mAdapter = new DwJlAdapter();
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
-        mRecyclerView.setLoadingMoreEnabled(false);
+//        mRecyclerView.setLoadingMoreEnabled(false);
 //        mRecyclerView.setPullRefreshEnabled(false);
         mRecyclerView.setLoadingListener(new YHRecyclerView.LoadingListener()
         {
             @Override
             public void onRefresh()
             {
-//                page = 1;
+                page = 1;
                 mAdapter.getDatas().clear();//必须在数据更新前清空，不能太早
                 getData();
             }
@@ -101,14 +97,17 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
             @Override
             public void onLoadMore()
             {
-//                //page++;
-//                if (page <= TOTAL_PAGE) {//小于总页数就加载更多
-//                    // loading more
-//                    getData();
-//                } else {
-//                    //the end
-//                    mRecyclerView.setNoMore(true);
-//                }
+                page++;
+                if (TOTAL_DATA >= 32)
+                {//有32条数据就加载更多
+                    // loading more
+                    getData();
+                }
+                else
+                {
+                    //the end
+                    mRecyclerView.setNoMore(true);
+                }
             }
         });
         mRecyclerView.refresh();
@@ -138,28 +137,33 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
 
     private void getData()
     {
+        String jsonParm = "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\",\"page\":\"" + page + "\"," +
+                "\"start_time\":\"" + "2015-10-26 00:46:09" + "\",\"end_time\":\"" + "2017-10-26 17:46:09" + "\"}";
         YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .REPORT_LIST, null, "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\"}", new
+                .TREMINAL_POSITION, null, jsonParm, new
                 HttpCallBack()
                 {
                     @Override
                     public void onSuccess(String t)
                     {
                         super.onSuccess(t);
-                        final JsonDwSdModel jsonData = JsonUitl.stringToTObject
-                                (t, JsonDwSdModel.class);
+                        final JsonDwJlModel jsonData = JsonUitl.stringToTObject
+                                (t, JsonDwJlModel.class);
                         String resultCode = jsonData.getResultCode();
+                        TOTAL_DATA = jsonData.getTotalCount();
                         if ("0".equals(resultCode))
                         {
                             if (StringUtils.isEmpty(jsonData.getDatas()))
                             {
                                 id_empty_text.setText("暂无数据!");
-                            } else
+                            }
+                            else
                             {
                                 data.addAll(jsonData.getDatas());
                                 mAdapter.setDatas(data);
                             }
-                        } else
+                        }
+                        else
                         {
                             mAdapter.notifyDataSetChanged();
                         }
@@ -188,62 +192,53 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
     }
 
     @Override
-    public boolean onItemLongClick(View view, JsonDwSdModel.DwSdModel dwSdModel, int i)
+    public boolean onItemLongClick(View view, JsonDwJlModel.DwJlModel dwJlModel, int i)
     {
         return false;
     }
 
     @Override
-    public void onItemClick(View view, final JsonDwSdModel.DwSdModel dwSdModel, int i)
+    public void onItemClick(View view, final JsonDwJlModel.DwJlModel dwJlModel, int i)
     {
         new ActionSheetDialog(aty)
                 .builder()
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
-                .addSheetItem("编辑", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener()
-                        {
-                            @Override
-                            public void onClick(int which)
-                            {
-                                Intent i = new Intent(aty, DwSdEditActivity.class);
-                                i.putExtra(DwSdEditActivity.DATA_ACTION, (Serializable) dwSdModel);
-                                showActivity(aty, i);
-                            }
-                        })
+                .setTitle("警告：删除后无法恢复！")
                 .addSheetItem("删除", ActionSheetDialog.SheetItemColor.Red,
                         new ActionSheetDialog.OnSheetItemClickListener()
                         {
                             @Override
                             public void onClick(int which)
                             {
-                                DelDwSd(dwSdModel);
+                                DelDwSd(dwJlModel);
                             }
                         }).show();
     }
 
 
-    private void DelDwSd(final JsonDwSdModel.DwSdModel dwSdModel)
+    private void DelDwSd(final JsonDwJlModel.DwJlModel dwJlModel)
     {
         YHLoadingDialog.make(aty).setMessage("删除中。。。")//提示消息
                 .setCancelable(false).show();
         YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .REPORT_DEL, null, "{\"id\":\"" + dwSdModel.getId() + "\"}", new
+                .TREMINAL_POSITION_DEL, null, "{\"id\":\"" + dwJlModel.getId() + "\"}", new
                 HttpCallBack()
                 {
                     @Override
                     public void onSuccess(String t)
                     {
                         super.onSuccess(t);
-                        final JsonDwSdModel jsonData = JsonUitl.stringToTObject
-                                (t, JsonDwSdModel.class);
+                        final JsonDwJlModel jsonData = JsonUitl.stringToTObject
+                                (t, JsonDwJlModel.class);
                         String resultCode = jsonData.getResultCode();
                         if ("0".equals(resultCode))
                         {
                             YHViewInject.create().showTips("删除成功");
-                            data.remove(dwSdModel);
+                            data.remove(dwJlModel);
                             mAdapter.notifyDataSetChanged();
-                        } else
+                        }
+                        else
                         {
                             YHViewInject.create().showTips("删除失败");
                         }

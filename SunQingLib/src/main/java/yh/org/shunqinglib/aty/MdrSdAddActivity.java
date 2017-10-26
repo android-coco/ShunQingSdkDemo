@@ -26,13 +26,13 @@ import java.util.Calendar;
 import yh.org.shunqinglib.R;
 import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
-import yh.org.shunqinglib.bean.JsonDwSdModel;
+import yh.org.shunqinglib.bean.JsonMdrSdModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
 
 /**
- * 添加定位时段
+ * 添加免打扰时段
  */
-public class DwSdAddActivity extends BaseActiciy implements OnCheckedChangeListener
+public class MdrSdAddActivity extends BaseActiciy implements OnCheckedChangeListener
 {
     //星期选择
 //    @BindView(id = R.id.x_1)
@@ -70,7 +70,7 @@ public class DwSdAddActivity extends BaseActiciy implements OnCheckedChangeListe
     @Override
     public void setRootView()
     {
-        setContentView(R.layout.activity_dwsd_add);
+        setContentView(R.layout.activity_mdrsd_add);
         initView();
     }
 
@@ -108,7 +108,7 @@ public class DwSdAddActivity extends BaseActiciy implements OnCheckedChangeListe
     {
         super.initWidget();
         toolbar.setLeftTitleText("返回");
-        toolbar.setMainTitle("添加定时定位");
+        toolbar.setMainTitle("添加免打扰时段");
 
         x_1.setOnCheckedChangeListener(this);
         x_2.setOnCheckedChangeListener(this);
@@ -147,23 +147,23 @@ public class DwSdAddActivity extends BaseActiciy implements OnCheckedChangeListe
                 YHViewInject.create().showTips("执行周期不能为空！");
             } else
             {
-                if (bh.startsWith("0"))
+                if (bh.startsWith("0") && bh.length() >= 2)
                 {
                     bh = bh.substring(1);
                 }
-                if (bm.startsWith("0"))
+                if (bm.startsWith("0") && bm.length() >= 2)
                 {
                     bm = bm.substring(1);
                 }
-                if (eh.startsWith("0"))
+                if (eh.startsWith("0") && eh.length() >= 2)
                 {
                     eh = eh.substring(1);
                 }
-                if (em.startsWith("0"))
+                if (em.startsWith("0") && em.length() >= 2)
                 {
                     em = em.substring(1);
                 }
-                upload(bh, bm, eh, em, times);
+                upload(bh, bm, eh, em);
             }
 
         } else if (i == R.id.stime_1)
@@ -274,24 +274,23 @@ public class DwSdAddActivity extends BaseActiciy implements OnCheckedChangeListe
     }
 
     private void upload(final String bh, final String bm, final String eh,
-                        final String em, final String times)
+                        final String em)
     {
         YHLoadingDialog.make(aty).setMessage("添加中。。。")//提示消息
                 .setCancelable(false).show();
         String parameter = "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\",\"week\":\"" +
                 week + "\",\"start_hour\":\"" + bh + "\",\"start_minute\":\"" + bm + "\"," +
-                "\"end_hour\":\"" + eh + "\",\"end_minute\":\"" + em + "\",\"times\":\"" +
-                times + "\"}";
+                "\"end_hour\":\"" + eh + "\",\"end_minute\":\"" + em + "\"}";
         YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .REPORT_ADD, null, parameter, new
+                .DISTURB_ADD, null, parameter, new
                 HttpCallBack()
                 {
                     @Override
                     public void onSuccess(String t)
                     {
                         super.onSuccess(t);
-                        final JsonDwSdModel jsonData = JsonUitl.stringToTObject
-                                (t, JsonDwSdModel.class);
+                        final JsonMdrSdModel jsonData = JsonUitl.stringToTObject
+                                (t, JsonMdrSdModel.class);
                         String resultCode = jsonData.getResultCode();
                         if ("0".equals(resultCode))
                         {

@@ -6,34 +6,31 @@ import org.yh.library.adapter.rv.YHRecyclerViewHolder;
 import java.util.Arrays;
 
 import yh.org.shunqinglib.R;
-import yh.org.shunqinglib.bean.JsonDwSdModel;
+import yh.org.shunqinglib.bean.JsonNzModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
 
 /**
  * Created by yhlyl on 2017/10/25.
  */
-
-public class DwSdItemDelagate implements I_ItemViewDelegate<JsonDwSdModel.DwSdModel>
+public class NzItemDelagate implements I_ItemViewDelegate<JsonNzModel.NzModel>
 {
     @Override
     public int getItemViewLayoutId()
     {
-        return R.layout.dwsd_item;
+        return R.layout.nz_item;
     }
 
     @Override
-    public boolean isForViewType(JsonDwSdModel.DwSdModel dwSdModel, int i)
+    public boolean isForViewType(JsonNzModel.NzModel nzModel, int i)
     {
         return true;
     }
 
     @Override
-    public void convert(YHRecyclerViewHolder holder, JsonDwSdModel.DwSdModel item, int i)
+    public void convert(YHRecyclerViewHolder holder, JsonNzModel.NzModel item, int i)
     {
-        String bh =item.getStartHour();
-        String bm =item.getStartMinute();
-        String eh =item.getEndHour();
-        String em =item.getEndMinute();
+        String bh =item.getHour();
+        String bm =item.getMinute();
         if (Integer.parseInt(bh) <= 9 )
         {
             bh = "0" + bh;
@@ -42,16 +39,7 @@ public class DwSdItemDelagate implements I_ItemViewDelegate<JsonDwSdModel.DwSdMo
         {
             bm = "0" + bm;
         }
-        if (Integer.parseInt(eh) <= 9 )
-        {
-            eh = "0" + eh;
-        }
-        if (Integer.parseInt(em) <= 9 )
-        {
-            em = "0" + em;
-        }
-        holder.setText(R.id.timing_time, bh + ":" + bm + "~"
-                + eh + ":" + em);
+        holder.setText(R.id.timing_time, bh + ":" + bm);
         byte[] weeks = item.getWeek().getBytes();
         Arrays.sort(weeks);
         String str = "";
@@ -82,7 +70,6 @@ public class DwSdItemDelagate implements I_ItemViewDelegate<JsonDwSdModel.DwSdMo
                     break;
             }
         }
-        holder.setText(R.id.timing_interval, item.getTime() + "分");
         holder.setText(R.id.timing_cycle, GlobalUtils.replaceStr(str));
     }
 }

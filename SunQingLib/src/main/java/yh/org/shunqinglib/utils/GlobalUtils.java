@@ -1,6 +1,8 @@
 package yh.org.shunqinglib.utils;
 
 import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by yhlyl on 2017/10/24.
@@ -94,5 +96,12 @@ public class GlobalUtils
             weekString[i] = weeks[i] - 48;
         }
         return weekString;
+    }
+
+    /*时间戳转换成字符窜*/
+    public static String getDateToString(long time) {
+        Date d = new Date(time);
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy年MM月dd日");
+        return sf.format(d);
     }
 }

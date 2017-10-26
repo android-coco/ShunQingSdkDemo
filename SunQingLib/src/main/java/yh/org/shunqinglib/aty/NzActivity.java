@@ -24,19 +24,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import yh.org.shunqinglib.R;
-import yh.org.shunqinglib.adapter.DwSdAdapter;
+import yh.org.shunqinglib.adapter.NzAdapter;
 import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonDwSdModel;
+import yh.org.shunqinglib.bean.JsonNzModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
 import yh.org.shunqinglib.view.ActionSheetDialog;
 
-
 /**
- * 定位时段
+ * 闹钟
  */
-public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<JsonDwSdModel
-        .DwSdModel>
+public class NzActivity extends BaseActiciy implements I_YHItemClickListener<JsonNzModel.NzModel>
 {
 
     //    @BindView(id = R.id.recyclerview)
@@ -45,14 +44,14 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
     private LinearLayout empty_layout;
     //    @BindView(id = R.id.id_empty_text)
     private TextView id_empty_text;
-    private DwSdAdapter mAdapter;
-    ArrayList<JsonDwSdModel.DwSdModel> data = null;
-
+    private NzAdapter mAdapter;
+    ArrayList<JsonNzModel.NzModel> data = null;
     @Override
     public void setRootView()
     {
-        setContentView(R.layout.activity_dwsd);
+        setContentView(R.layout.activity_nz);
     }
+
 
     private void initView()
     {
@@ -67,7 +66,7 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
         super.initWidget();
         initView();
         toolbar.setLeftTitleText("返回");
-        toolbar.setMainTitle("定位时段");
+        toolbar.setMainTitle("闹钟");
         toolbar.setRightTitleText("");
 
         id_empty_text.setText("加载中。。。");
@@ -83,7 +82,7 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.SquareSpin);//可以自定义上拉加载的样式
         mRecyclerView.setFootViewText(getString(R.string.listview_loading), "我是有底线的。");
         // mRecyclerView.setArrowImageView(R.mipmap.iconfont_downgrey);//箭头
-        mAdapter = new DwSdAdapter();
+        mAdapter = new NzAdapter();
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
         mRecyclerView.setLoadingMoreEnabled(false);
@@ -133,21 +132,21 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
     protected void onMenuClick()
     {
         super.onMenuClick();
-        showActivity(aty, DwSdAddActivity.class);
+        showActivity(aty, NzAddActivity.class);
     }
 
     private void getData()
     {
         YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .REPORT_LIST, null, "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\"}", new
+                .ALARM_LIST, null, "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\"}", new
                 HttpCallBack()
                 {
                     @Override
                     public void onSuccess(String t)
                     {
                         super.onSuccess(t);
-                        final JsonDwSdModel jsonData = JsonUitl.stringToTObject
-                                (t, JsonDwSdModel.class);
+                        final JsonNzModel jsonData = JsonUitl.stringToTObject
+                                (t, JsonNzModel.class);
                         String resultCode = jsonData.getResultCode();
                         if ("0".equals(resultCode))
                         {
@@ -188,13 +187,13 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
     }
 
     @Override
-    public boolean onItemLongClick(View view, JsonDwSdModel.DwSdModel dwSdModel, int i)
+    public boolean onItemLongClick(View view, JsonNzModel.NzModel nzModel, int i)
     {
         return false;
     }
 
     @Override
-    public void onItemClick(View view, final JsonDwSdModel.DwSdModel dwSdModel, int i)
+    public void onItemClick(View view, final JsonNzModel.NzModel nzModel, int i)
     {
         new ActionSheetDialog(aty)
                 .builder()
@@ -207,7 +206,7 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
                             public void onClick(int which)
                             {
                                 Intent i = new Intent(aty, DwSdEditActivity.class);
-                                i.putExtra(DwSdEditActivity.DATA_ACTION, (Serializable) dwSdModel);
+                                i.putExtra(DwSdEditActivity.DATA_ACTION, (Serializable) nzModel);
                                 showActivity(aty, i);
                             }
                         })
@@ -217,18 +216,18 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
                             @Override
                             public void onClick(int which)
                             {
-                                DelDwSd(dwSdModel);
+                                DelDwSd(nzModel);
                             }
                         }).show();
     }
 
 
-    private void DelDwSd(final JsonDwSdModel.DwSdModel dwSdModel)
+    private void DelDwSd(final JsonNzModel.NzModel nzModel)
     {
         YHLoadingDialog.make(aty).setMessage("删除中。。。")//提示消息
                 .setCancelable(false).show();
         YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .REPORT_DEL, null, "{\"id\":\"" + dwSdModel.getId() + "\"}", new
+                .ALARM_DEL, null, "{\"id\":\"" + nzModel.getId() + "\"}", new
                 HttpCallBack()
                 {
                     @Override
@@ -241,7 +240,7 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
                         if ("0".equals(resultCode))
                         {
                             YHViewInject.create().showTips("删除成功");
-                            data.remove(dwSdModel);
+                            data.remove(nzModel);
                             mAdapter.notifyDataSetChanged();
                         } else
                         {
