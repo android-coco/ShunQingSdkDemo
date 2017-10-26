@@ -27,7 +27,6 @@ import java.util.ArrayList;
 
 import yh.org.shunqinglib.R;
 import yh.org.shunqinglib.adapter.YxFrAdapter;
-import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonYxFrModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
@@ -150,8 +149,8 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
 
     private void getData()
     {
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .DAIL_LIST, null, "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\"}", new
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
+                .DAIL_LIST, null, "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\"}", new
                 HttpCallBack()
                 {
                     @Override
@@ -229,8 +228,8 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
     {
         YHLoadingDialog.make(aty).setMessage("添加中。。。")//提示消息
                 .setCancelable(false).show();
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .DAIL_ADD, null, "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\",\"number\":\"" + number + "\"}", new
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
+                .DAIL_ADD, null, "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\",\"number\":\"" + number + "\"}", new
                 HttpCallBack()
                 {
                     @Override
@@ -275,7 +274,7 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
     {
         YHLoadingDialog.make(aty).setMessage("删除中。。。")//提示消息
                 .setCancelable(false).show();
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
                 .DAIL_DEL, null, "{\"id\":\"" + yxFrModel.getId() + "\"}", new
                 HttpCallBack()
                 {

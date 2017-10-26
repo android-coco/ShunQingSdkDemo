@@ -23,7 +23,6 @@ import org.yh.library.view.loading.dialog.YHLoadingDialog;
 import java.util.Calendar;
 
 import yh.org.shunqinglib.R;
-import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonDwSdModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
@@ -343,7 +342,7 @@ public class DwSdEditActivity extends BaseActiciy implements CompoundButton.OnCh
                 week + "\",\"start_hour\":\"" + bh + "\",\"start_minute\":\"" + bm + "\"," +
                 "\"end_hour\":\"" + eh + "\",\"end_minute\":\"" + em + "\",\"times\":\"" +
                 times + "\"}";
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
                 .REPORT_MODIFY, null, parameter, new
                 HttpCallBack()
                 {
@@ -492,7 +491,7 @@ public class DwSdEditActivity extends BaseActiciy implements CompoundButton.OnCh
             }
 
         }
-        System.out.println("aaaaaaaaaa:" + week);
+        LogUtils.e("aaaaaaa:", week);
     }
 
     /**

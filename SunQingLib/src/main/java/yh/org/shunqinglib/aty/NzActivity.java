@@ -25,9 +25,7 @@ import java.util.ArrayList;
 
 import yh.org.shunqinglib.R;
 import yh.org.shunqinglib.adapter.NzAdapter;
-import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
-import yh.org.shunqinglib.bean.JsonDwSdModel;
 import yh.org.shunqinglib.bean.JsonNzModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
 import yh.org.shunqinglib.view.ActionSheetDialog;
@@ -137,8 +135,8 @@ public class NzActivity extends BaseActiciy implements I_YHItemClickListener<Jso
 
     private void getData()
     {
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .ALARM_LIST, null, "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\"}", new
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
+                .ALARM_LIST, null, "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\"}", new
                 HttpCallBack()
                 {
                     @Override
@@ -205,8 +203,8 @@ public class NzActivity extends BaseActiciy implements I_YHItemClickListener<Jso
                             @Override
                             public void onClick(int which)
                             {
-                                Intent i = new Intent(aty, DwSdEditActivity.class);
-                                i.putExtra(DwSdEditActivity.DATA_ACTION, (Serializable) nzModel);
+                                Intent i = new Intent(aty, NzEditActivity.class);
+                                i.putExtra(NzEditActivity.DATA_ACTION, (Serializable) nzModel);
                                 showActivity(aty, i);
                             }
                         })
@@ -226,7 +224,7 @@ public class NzActivity extends BaseActiciy implements I_YHItemClickListener<Jso
     {
         YHLoadingDialog.make(aty).setMessage("删除中。。。")//提示消息
                 .setCancelable(false).show();
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
                 .ALARM_DEL, null, "{\"id\":\"" + nzModel.getId() + "\"}", new
                 HttpCallBack()
                 {
@@ -234,8 +232,8 @@ public class NzActivity extends BaseActiciy implements I_YHItemClickListener<Jso
                     public void onSuccess(String t)
                     {
                         super.onSuccess(t);
-                        final JsonDwSdModel jsonData = JsonUitl.stringToTObject
-                                (t, JsonDwSdModel.class);
+                        final JsonNzModel jsonData = JsonUitl.stringToTObject
+                                (t, JsonNzModel.class);
                         String resultCode = jsonData.getResultCode();
                         if ("0".equals(resultCode))
                         {

@@ -34,7 +34,6 @@ import org.yh.library.utils.StringUtils;
 import java.util.List;
 
 import yh.org.shunqinglib.R;
-import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonEquipmentModel;
 import yh.org.shunqinglib.bean.JsonLjDWModel;
@@ -159,8 +158,8 @@ public class LocationActivity extends BaseActiciy
     private void getLastLoction()
     {
         //"{\"sns\":\"123456789012345\"}"
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .DEVER_INFO, null, "{\"sns\":\"" + SQSDKinit.DEIVER_SN + "\"}", new HttpCallBack()
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
+                .DEVER_INFO, null, "{\"sns\":\"" + GlobalUtils.DEIVER_SN + "\"}", new HttpCallBack()
         {
             @Override
             public void onSuccess(String t)
@@ -191,7 +190,7 @@ public class LocationActivity extends BaseActiciy
                             }
                             textStreet.setText("定位方式：" + locateType);
                             textAddress.setText(jsonEquipmentModel.getDatas().get(0).getAddress());
-                            add();
+                            addMaker();
                         }
                     });
                 }
@@ -292,10 +291,9 @@ public class LocationActivity extends BaseActiciy
         //mLocClient.start();
     }
 
-    private BitmapDescriptor bdSt;
-    private BitmapDescriptor bdEn;
-
-    private void add()
+    private BitmapDescriptor bdSt = null;
+    private OverlayOptions option = null;
+    private void addMaker()
     {
         if ((mCurrentLat == mCurrentLon) || mCurrentLat == 0 || mCurrentLon == 0)
         {
@@ -308,12 +306,16 @@ public class LocationActivity extends BaseActiciy
         //定义Maker坐标点
         LatLng point = new LatLng(mCurrentLat, mCurrentLon);
         //构建Marker图标
-        bdSt = BitmapDescriptorFactory
-                .fromResource(R.mipmap.icon_gcoding);
+        if(null == bdSt){
+            bdSt = BitmapDescriptorFactory
+                    .fromResource(R.mipmap.icon_gcoding);
+        }
         //构建MarkerOption，用于在地图上添加Marker
-        OverlayOptions option = new MarkerOptions()
-                .position(point)
-                .icon(bdSt);
+        if(null == option){
+            option = new MarkerOptions()
+                    .position(point)
+                    .icon(bdSt);
+        }
         //在地图上添加Marker，并显示
         mBaiduMap.addOverlay(option);
 
@@ -515,10 +517,11 @@ public class LocationActivity extends BaseActiciy
         }
         else if (i == R.id.img_position_of)//回到终端位置
         {
-            add();
+            addMaker();
         }
         else if (i == R.id.location_report)//闹钟
         {
+            showActivity(aty, NzActivity.class);
         }
         else if (i == R.id.location_cry)//免扰时段
         {
@@ -550,8 +553,8 @@ public class LocationActivity extends BaseActiciy
     //立即定位
     private void ljDW()
     {
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .TERMINAL_LOCATE, null, "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\"}", new
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
+                .TERMINAL_LOCATE, null, "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\"}", new
                 HttpCallBack()
                 {
                     @Override
@@ -620,10 +623,9 @@ public class LocationActivity extends BaseActiciy
     protected void onDestroy()
     {
         super.onDestroy();
-        if (bdSt != null && bdEn != null)
+        if (bdSt != null)
         {
             bdSt.recycle();// 释放图片
-            bdEn.recycle();
         }
         //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         // 退出时销毁定位

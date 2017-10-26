@@ -42,8 +42,6 @@ import yh.org.shunqinglib.R;
  */
 public class ShunQingApp extends Application
 {
-    public static final String HOME_HOST = "http://115.159.123.101:8085";//IP地址
-    public static final String DEIVER_SN = "123456789012345";
     private static final String TAG = ShunQingApp.class.getSimpleName();
     private static ShunQingApp mInstance = null;
     private static final long cacheSize = 1024 * 1024 * 20;//缓存文件最大限制大小20M

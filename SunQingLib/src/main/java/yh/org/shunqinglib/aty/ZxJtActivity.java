@@ -13,7 +13,6 @@ import org.yh.library.utils.JsonUitl;
 import org.yh.library.utils.StringUtils;
 
 import yh.org.shunqinglib.R;
-import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonLjDWModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
@@ -101,8 +100,8 @@ public class ZxJtActivity extends BaseActiciy
     }
     private void zxJt()
     {
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .TERMINAL_LISTEN, null, "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\",\"number\":\""
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
+                .TERMINAL_LISTEN, null, "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\",\"number\":\""
                 + number
                 .getText().toString() + "\",\"minute\":\""
                 + times

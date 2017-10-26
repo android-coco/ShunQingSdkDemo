@@ -23,7 +23,6 @@ import org.yh.library.view.loading.dialog.YHLoadingDialog;
 import java.util.Calendar;
 
 import yh.org.shunqinglib.R;
-import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonMdrSdModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
@@ -332,7 +331,7 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
         String parameter = "{\"id\":\"" + rid + "\",\"week\":\"" +
                 week + "\",\"start_hour\":\"" + bh + "\",\"start_minute\":\"" + bm + "\"," +
                 "\"end_hour\":\"" + eh + "\",\"end_minute\":\"" + em + "\"}";
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
                 .DISTURB_MODIFY, null, parameter, new
                 HttpCallBack()
                 {
@@ -467,7 +466,7 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
             }
 
         }
-        System.out.println("aaaaaaaaaa:" + week);
+        LogUtils.e("aaaaaaa:", week);
     }
 
     /**

@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 import yh.org.shunqinglib.R;
 import yh.org.shunqinglib.adapter.DwJlAdapter;
-import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonDwJlModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
@@ -137,9 +136,9 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
 
     private void getData()
     {
-        String jsonParm = "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\",\"page\":\"" + page + "\"," +
+        String jsonParm = "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\",\"page\":\"" + page + "\"," +
                 "\"start_time\":\"" + "2015-10-26 00:46:09" + "\",\"end_time\":\"" + "2017-10-26 17:46:09" + "\"}";
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
                 .TREMINAL_POSITION, null, jsonParm, new
                 HttpCallBack()
                 {
@@ -221,7 +220,7 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
     {
         YHLoadingDialog.make(aty).setMessage("删除中。。。")//提示消息
                 .setCancelable(false).show();
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
                 .TREMINAL_POSITION_DEL, null, "{\"id\":\"" + dwJlModel.getId() + "\"}", new
                 HttpCallBack()
                 {

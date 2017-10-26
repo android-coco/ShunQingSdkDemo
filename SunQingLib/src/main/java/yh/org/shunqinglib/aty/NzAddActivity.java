@@ -21,7 +21,6 @@ import org.yh.library.view.loading.dialog.YHLoadingDialog;
 import java.util.Calendar;
 
 import yh.org.shunqinglib.R;
-import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonNzModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
@@ -35,7 +34,7 @@ public class NzAddActivity extends BaseActiciy implements CompoundButton.OnCheck
     CheckBox x_1, x_2, x_3, x_4, x_5, x_6, x_7;
     Button add;
     EditText stime_1, stime_2, alarm_name;
-    String week;//执行周期
+    String week = "";//执行周期
 
     @Override
     public void setRootView()
@@ -54,6 +53,31 @@ public class NzAddActivity extends BaseActiciy implements CompoundButton.OnCheck
         x_5 = (CheckBox) findViewById(R.id.x_5);
         x_6 = (CheckBox) findViewById(R.id.x_6);
         x_7 = (CheckBox) findViewById(R.id.x_7);
+
+        add = (Button) findViewById(R.id.add);
+        stime_1 = (EditText) findViewById(R.id.stime_1);
+        stime_2 = (EditText) findViewById(R.id.stime_2);
+        alarm_name = (EditText) findViewById(R.id.alarm_name);
+
+        add.setOnClickListener(this);
+        stime_1.setOnClickListener(this);
+        stime_2.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onBackClick()
+    {
+        super.onBackClick();
+        finish();
+    }
+
+    @Override
+    public void initWidget()
+    {
+        super.initWidget();
+        toolbar.setLeftTitleText("返回");
+        toolbar.setMainTitle("添加闹钟");
+
         x_1.setOnCheckedChangeListener(this);
         x_2.setOnCheckedChangeListener(this);
         x_3.setOnCheckedChangeListener(this);
@@ -61,15 +85,9 @@ public class NzAddActivity extends BaseActiciy implements CompoundButton.OnCheck
         x_5.setOnCheckedChangeListener(this);
         x_6.setOnCheckedChangeListener(this);
         x_7.setOnCheckedChangeListener(this);
-        add = (Button) findViewById(R.id.add);
-        stime_1 = (EditText) findViewById(R.id.stime_1);
-        stime_2 = (EditText) findViewById(R.id.stime_2);
-        alarm_name = (EditText) findViewById(R.id.alarm_name);
+
         InputFilter[] filters = {new InputFilter.LengthFilter(6)}; // 设置最大长度为6个字符
         alarm_name.setFilters(filters);
-        add.setOnClickListener(this);
-        stime_1.setOnClickListener(this);
-        stime_2.setOnClickListener(this);
     }
 
     @Override
@@ -137,9 +155,9 @@ public class NzAddActivity extends BaseActiciy implements CompoundButton.OnCheck
     {
         YHLoadingDialog.make(aty).setMessage("添加中。。。")//提示消息
                 .setCancelable(false).show();
-        String parameter = "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\",\"week\":\"" +
+        String parameter = "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\",\"week\":\"" +
                 week + "\",\"hour\":\"" + bh + "\",\"minute\":\"" + bm + "\"}";
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
                 .ALARM_ADD, null, parameter, new
                 HttpCallBack()
                 {

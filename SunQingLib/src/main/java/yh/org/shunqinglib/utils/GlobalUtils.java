@@ -10,6 +10,8 @@ import java.util.Date;
 
 public class GlobalUtils
 {
+    public static  String HOME_HOST = "http://115.159.123.101:8085";//IP地址
+    public static  String DEIVER_SN = "123456789012345";//SN号
     //终端信息
     public static final String DEVER_INFO = "/interface/terminal_profile";
     //修改终端信息

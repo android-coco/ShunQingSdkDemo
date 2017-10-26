@@ -25,7 +25,6 @@ import java.util.ArrayList;
 
 import yh.org.shunqinglib.R;
 import yh.org.shunqinglib.adapter.DwSdAdapter;
-import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonDwSdModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
@@ -138,8 +137,8 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
 
     private void getData()
     {
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .REPORT_LIST, null, "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\"}", new
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
+                .REPORT_LIST, null, "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\"}", new
                 HttpCallBack()
                 {
                     @Override
@@ -227,7 +226,7 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
     {
         YHLoadingDialog.make(aty).setMessage("删除中。。。")//提示消息
                 .setCancelable(false).show();
-        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
                 .REPORT_DEL, null, "{\"id\":\"" + dwSdModel.getId() + "\"}", new
                 HttpCallBack()
                 {
