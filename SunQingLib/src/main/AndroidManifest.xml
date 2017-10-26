@@ -32,7 +32,20 @@
                 </action>
             </intent-filter>
         </service>
-
+        <!-- 执行监听 -->
+        <activity android:name=".aty.ZxJtActivity"/>
+        <!-- 定位 -->
+        <activity android:name=".aty.LocationActivity"/>
+        <!-- 指定拨号 -->
+        <activity android:name=".aty.ZdBhActivity"/>
+        <!-- 定位时段 -->
+        <activity android:name=".aty.DwSdActivity"/>
+        <!-- 添加定位时段 -->
+        <activity android:name=".aty.DwSdAddActivity"/>
+        <!-- 编辑定位时段 -->
+        <activity android:name=".aty.DwSdEditActivity"/>
+        <!-- 允许呼入 -->
+        <activity android:name=".aty.YxFrActivity"/>
     </application>
 
 </manifest>

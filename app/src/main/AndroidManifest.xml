@@ -19,11 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="yh.org.shunqinglib.aty.LocationActivity"/>
-        <activity android:name="yh.org.shunqinglib.aty.ZdBhActivity"/>
-        <activity android:name="yh.org.shunqinglib.aty.DwSdActivity"/>
-        <activity android:name="yh.org.shunqinglib.aty.DwSdAddActivity"/>
-        <activity android:name="yh.org.shunqinglib.aty.DwSdEditActivity"/>
     </application>
 
 </manifest>

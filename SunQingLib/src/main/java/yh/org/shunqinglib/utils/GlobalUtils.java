@@ -52,7 +52,7 @@ public class GlobalUtils
     //号码列表
     public static final String DAIL_LIST = "/interface/dail_list";
     //添加号码
-    public static final String DAIL_ADD = "/interface/ail_addnew";
+    public static final String DAIL_ADD = "/interface/dail_addnew";
     //删除号码
     public static final String DAIL_DEL = "/interface/dail_delete";
 

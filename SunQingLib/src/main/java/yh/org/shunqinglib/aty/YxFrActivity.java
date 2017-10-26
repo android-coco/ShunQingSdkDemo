@@ -1,8 +1,11 @@
 package yh.org.shunqinglib.aty;
 
-import android.content.Intent;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.InputType;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,38 +23,32 @@ import org.yh.library.view.YHRecyclerView;
 import org.yh.library.view.loading.dialog.YHLoadingDialog;
 import org.yh.library.view.yhrecyclerview.ProgressStyle;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import yh.org.shunqinglib.R;
-import yh.org.shunqinglib.adapter.DwSdAdapter;
+import yh.org.shunqinglib.adapter.YxFrAdapter;
 import yh.org.shunqinglib.app.SQSDKinit;
 import yh.org.shunqinglib.base.BaseActiciy;
-import yh.org.shunqinglib.bean.JsonDwSdModel;
+import yh.org.shunqinglib.bean.JsonYxFrModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
 import yh.org.shunqinglib.view.ActionSheetDialog;
 
-
 /**
- * 定位时段
+ * 允许呼入 查询
  */
-public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<JsonDwSdModel
-        .DwSdModel>
+public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<JsonYxFrModel.YxFrModel>
 {
-
-    //    @BindView(id = R.id.recyclerview)
     private YHRecyclerView mRecyclerView;
-    //    @BindView(id = R.id.empty_layout)
     private LinearLayout empty_layout;
-    //    @BindView(id = R.id.id_empty_text)
     private TextView id_empty_text;
-    private DwSdAdapter mAdapter;
-    ArrayList<JsonDwSdModel.DwSdModel> data = null;
+    private YxFrAdapter mAdapter;
+    ArrayList<JsonYxFrModel.YxFrModel> data = null;
 
     @Override
     public void setRootView()
     {
-        setContentView(R.layout.activity_dw_sd);
+        setContentView(R.layout.activity_yxfr);
+        initView();
     }
 
     private void initView()
@@ -61,13 +58,14 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
         id_empty_text = (TextView) findViewById(R.id.id_empty_text);
     }
 
+
     @Override
     public void initWidget()
     {
         super.initWidget();
         initView();
         toolbar.setLeftTitleText("返回");
-        toolbar.setMainTitle("定位时段");
+        toolbar.setMainTitle("允许呼入");
         toolbar.setRightTitleText("");
 
         id_empty_text.setText("加载中。。。");
@@ -83,7 +81,7 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.SquareSpin);//可以自定义上拉加载的样式
         mRecyclerView.setFootViewText(getString(R.string.listview_loading), "我是有底线的。");
         // mRecyclerView.setArrowImageView(R.mipmap.iconfont_downgrey);//箭头
-        mAdapter = new DwSdAdapter();
+        mAdapter = new YxFrAdapter();
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
         mRecyclerView.setLoadingMoreEnabled(false);
@@ -133,22 +131,37 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
     protected void onMenuClick()
     {
         super.onMenuClick();
-        showActivity(aty, DwSdAddActivity.class);
+        final EditText inputServer = new EditText(aty);
+        inputServer.setInputType(InputType.TYPE_CLASS_PHONE);
+        inputServer.setHint("请输入号码");
+        AlertDialog.Builder builder = new AlertDialog.Builder(aty);
+        builder.setTitle("请输入号码").setIcon(android.R.drawable.ic_dialog_info).setView(inputServer)
+                .setNegativeButton("取消", null);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
+        {
+
+            public void onClick(DialogInterface dialog, int which)
+            {
+                addYxFr(inputServer.getText().toString().trim());
+            }
+        });
+        builder.show();
     }
 
     private void getData()
     {
         YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .REPORT_LIST, null, "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\"}", new
+                .DAIL_LIST, null, "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\"}", new
                 HttpCallBack()
                 {
                     @Override
                     public void onSuccess(String t)
                     {
                         super.onSuccess(t);
-                        final JsonDwSdModel jsonData = JsonUitl.stringToTObject
-                                (t, JsonDwSdModel.class);
+                        final JsonYxFrModel jsonData = JsonUitl.stringToTObject
+                                (t, JsonYxFrModel.class);
                         String resultCode = jsonData.getResultCode();
+                        LogUtils.e(TAG,jsonData);
                         if ("0".equals(resultCode))
                         {
                             if (StringUtils.isEmpty(jsonData.getDatas()))
@@ -188,60 +201,95 @@ public class DwSdActivity extends BaseActiciy implements I_YHItemClickListener<J
     }
 
     @Override
-    public boolean onItemLongClick(View view, JsonDwSdModel.DwSdModel dwSdModel, int i)
+    public boolean onItemLongClick(View view, JsonYxFrModel.YxFrModel yxFrModel, int i)
     {
         return false;
     }
 
     @Override
-    public void onItemClick(View view, final JsonDwSdModel.DwSdModel dwSdModel, int i)
+    public void onItemClick(View view, final JsonYxFrModel.YxFrModel yxFrModel, int i)
     {
         new ActionSheetDialog(aty)
                 .builder()
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
-                .addSheetItem("编辑", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener()
-                        {
-                            @Override
-                            public void onClick(int which)
-                            {
-                                Intent i = new Intent(aty, DwSdEditActivity.class);
-                                i.putExtra(DwSdEditActivity.DATA_ACTION, (Serializable) dwSdModel);
-                                showActivity(aty, i);
-                            }
-                        })
+                .setTitle("警告：删除后无法恢复！")
                 .addSheetItem("删除", ActionSheetDialog.SheetItemColor.Red,
                         new ActionSheetDialog.OnSheetItemClickListener()
                         {
                             @Override
                             public void onClick(int which)
                             {
-                                DelDwSd(dwSdModel);
+                                delYxFr(yxFrModel);
                             }
                         }).show();
     }
 
-
-    private void DelDwSd(final JsonDwSdModel.DwSdModel dwSdModel)
+    private void addYxFr(final String number)
     {
-        YHLoadingDialog.make(aty).setMessage("删除中。。。")//提示消息
+        YHLoadingDialog.make(aty).setMessage("添加中。。。")//提示消息
                 .setCancelable(false).show();
         YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
-                .REPORT_DEL, null, "{\"id\":\"" + dwSdModel.getId() + "\"}", new
+                .DAIL_ADD, null, "{\"sn\":\"" + SQSDKinit.DEIVER_SN + "\",\"number\":\"" + number + "\"}", new
                 HttpCallBack()
                 {
                     @Override
                     public void onSuccess(String t)
                     {
                         super.onSuccess(t);
-                        final JsonDwSdModel jsonData = JsonUitl.stringToTObject
-                                (t, JsonDwSdModel.class);
+                        final JsonYxFrModel jsonData = JsonUitl.stringToTObject
+                                (t, JsonYxFrModel.class);
+                        String resultCode = jsonData.getResultCode();
+                        if ("0".equals(resultCode))
+                        {
+                            YHViewInject.create().showTips("添加成功");
+                            mAdapter.getDatas().clear();//必须在数据更新前清空，不能太早
+                            getData();
+                        }else if("5".equals(resultCode))
+                        {
+                            YHViewInject.create().showTips("已经超出16个的数量限制");
+                        }
+                        else
+                        {
+                            YHViewInject.create().showTips("添加失败");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int errorNo, String strMsg)
+                    {
+                        super.onFailure(errorNo, strMsg);
+                        YHViewInject.create().showTips("删除失败");
+                    }
+
+                    @Override
+                    public void onFinish()
+                    {
+                        super.onFinish();
+                        YHLoadingDialog.cancel();
+                    }
+                }, TAG);
+    }
+
+    private void delYxFr(final JsonYxFrModel.YxFrModel yxFrModel)
+    {
+        YHLoadingDialog.make(aty).setMessage("删除中。。。")//提示消息
+                .setCancelable(false).show();
+        YHRequestFactory.getRequestManger().postString(SQSDKinit.HOME_HOST, GlobalUtils
+                .DAIL_DEL, null, "{\"id\":\"" + yxFrModel.getId() + "\"}", new
+                HttpCallBack()
+                {
+                    @Override
+                    public void onSuccess(String t)
+                    {
+                        super.onSuccess(t);
+                        final JsonYxFrModel jsonData = JsonUitl.stringToTObject
+                                (t, JsonYxFrModel.class);
                         String resultCode = jsonData.getResultCode();
                         if ("0".equals(resultCode))
                         {
                             YHViewInject.create().showTips("删除成功");
-                            data.remove(dwSdModel);
+                            data.remove(yxFrModel);
                             mAdapter.notifyDataSetChanged();
                         } else
                         {

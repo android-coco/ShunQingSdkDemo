@@ -290,7 +290,7 @@
                 android:layout_width="1px"
                 android:layout_height="match_parent"
                 android:background="@color/main_bg"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
 
             <LinearLayout
                 android:id="@+id/location_track"
@@ -299,13 +299,14 @@
                 android:layout_weight="1"
                 android:background="@drawable/btn_found_list_bg"
                 android:gravity="center"
+                android:visibility="invisible"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="@dimen/space_22"
                     android:layout_height="@dimen/space_22"
                     android:background="@mipmap/location_track"
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -314,7 +315,37 @@
                     android:text="轨迹"
                     android:textColor="@color/index_black"
                     android:textSize="@dimen/text_size_12"
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
+            </LinearLayout>
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/main_bg"
+                android:visibility="invisible"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/location_track"
+                    android:visibility="visible"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="轨迹"
+                    android:textColor="@color/index_black"
+                    android:textSize="@dimen/text_size_12"
+                    android:visibility="visible"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
