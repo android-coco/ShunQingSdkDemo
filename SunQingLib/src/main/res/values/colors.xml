@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!-- 标准颜色 -->
+    <color name="main_bg">#ebebeb</color>
+    <color name="index_black">#333333</color>
+    <color name="main_tab_bottom_notsel">#666666</color>
+    <!-- 主页,导航栏 -->
+    <color name="main_page_bg">#0cc478</color>
+    <!-- 按钮点击颜色 -->
+    <color name="main_bluebtn_bg">#0fa567</color>
+    <!--仿IOS底部弹框-->
+    <color name="trans">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="actionsheet_blue">#037BFF</color>
+    <color name="actionsheet_red">#FD4A2E</color>
+    <color name="actionsheet_gray">#8F8F8F</color>
+</resources>

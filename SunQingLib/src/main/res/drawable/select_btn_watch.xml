@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="false"><shape android:shape="rectangle">
+
+            <!-- 描边 -->
+            <stroke android:width="0dp" android:color="@color/main_page_bg"></stroke>
+            <!-- 实心   白色就是空心圆(原来背景是白色) -->
+            <solid android:color="@color/main_page_bg"></solid>
+            <!-- 设置按钮的四个角为弧形 -->
+            <!-- android:radius 弧形的半径 -->
+            <corners android:bottomLeftRadius="5dp" android:bottomRightRadius="5dp" android:topLeftRadius="5dp" android:topRightRadius="5dp" />
+            <!-- padding: Button 里面的文字与Button边界的间隔 -->
+            <padding android:bottom="5dp" android:left="10dp" android:right="10dp" android:top="10dp" />
+        </shape></item>
+    <item android:state_pressed="true"><shape android:shape="rectangle">
+
+            <!-- 描边 -->
+            <stroke android:width="0dp" android:color="@color/main_bluebtn_bg"></stroke>
+            <!-- 实心   白色就是空心圆(原来背景是白色) -->
+            <solid android:color="@color/main_bluebtn_bg"></solid>
+            <!-- 设置按钮的四个角为弧形 -->
+            <!-- android:radius 弧形的半径 -->
+            <corners android:bottomLeftRadius="5dp" android:bottomRightRadius="5dp" android:topLeftRadius="5dp" android:topRightRadius="5dp" />
+            <!-- padding: Button 里面的文字与Button边界的间隔 -->
+            <padding android:bottom="10dp" android:left="10dp" android:right="10dp" android:top="10dp" />
+        </shape></item>
+
+</selector>
