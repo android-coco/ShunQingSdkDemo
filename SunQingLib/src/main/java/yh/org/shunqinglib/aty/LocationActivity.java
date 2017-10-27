@@ -1,6 +1,7 @@
 package yh.org.shunqinglib.aty;
 
 import android.Manifest;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -87,6 +88,8 @@ public class LocationActivity extends BaseActiciy
 
     private boolean isWork = true;
 
+    JsonEquipmentModel jsonEquipmentModel;
+
     @Override
     public void setRootView()
     {
@@ -165,7 +168,7 @@ public class LocationActivity extends BaseActiciy
             public void onSuccess(String t)
             {
                 super.onSuccess(t);
-                final JsonEquipmentModel jsonEquipmentModel = JsonUitl.stringToTObject
+                jsonEquipmentModel = JsonUitl.stringToTObject
                         (t, JsonEquipmentModel.class);
                 if (!StringUtils.isEmpty(jsonEquipmentModel) && !StringUtils.isEmpty
                         (jsonEquipmentModel.getDatas()))
@@ -182,10 +185,11 @@ public class LocationActivity extends BaseActiciy
                             if (locateType == "0")
                             {
                                 locateType = "基站";
-                            }else if (locateType == "1")
+                            } else if (locateType == "1")
                             {
                                 locateType = "GPS";
-                            }else{
+                            } else
+                            {
                                 locateType = "未知";
                             }
                             textStreet.setText("定位方式：" + locateType);
@@ -250,7 +254,7 @@ public class LocationActivity extends BaseActiciy
 
         textAddress = (TextView) findViewById(R.id.tv_street);//定位位置
         textLocation = (TextView) findViewById(R.id.tv_location);//定位时间
-        textStreet= (TextView) findViewById(R.id.tv_address);//定位类型
+        textStreet = (TextView) findViewById(R.id.tv_address);//定位类型
     }
 
     @Override
@@ -292,7 +296,7 @@ public class LocationActivity extends BaseActiciy
     }
 
     private BitmapDescriptor bdSt = null;
-    private OverlayOptions option = null;
+
     private void addMaker()
     {
         if ((mCurrentLat == mCurrentLon) || mCurrentLat == 0 || mCurrentLon == 0)
@@ -306,16 +310,12 @@ public class LocationActivity extends BaseActiciy
         //定义Maker坐标点
         LatLng point = new LatLng(mCurrentLat, mCurrentLon);
         //构建Marker图标
-        if(null == bdSt){
-            bdSt = BitmapDescriptorFactory
-                    .fromResource(R.mipmap.icon_gcoding);
-        }
+        bdSt = BitmapDescriptorFactory
+                .fromResource(R.mipmap.icon_gcoding);
         //构建MarkerOption，用于在地图上添加Marker
-        if(null == option){
-            option = new MarkerOptions()
-                    .position(point)
-                    .icon(bdSt);
-        }
+        OverlayOptions option = new MarkerOptions()
+                .position(point)
+                .icon(bdSt);
         //在地图上添加Marker，并显示
         mBaiduMap.addOverlay(option);
 
@@ -373,34 +373,29 @@ public class LocationActivity extends BaseActiciy
                 location.getAltitude();    //获取海拔高度信息，单位米
                 location.getDirection();    //获取方向信息，单位度
 
-            }
-            else if (location.getLocType() == BDLocation.TypeNetWorkLocation)
+            } else if (location.getLocType() == BDLocation.TypeNetWorkLocation)
             {
 
                 //当前为网络定位结果，可获取以下信息
                 location.getOperators();    //获取运营商信息
 
-            }
-            else if (location.getLocType() == BDLocation.TypeOffLineLocation)
+            } else if (location.getLocType() == BDLocation.TypeOffLineLocation)
             {
 
                 //当前为网络定位结果
 
-            }
-            else if (location.getLocType() == BDLocation.TypeServerError)
+            } else if (location.getLocType() == BDLocation.TypeServerError)
             {
 
                 //当前网络定位失败
                 //可将定位唯一ID、IMEI、定位失败时间反馈至loc-bugs@baidu.com
 
-            }
-            else if (location.getLocType() == BDLocation.TypeNetWorkException)
+            } else if (location.getLocType() == BDLocation.TypeNetWorkException)
             {
 
                 //当前网络不通
 
-            }
-            else if (location.getLocType() == BDLocation.TypeCriteriaException)
+            } else if (location.getLocType() == BDLocation.TypeCriteriaException)
             {
 
                 //当前缺少定位依据，可能是用户没有授权，建议弹出提示框让用户开启权限
@@ -444,53 +439,45 @@ public class LocationActivity extends BaseActiciy
 
                 //建议打开GPS
 
-            }
-            else if (diagnosticType == LocationClient.LOC_DIAGNOSTIC_TYPE_BETTER_OPEN_WIFI)
+            } else if (diagnosticType == LocationClient.LOC_DIAGNOSTIC_TYPE_BETTER_OPEN_WIFI)
             {
 
                 //建议打开wifi，不必连接，这样有助于提高网络定位精度！
 
-            }
-            else if (diagnosticType == LocationClient.LOC_DIAGNOSTIC_TYPE_NEED_CHECK_LOC_PERMISSION)
+            } else if (diagnosticType == LocationClient.LOC_DIAGNOSTIC_TYPE_NEED_CHECK_LOC_PERMISSION)
             {
 
                 //定位权限受限，建议提示用户授予APP定位权限！
 
-            }
-            else if (diagnosticType == LocationClient.LOC_DIAGNOSTIC_TYPE_NEED_CHECK_NET)
+            } else if (diagnosticType == LocationClient.LOC_DIAGNOSTIC_TYPE_NEED_CHECK_NET)
             {
 
                 //网络异常造成定位失败，建议用户确认网络状态是否异常！
 
-            }
-            else if (diagnosticType == LocationClient.LOC_DIAGNOSTIC_TYPE_NEED_CLOSE_FLYMODE)
+            } else if (diagnosticType == LocationClient.LOC_DIAGNOSTIC_TYPE_NEED_CLOSE_FLYMODE)
             {
 
                 //手机飞行模式造成定位失败，建议用户关闭飞行模式后再重试定位！
 
-            }
-            else if (diagnosticType == LocationClient
+            } else if (diagnosticType == LocationClient
                     .LOC_DIAGNOSTIC_TYPE_NEED_INSERT_SIMCARD_OR_OPEN_WIFI)
             {
 
                 //无法获取任何定位依据，建议用户打开wifi或者插入sim卡重试！
 
-            }
-            else if (diagnosticType == LocationClient
+            } else if (diagnosticType == LocationClient
                     .LOC_DIAGNOSTIC_TYPE_NEED_OPEN_PHONE_LOC_SWITCH)
             {
 
                 //无法获取有效定位依据，建议用户打开手机设置里的定位开关后重试！
 
-            }
-            else if (diagnosticType == LocationClient.LOC_DIAGNOSTIC_TYPE_SERVER_FAIL)
+            } else if (diagnosticType == LocationClient.LOC_DIAGNOSTIC_TYPE_SERVER_FAIL)
             {
 
                 //百度定位服务端定位失败
                 //建议反馈location.getLocationID()和大体定位时间到loc-bugs@baidu.com
 
-            }
-            else if (diagnosticType == LocationClient.LOC_DIAGNOSTIC_TYPE_FAIL_UNKNOWN)
+            } else if (diagnosticType == LocationClient.LOC_DIAGNOSTIC_TYPE_FAIL_UNKNOWN)
             {
 
                 //无法获取有效定位依据，但无法确定具体原因
@@ -514,36 +501,28 @@ public class LocationActivity extends BaseActiciy
         if (i == R.id.location_blood_plu)//执行监听
         {
             showActivity(aty, ZxJtActivity.class);
-        }
-        else if (i == R.id.img_position_of)//回到终端位置
+        } else if (i == R.id.img_position_of)//回到终端位置
         {
             addMaker();
-        }
-        else if (i == R.id.location_report)//闹钟
+        } else if (i == R.id.location_report)//闹钟
         {
             showActivity(aty, NzActivity.class);
-        }
-        else if (i == R.id.location_cry)//免扰时段
+        } else if (i == R.id.location_cry)//免扰时段
         {
             showActivity(aty, MdrSdActivity.class);
-        }
-        else if (i == R.id.location_log)//定位时段
+        } else if (i == R.id.location_log)//定位时段
         {
             showActivity(aty, DwSdActivity.class);
-        }
-        else if (i == R.id.gps_command)//定位记录
+        } else if (i == R.id.gps_command)//定位记录
         {
-            showActivity(aty,DwJlActivity.class);
-        }
-        else if (i == R.id.location_rall)//立即定位
+            showActivity(aty, DwJlActivity.class);
+        } else if (i == R.id.location_rall)//立即定位
         {
             ljDW();
-        }
-        else if (i == R.id.location_sos)//指定拨号
+        } else if (i == R.id.location_sos)//指定拨号
         {
             showActivity(aty, ZdBhActivity.class);
-        }
-        else if (i == R.id.sleep_time)//允许呼入
+        } else if (i == R.id.sleep_time)//允许呼入
         {
             showActivity(aty, YxFrActivity.class);
         }
@@ -566,8 +545,7 @@ public class LocationActivity extends BaseActiciy
                         if ("0".equals(jsonEquipmentModel.getResultCode()))
                         {
                             YHViewInject.create().showTips("发送立即定位成功");
-                        }
-                        else if ("5".equals(jsonEquipmentModel.getResultCode()))
+                        } else if ("5".equals(jsonEquipmentModel.getResultCode()))
                         {
                             YHViewInject.create().showTips("设备不在线");
                         }
@@ -593,8 +571,17 @@ public class LocationActivity extends BaseActiciy
     protected void onMenuClick()
     {
         super.onMenuClick();
-        // 终端设置
-        YHViewInject.create().showTips("设置");
+        if (StringUtils.isEmpty(jsonEquipmentModel))
+        {
+            YHViewInject.create().showTips("数据加载中请稍候！");
+        } else
+        {
+            // 终端设置
+            Intent i = new Intent(aty, SzActivity.class);
+            i.putExtra(SzActivity.DATA_ACTION, jsonEquipmentModel.getDatas().get(0));
+            showActivity(aty, i);
+        }
+
     }
 
     @Override
@@ -603,6 +590,7 @@ public class LocationActivity extends BaseActiciy
         super.onResume();
         //在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
         mMapView.onResume();
+        getLastLoction();
     }
 
     @Override
@@ -626,6 +614,7 @@ public class LocationActivity extends BaseActiciy
         if (bdSt != null)
         {
             bdSt.recycle();// 释放图片
+            bdSt = null;
         }
         //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         // 退出时销毁定位

@@ -60,6 +60,8 @@
         <activity android:name=".aty.NzAddActivity"/>
         <!-- 编辑闹钟 -->
         <activity android:name=".aty.NzEditActivity"/>
+        <!-- 设置 -->
+        <activity android:name=".aty.SzActivity"/>
     </application>
 
 </manifest>

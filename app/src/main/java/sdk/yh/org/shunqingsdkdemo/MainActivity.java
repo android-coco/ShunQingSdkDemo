@@ -9,16 +9,26 @@ import yh.org.shunqinglib.aty.LocationActivity;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.utils.GlobalUtils;
 
+/**
+ * BaseActiciy 调用
+ */
 public class MainActivity extends BaseActiciy
 {
 
     @BindView(id = R.id.ok, click = true)
-    Button ok;
+    public Button ok;
 
     @Override
     public void setRootView()
     {
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void initWidget()
+    {
+        super.initWidget();
+        ok.setText("继承BaseActiciy调用");
     }
 
     @Override

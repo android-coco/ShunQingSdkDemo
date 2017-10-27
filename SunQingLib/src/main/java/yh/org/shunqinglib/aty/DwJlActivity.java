@@ -64,6 +64,8 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
         initView();
         toolbar.setLeftTitleText("返回");
         toolbar.setMainTitle("定位记录");
+        toolbar.setRightTitleText("筛选");
+        toolbar.setRightTitleDrawable(R.mipmap.img_screening);
 
         id_empty_text.setText("加载中。。。");
         //lineartlayout
@@ -131,7 +133,7 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
     protected void onMenuClick()
     {
         super.onMenuClick();
-        showActivity(aty, DwSdAddActivity.class);
+        YHViewInject.create().showTips("筛选");
     }
 
     private void getData()
