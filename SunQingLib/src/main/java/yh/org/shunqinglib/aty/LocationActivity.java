@@ -65,7 +65,7 @@ public class LocationActivity extends BaseActiciy
     LinearLayout location_sos;
     //    @BindView(id = R.id.sleep_time, click = true)
     LinearLayout sleep_time;
-    //    @BindView(id = R.id.gps_command, click = true)
+    //    @BindView(id = R.id.icon_gcoding, click = true)
     LinearLayout gps_command;
 
     //    @BindView(id = tv_street)

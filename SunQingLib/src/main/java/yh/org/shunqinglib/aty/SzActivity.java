@@ -260,7 +260,7 @@ public class SzActivity extends BaseActiciy
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getAction() == KeyEvent.ACTION_DOWN)
         {
-            YHViewInject.create().getExitDialog(aty, "未保存，退出不做任何修改！", null, null, new DialogInterface
+            YHViewInject.create().getExitDialog(aty, "编辑状态，是否退出！", null, null, new DialogInterface
                     .OnClickListener()
             {
                 @Override
