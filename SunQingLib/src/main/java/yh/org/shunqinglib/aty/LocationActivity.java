@@ -264,7 +264,8 @@ public class LocationActivity extends BaseActiciy
         initView();
         //toolbar.setLeftTitleText("返回");
         toolbar.setMainTitle("控制中心");
-        toolbar.setRightTitleDrawable(R.mipmap.config_set);
+        toolbar.setRightTitleText("设置");
+        toolbar.setRightTitleDrawable(R.mipmap.img_screening);
         mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
         mBaiduMap = mMapView.getMap();
         //地图logo位置

@@ -14,8 +14,8 @@ import org.yh.library.okhttp.callback.HttpCallBack;
 import org.yh.library.ui.YHViewInject;
 import org.yh.library.utils.JsonUitl;
 import org.yh.library.utils.LogUtils;
-import org.yh.library.utils.StringUtils;
 import org.yh.library.view.YHRecyclerView;
+import org.yh.library.view.YhSheetDialog;
 import org.yh.library.view.loading.dialog.YHLoadingDialog;
 import org.yh.library.view.yhrecyclerview.ProgressStyle;
 
@@ -26,7 +26,7 @@ import yh.org.shunqinglib.adapter.DwJlAdapter;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonDwJlModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
-import yh.org.shunqinglib.view.ActionSheetDialog;
+import yh.org.shunqinglib.view.MyPopup;
 
 
 /**
@@ -92,7 +92,8 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
             {
                 page = 1;
                 mAdapter.getDatas().clear();//必须在数据更新前清空，不能太早
-                getData();
+                String jsonParm = "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\",\"page\":\"" + page + "\"}";
+                getData(jsonParm);
             }
 
             @Override
@@ -102,9 +103,9 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
                 if (TOTAL_DATA >= 32)
                 {//有32条数据就加载更多
                     // loading more
-                    getData();
-                }
-                else
+                    String jsonParm = "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\",\"page\":\"" + page + "\"}";
+                    getData(jsonParm);
+                } else
                 {
                     //the end
                     mRecyclerView.setNoMore(true);
@@ -133,13 +134,21 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
     protected void onMenuClick()
     {
         super.onMenuClick();
-        YHViewInject.create().showTips("筛选");
+        new MyPopup(aty, toolbar, new MyPopup.PatientOnclick()
+        {
+            @Override
+            public void useOnclick(String startTime, String endTime)
+            {
+                String jsonParm = "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\",\"page\":\"" + page + "\"," +
+                        "\"start_time\":\"" + startTime + " 00:00:00" + "\",\"end_time\":\"" + endTime + " 23:59:59" + "\"}";
+                mAdapter.getDatas().clear();//必须在数据更新前清空，不能太早
+                getData(jsonParm);
+            }
+        });
     }
 
-    private void getData()
+    private void getData(String jsonParm)
     {
-        String jsonParm = "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\",\"page\":\"" + page + "\"," +
-                "\"start_time\":\"" + "2015-10-26 00:46:09" + "\",\"end_time\":\"" + "2017-10-26 17:46:09" + "\"}";
         YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
                 .TREMINAL_POSITION, null, jsonParm, new
                 HttpCallBack()
@@ -154,19 +163,19 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
                         TOTAL_DATA = jsonData.getTotalCount();
                         if ("0".equals(resultCode))
                         {
-                            if (StringUtils.isEmpty(jsonData.getDatas()))
+                            if (TOTAL_DATA == 0)
                             {
                                 id_empty_text.setText("暂无数据!");
-                            }
-                            else
+                                mRecyclerView.setEmptyView(empty_layout);//没有数据的空布局
+                            } else
                             {
                                 data.addAll(jsonData.getDatas());
                                 mAdapter.setDatas(data);
                             }
-                        }
-                        else
+                        } else
                         {
-                            mAdapter.notifyDataSetChanged();
+                            id_empty_text.setText("Code:" + resultCode);
+                            mRecyclerView.setEmptyView(empty_layout);
                         }
                         //刷新完毕
                         mRecyclerView.refreshComplete();
@@ -178,6 +187,7 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
                         super.onFailure(errorNo, strMsg);
                         LogUtils.e(TAG, strMsg);
                         id_empty_text.setText("加载失败");
+                        mRecyclerView.setEmptyView(empty_layout);//没有数据的空布局
                         mAdapter.getDatas().clear();//必须在数据更新前清空，不能太早
                         //刷新完毕
                         mRecyclerView.refreshComplete();
@@ -201,13 +211,13 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
     @Override
     public void onItemClick(View view, final JsonDwJlModel.DwJlModel dwJlModel, int i)
     {
-        new ActionSheetDialog(aty)
+        new YhSheetDialog(aty)
                 .builder()
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
                 .setTitle("警告：删除后无法恢复！")
-                .addSheetItem("删除", ActionSheetDialog.SheetItemColor.Red,
-                        new ActionSheetDialog.OnSheetItemClickListener()
+                .addSheetItem("删除", YhSheetDialog.SheetItemColor.Red,
+                        new YhSheetDialog.OnSheetItemClickListener()
                         {
                             @Override
                             public void onClick(int which)
@@ -238,8 +248,7 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
                             YHViewInject.create().showTips("删除成功");
                             data.remove(dwJlModel);
                             mAdapter.notifyDataSetChanged();
-                        }
-                        else
+                        } else
                         {
                             YHViewInject.create().showTips("删除失败");
                         }
@@ -265,6 +274,7 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
     public void ploginOut(EventBusBean msg)
     {
         mAdapter.getDatas().clear();//必须在数据更新前清空，不能太早
-        getData();
+        String jsonParm = "{\"sn\":\"" + GlobalUtils.DEIVER_SN + "\",\"page\":\"" + page + "\"}";
+        getData(jsonParm);
     }
 }

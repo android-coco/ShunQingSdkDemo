@@ -90,7 +90,7 @@ public class SzActivity extends BaseActiciy
             }
             btalow = equipmentModel.getFlagBattery();
             power = equipmentModel.getFlagPower();
-            if (btalow == "0")//关
+            if ("0".equals(btalow))//关
             {
                 btalow_on.setVisibility(View.GONE);
                 btalow_off.setVisibility(View.VISIBLE);
@@ -100,7 +100,7 @@ public class SzActivity extends BaseActiciy
                 btalow_off.setVisibility(View.GONE);
             }
 
-            if (power == "0")//关
+            if ("0".equals(power))//关
             {
                 pwonff_on.setVisibility(View.GONE);
                 pwonff_off.setVisibility(View.VISIBLE);
@@ -119,7 +119,7 @@ public class SzActivity extends BaseActiciy
         super.initWidget();
         toolbar.setLeftTitleText("返回");
         toolbar.setMainTitle("终端设置");
-        toolbar.setRightTitleDrawable(R.mipmap.config_set);//保存
+        toolbar.setRightTitleDrawable(R.mipmap.img_screening);//保存
         toolbar.setRightTitleText("保存");
     }
 
@@ -227,7 +227,7 @@ public class SzActivity extends BaseActiciy
     protected void onBackClick()
     {
         super.onBackClick();
-        YHViewInject.create().getExitDialog(aty, "未保存，退出不做任何修改！", null, null, new DialogInterface
+        YHViewInject.create().getExitDialog(aty, "编辑状态，是否退出！", null, null, new DialogInterface
                 .OnClickListener()
         {
             @Override
@@ -236,6 +236,22 @@ public class SzActivity extends BaseActiciy
                 finish();
             }
         });
+
+//        new YHAlertDialog(aty).builder().setTitle("提示").setMsg("编辑状态，是否退出！").setCancelable(true).setNegativeButton("确定",new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View i)
+//            {
+//                finish();
+//            }
+//        }).setPositiveButton("取消", new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View view)
+//            {
+//
+//            }
+//        }).show();
     }
 
     @Override

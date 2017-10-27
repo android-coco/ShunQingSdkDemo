@@ -32,7 +32,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:26.+'
-    compile 'org.yh.yhframe:YhLibraryForAndroid:1.0.13'
+    compile 'org.yh.yhframe:YhLibraryForAndroid:1.0.14'
+    compile 'cn.qqtheme.framework:AndroidPicker:latest.integration'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }

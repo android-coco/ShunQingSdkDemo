@@ -17,10 +17,10 @@ import org.yh.library.utils.JsonUitl;
 import org.yh.library.utils.LogUtils;
 import org.yh.library.utils.StringUtils;
 import org.yh.library.view.YHRecyclerView;
+import org.yh.library.view.YhSheetDialog;
 import org.yh.library.view.loading.dialog.YHLoadingDialog;
 import org.yh.library.view.yhrecyclerview.ProgressStyle;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import yh.org.shunqinglib.R;
@@ -28,7 +28,6 @@ import yh.org.shunqinglib.adapter.MdrSdAdapter;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonMdrSdModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
-import yh.org.shunqinglib.view.ActionSheetDialog;
 
 /**
  * 免打扰时段查询
@@ -148,6 +147,7 @@ public class MdrSdActivity extends BaseActiciy implements I_YHItemClickListener<
                             if (StringUtils.isEmpty(jsonData.getDatas()))
                             {
                                 id_empty_text.setText("暂无数据!");
+                                mRecyclerView.setEmptyView(empty_layout);//没有数据的空布局
                             } else
                             {
                                 data.addAll(jsonData.getDatas());
@@ -155,7 +155,8 @@ public class MdrSdActivity extends BaseActiciy implements I_YHItemClickListener<
                             }
                         } else
                         {
-                            mAdapter.notifyDataSetChanged();
+                            id_empty_text.setText("Code:" + resultCode);
+                            mRecyclerView.setEmptyView(empty_layout);
                         }
                         //刷新完毕
                         mRecyclerView.refreshComplete();
@@ -167,6 +168,7 @@ public class MdrSdActivity extends BaseActiciy implements I_YHItemClickListener<
                         super.onFailure(errorNo, strMsg);
                         LogUtils.e(TAG, strMsg);
                         id_empty_text.setText("加载失败");
+                        mRecyclerView.setEmptyView(empty_layout);
                         mAdapter.getDatas().clear();//必须在数据更新前清空，不能太早
                         //刷新完毕
                         mRecyclerView.refreshComplete();
@@ -190,23 +192,23 @@ public class MdrSdActivity extends BaseActiciy implements I_YHItemClickListener<
     @Override
     public void onItemClick(View view, final JsonMdrSdModel.MdrSdModel mdrSdModel, int i)
     {
-        new ActionSheetDialog(aty)
+        new YhSheetDialog(aty)
                 .builder()
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
-                .addSheetItem("编辑", ActionSheetDialog.SheetItemColor.Blue,
-                        new ActionSheetDialog.OnSheetItemClickListener()
+                .addSheetItem("编辑", YhSheetDialog.SheetItemColor.Blue,
+                        new YhSheetDialog.OnSheetItemClickListener()
                         {
                             @Override
                             public void onClick(int which)
                             {
                                 Intent i = new Intent(aty, MdrSdEditActivity.class);
-                                i.putExtra(MdrSdEditActivity.DATA_ACTION, (Serializable) mdrSdModel);
+                                i.putExtra(MdrSdEditActivity.DATA_ACTION, mdrSdModel);
                                 showActivity(aty, i);
                             }
                         })
-                .addSheetItem("删除", ActionSheetDialog.SheetItemColor.Red,
-                        new ActionSheetDialog.OnSheetItemClickListener()
+                .addSheetItem("删除", YhSheetDialog.SheetItemColor.Red,
+                        new YhSheetDialog.OnSheetItemClickListener()
                         {
                             @Override
                             public void onClick(int which)

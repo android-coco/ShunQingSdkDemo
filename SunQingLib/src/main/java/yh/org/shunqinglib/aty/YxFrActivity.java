@@ -20,6 +20,7 @@ import org.yh.library.utils.JsonUitl;
 import org.yh.library.utils.LogUtils;
 import org.yh.library.utils.StringUtils;
 import org.yh.library.view.YHRecyclerView;
+import org.yh.library.view.YhSheetDialog;
 import org.yh.library.view.loading.dialog.YHLoadingDialog;
 import org.yh.library.view.yhrecyclerview.ProgressStyle;
 
@@ -30,7 +31,6 @@ import yh.org.shunqinglib.adapter.YxFrAdapter;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonYxFrModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
-import yh.org.shunqinglib.view.ActionSheetDialog;
 
 /**
  * 允许呼入 查询
@@ -160,12 +160,13 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
                         final JsonYxFrModel jsonData = JsonUitl.stringToTObject
                                 (t, JsonYxFrModel.class);
                         String resultCode = jsonData.getResultCode();
-                        LogUtils.e(TAG,jsonData);
+                        LogUtils.e(TAG, jsonData);
                         if ("0".equals(resultCode))
                         {
                             if (StringUtils.isEmpty(jsonData.getDatas()))
                             {
                                 id_empty_text.setText("暂无数据!");
+                                mRecyclerView.setEmptyView(empty_layout);//没有数据的空布局
                             } else
                             {
                                 data.addAll(jsonData.getDatas());
@@ -173,7 +174,8 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
                             }
                         } else
                         {
-                            mAdapter.notifyDataSetChanged();
+                            id_empty_text.setText("Code:" + resultCode);
+                            mRecyclerView.setEmptyView(empty_layout);
                         }
                         //刷新完毕
                         mRecyclerView.refreshComplete();
@@ -185,6 +187,7 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
                         super.onFailure(errorNo, strMsg);
                         LogUtils.e(TAG, strMsg);
                         id_empty_text.setText("加载失败");
+                        mRecyclerView.setEmptyView(empty_layout);
                         mAdapter.getDatas().clear();//必须在数据更新前清空，不能太早
                         //刷新完毕
                         mRecyclerView.refreshComplete();
@@ -208,13 +211,13 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
     @Override
     public void onItemClick(View view, final JsonYxFrModel.YxFrModel yxFrModel, int i)
     {
-        new ActionSheetDialog(aty)
+        new YhSheetDialog(aty)
                 .builder()
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
                 .setTitle("警告：删除后无法恢复！")
-                .addSheetItem("删除", ActionSheetDialog.SheetItemColor.Red,
-                        new ActionSheetDialog.OnSheetItemClickListener()
+                .addSheetItem("删除", YhSheetDialog.SheetItemColor.Red,
+                        new YhSheetDialog.OnSheetItemClickListener()
                         {
                             @Override
                             public void onClick(int which)
@@ -244,11 +247,10 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
                             YHViewInject.create().showTips("添加成功");
                             mAdapter.getDatas().clear();//必须在数据更新前清空，不能太早
                             getData();
-                        }else if("5".equals(resultCode))
+                        } else if ("5".equals(resultCode))
                         {
                             YHViewInject.create().showTips("已经超出16个的数量限制");
-                        }
-                        else
+                        } else
                         {
                             YHViewInject.create().showTips("添加失败");
                         }
