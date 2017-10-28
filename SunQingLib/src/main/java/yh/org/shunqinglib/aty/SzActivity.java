@@ -29,7 +29,8 @@ public class SzActivity extends BaseActiciy
     // 低电量   开关机
     ImageView btalow_on, btalow_off, pwonff_on, pwonff_off;
     //SOS号码
-    EditText terminal_name_rev, terminal_affection, terminal_affection1, terminal_affection2, terminal_affection3;
+    EditText terminal_name_rev, terminal_affection, terminal_affection1, terminal_affection2,
+            terminal_affection3;
     //亲情号码
     RelativeLayout lt_sos_call;
 
@@ -75,7 +76,8 @@ public class SzActivity extends BaseActiciy
     public void initData()
     {
         super.initData();
-        equipmentModel = (JsonEquipmentModel.EquipmentModel) getIntent().getSerializableExtra(DATA_ACTION);
+        equipmentModel = (JsonEquipmentModel.EquipmentModel) getIntent().getSerializableExtra
+                (DATA_ACTION);
         if (!StringUtils.isEmpty(equipmentModel))
         {
             terminal_name_rev.setText(equipmentModel.getKeysos());
@@ -83,7 +85,9 @@ public class SzActivity extends BaseActiciy
             if (!StringUtils.isEmpty(number))
             {
                 String[] numbers = number.split(",");
-                for (int i = 0; i < 4; i++)
+                int len = numbers.length > terminal_affections.length ? terminal_affections
+                        .length : numbers.length;
+                for (int i = 0; i < len; i++)
                 {
                     terminal_affections[i].setText(numbers[i]);
                 }
@@ -94,7 +98,8 @@ public class SzActivity extends BaseActiciy
             {
                 btalow_on.setVisibility(View.GONE);
                 btalow_off.setVisibility(View.VISIBLE);
-            } else
+            }
+            else
             {
                 btalow_on.setVisibility(View.VISIBLE);
                 btalow_off.setVisibility(View.GONE);
@@ -104,7 +109,8 @@ public class SzActivity extends BaseActiciy
             {
                 pwonff_on.setVisibility(View.GONE);
                 pwonff_off.setVisibility(View.VISIBLE);
-            } else
+            }
+            else
             {
                 pwonff_on.setVisibility(View.VISIBLE);
                 pwonff_off.setVisibility(View.GONE);
@@ -133,17 +139,20 @@ public class SzActivity extends BaseActiciy
             btalow = "0";
             btalow_on.setVisibility(View.GONE);
             btalow_off.setVisibility(View.VISIBLE);
-        } else if (i == R.id.btalow_off)
+        }
+        else if (i == R.id.btalow_off)
         {
             btalow = "1";
             btalow_on.setVisibility(View.VISIBLE);
             btalow_off.setVisibility(View.GONE);
-        } else if (i == R.id.pwonff_on)
+        }
+        else if (i == R.id.pwonff_on)
         {
             power = "0";
             pwonff_on.setVisibility(View.GONE);
             pwonff_off.setVisibility(View.VISIBLE);
-        } else if (i == R.id.pwonff_off)
+        }
+        else if (i == R.id.pwonff_off)
         {
             power = "1";
             pwonff_on.setVisibility(View.VISIBLE);
@@ -160,10 +169,12 @@ public class SzActivity extends BaseActiciy
         if (StringUtils.isEmpty(keysos))
         {
             YHViewInject.create().showTips("SOS号码不能为空！");
-        } else if (StringUtils.isEmpty(affection_number))
+        }
+        else if (StringUtils.isEmpty(affection_number))
         {
             YHViewInject.create().showTips("主亲情号码不能为空！");
-        } else
+        }
+        else
         {
             edit(keysos);
         }
@@ -184,7 +195,8 @@ public class SzActivity extends BaseActiciy
         }
         String parameter = "{\"sn\":\"" +
                 GlobalUtils.DEIVER_SN + "\",\"keysos\":\"" +
-                keysos + "\",\"flag_power\":\"" + power + "\",\"flag_battery\":\"" + btalow + "\",\"keynum\":\"" + keynum + "\"}";
+                keysos + "\",\"flag_power\":\"" + power + "\",\"flag_battery\":\"" + btalow +
+                "\",\"keynum\":\"" + keynum + "\"}";
         YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
                 .DEVER_MODIFY, null, parameter, new
                 HttpCallBack()
@@ -201,7 +213,8 @@ public class SzActivity extends BaseActiciy
                             YHViewInject.create().showTips("修改成功");
                             YHLoadingDialog.cancel();
                             finish();
-                        } else
+                        }
+                        else
                         {
                             YHViewInject.create().showTips("修改失败");
                         }
@@ -237,7 +250,8 @@ public class SzActivity extends BaseActiciy
             }
         });
 
-//        new YHAlertDialog(aty).builder().setTitle("提示").setMsg("编辑状态，是否退出！").setCancelable(true).setNegativeButton("确定",new View.OnClickListener()
+//        new YHAlertDialog(aty).builder().setTitle("提示").setMsg("编辑状态，是否退出！").setCancelable
+// (true).setNegativeButton("确定",new View.OnClickListener()
 //        {
 //            @Override
 //            public void onClick(View i)
@@ -270,7 +284,8 @@ public class SzActivity extends BaseActiciy
                 }
             });
             return true;
-        } else
+        }
+        else
         {
             return false;
         }
