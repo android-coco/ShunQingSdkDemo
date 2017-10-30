@@ -11,7 +11,7 @@
 ## 2, 项目引入
 当前使用model的bulid.gradle 最后加入
 ```java
-    compile 'org.yh.yhframe:WatchLib:1.0.0'
+    compile 'org.yh.yhframe:WatchLib:1.0.1'
 ```
 ## 3，配置
 项目的bulid.gradle
