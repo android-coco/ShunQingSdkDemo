@@ -15,7 +15,7 @@
 ```
 ## 3，配置
 项目的bulid.gradle
-```java
+```java  
 allprojects {
     repositories {
         jcenter()
