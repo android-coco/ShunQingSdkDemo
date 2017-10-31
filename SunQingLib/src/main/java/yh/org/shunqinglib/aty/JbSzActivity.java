@@ -28,10 +28,10 @@ public class JbSzActivity extends BaseActiciy
     public static final String DATA_ACTION = "equipmentModel";
     // 低电量   开关机
     ImageView btalow_on, btalow_off, pwonff_on, pwonff_off;
-    //SOS号码
+    //SOS号码 亲情号码
     EditText terminal_name_rev, terminal_affection, terminal_affection1, terminal_affection2,
             terminal_affection3;
-    //亲情号码
+    //SOS号码
     RelativeLayout lt_sos_call;
 
     String btalow = "0";//低电量
@@ -117,6 +117,7 @@ public class JbSzActivity extends BaseActiciy
             }
         }
     }
+
     @Override
     public void initWidget()
     {
@@ -176,6 +177,38 @@ public class JbSzActivity extends BaseActiciy
         {
             edit(keysos);
         }
+    }
+
+    //判断是否改动
+    private boolean isChange()
+    {
+        boolean isChange = false;
+        if (!btalow.equals(equipmentModel.getFlagBattery()) || !power.equals(equipmentModel
+                .getFlagPower()) || !terminal_name_rev.getText().toString().trim().equals
+                (equipmentModel.getKeysos())
+                )
+        {
+            isChange = true;
+        }
+        if (!isChange)
+        {
+            String number = equipmentModel.getKeynum();
+            if (!StringUtils.isEmpty(number))
+            {
+                String[] numbers = number.split(",");
+                int len = numbers.length > terminal_affections.length ? terminal_affections
+                        .length : numbers.length;
+                for (int i = 0; i < len; i++)
+                {
+                    if (!terminal_affections[i].getText().toString().trim().equals(numbers[i]))
+                    {
+                        isChange = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return isChange;
     }
 
     private void edit(final String keysos)
@@ -238,15 +271,23 @@ public class JbSzActivity extends BaseActiciy
     protected void onBackClick()
     {
         super.onBackClick();
-        YHViewInject.create().getExitDialog(aty, "编辑状态，是否退出！", null, null, new DialogInterface
-                .OnClickListener()
+        if (isChange())
         {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i)
-            {
-                finish();
-            }
-        });
+            YHViewInject.create().getExitDialog(aty, "编辑状态，是否退出！", null, null, new
+                    DialogInterface
+                            .OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i)
+                        {
+                            finish();
+                        }
+                    });
+        }
+        else
+        {
+            finish();
+        }
 
 //        new YHAlertDialog(aty).builder().setTitle("提示").setMsg("编辑状态，是否退出！").setCancelable
 // (true).setNegativeButton("确定",new View.OnClickListener()
@@ -272,15 +313,23 @@ public class JbSzActivity extends BaseActiciy
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getAction() == KeyEvent.ACTION_DOWN)
         {
-            YHViewInject.create().getExitDialog(aty, "编辑状态，是否退出！", null, null, new DialogInterface
-                    .OnClickListener()
+            if (isChange())
             {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i)
+                YHViewInject.create().getExitDialog(aty, "编辑状态，是否退出！", null, null, new
+                        DialogInterface
+                        .OnClickListener()
                 {
-                    finish();
-                }
-            });
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i)
+                    {
+                        finish();
+                    }
+                });
+            }
+            else
+            {
+                finish();
+            }
             return true;
         }
         else
