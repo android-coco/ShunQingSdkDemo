@@ -12,7 +12,7 @@
     <LinearLayout
         android:id="@+id/buttom_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space_140"
+        android:layout_height="@dimen/space_70"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
@@ -24,7 +24,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/space_70"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/sleep_time"
@@ -207,7 +208,6 @@
                 android:background="@color/main_bg"/>
 
 
-
             <LinearLayout
                 android:id="@+id/location_rall"
                 android:layout_width="0dp"
@@ -229,6 +229,7 @@
                     android:text="立即定位"
                     android:textColor="@color/index_black"
                     android:textSize="@dimen/text_size_12"/>
+
                 <TextView
                     android:id="@+id/tv_little"
                     android:layout_width="@dimen/space_11"
@@ -267,6 +268,7 @@
                     android:text="执行监听"
                     android:textColor="@color/index_black"
                     android:textSize="@dimen/text_size_12"/>
+
                 <TextView
                     android:id="@+id/tv_little1"
                     android:layout_width="@dimen/space_11"
@@ -386,7 +388,7 @@
                     android:id="@+id/tv_street"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:text="正在定位"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/text_size_18"

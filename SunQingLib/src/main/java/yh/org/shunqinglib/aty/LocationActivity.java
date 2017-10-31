@@ -192,7 +192,12 @@ public class LocationActivity extends BaseActiciy
                                 locateType = "未知";
                             }
                             textStreet.setText("定位方式：" + locateType);
-                            textAddress.setText(jsonEquipmentModel.getDatas().get(0).getAddress());
+                            String address = jsonEquipmentModel.getDatas().get(0).getAddress();
+                            if (!StringUtils.isEmpty(address) && address.length() > 12)
+                            {
+                                address =  GlobalUtils.addStr(12,"\n",address);
+                            }
+                            textAddress.setText(address);
                             addMaker();
                         }
                     });

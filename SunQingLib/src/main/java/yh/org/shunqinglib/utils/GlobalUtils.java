@@ -1,7 +1,8 @@
 package yh.org.shunqinglib.utils;
 
-import java.util.Arrays;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -10,8 +11,8 @@ import java.util.Date;
 
 public class GlobalUtils
 {
-    public static  String HOME_HOST = "http://115.159.123.101:8085";//IP地址
-    public static  String DEIVER_SN = "123456789012345";//SN号
+    public static String HOME_HOST = "http://115.159.123.101:8085";//IP地址
+    public static String DEIVER_SN = "123456789012345";//SN号
     //终端信息
     public static final String DEVER_INFO = "/interface/terminal_profile";
     //修改终端信息
@@ -72,8 +73,9 @@ public class GlobalUtils
 
     /**
      * 去掉前后的逗号
-     * @param str1  字符串
-     * @return  处理后的字符串
+     *
+     * @param str1 字符串
+     * @return 处理后的字符串
      */
     public static String replaceStr(String str1)
     {
@@ -101,9 +103,34 @@ public class GlobalUtils
     }
 
     /*时间戳转换成字符窜*/
-    public static String getDateToString(long time) {
+    public static String getDateToString(long time)
+    {
         Date d = new Date(time);
         SimpleDateFormat sf = new SimpleDateFormat("yyyy年MM月dd日");
         return sf.format(d);
     }
+
+
+    /**
+     * 插入方法
+     *
+     * @param num      插入一个字符串的位置
+     * @param splitStr 待指定字符串
+     * @param str      原字符串
+     * @return 插入指定字符串之后的字符串
+     * @throws UnsupportedEncodingException
+     */
+    public static String addStr(int num, String splitStr, String str)
+    {
+        if (num > str.length())
+        {
+            return null;
+        }
+        String start = str.substring(0,num);
+        String end = str.substring(num,str.length());
+        String newStr = start + splitStr + end;
+        return newStr;
+    }
+
+
 }
