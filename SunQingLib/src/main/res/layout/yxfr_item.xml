@@ -3,6 +3,7 @@
                 android:id="@+id/list_child"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/btn_found_list_bg"
                 android:orientation="horizontal">
 
     <LinearLayout
