@@ -26,171 +26,144 @@
             android:layout_height="@dimen/space_70"
             android:orientation="horizontal">
 
-            <RelativeLayout
-                android:id="@+id/location_rall"
+            <LinearLayout
+                android:id="@+id/sleep_time"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/lt1"
-                    android:layout_width="@dimen/space_26"
-                    android:layout_height="@dimen/space_26"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="9dp"
-                    android:background="@mipmap/location_rall"/>
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/sleep_times"/>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lt1"
                     android:layout_marginTop="4dp"
-                    android:gravity="center"
-                    android:text="立即定位"
+                    android:text="允许呼入"
                     android:textColor="@color/index_black"
-                    android:textSize="@dimen/text_size_16"/>
-
-                <TextView
-                    android:id="@+id/tv_little"
-                    android:layout_width="@dimen/space_11"
-                    android:layout_height="@dimen/space_11"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/space_6"
-                    android:layout_marginTop="@dimen/space_9"
-                    android:background="@drawable/choice_remidesr_assess"
-                    android:visibility="gone"/>
-
-            </RelativeLayout>
+                    android:textSize="@dimen/text_size_12"/>
+            </LinearLayout>
 
             <View
                 android:layout_width="1px"
                 android:layout_height="match_parent"
                 android:background="@color/main_bg"/>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/location_log"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/lt2"
-                    android:layout_width="@dimen/space_26"
-                    android:layout_height="@dimen/space_26"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="9dp"
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
                     android:background="@mipmap/location_log"/>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lt2"
                     android:layout_marginTop="4dp"
-                    android:gravity="center"
                     android:text="定位时段"
                     android:textColor="@color/index_black"
-                    android:textSize="@dimen/text_size_16"/>
-            </RelativeLayout>
+                    android:textSize="@dimen/text_size_12"/>
+            </LinearLayout>
 
             <View
                 android:layout_width="1px"
                 android:layout_height="match_parent"
                 android:background="@color/main_bg"/>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/location_report"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/lt3"
-                    android:layout_width="@dimen/space_26"
-                    android:layout_height="@dimen/space_26"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="9dp"
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
                     android:background="@mipmap/location_report"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lt3"
                     android:layout_marginTop="4dp"
                     android:gravity="center"
                     android:text="闹钟"
                     android:textColor="@color/index_black"
-                    android:textSize="@dimen/text_size_16"/>
-            </RelativeLayout>
+                    android:textSize="@dimen/text_size_12"/>
+            </LinearLayout>
 
             <View
                 android:layout_width="1px"
                 android:layout_height="match_parent"
                 android:background="@color/main_bg"/>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/location_cry"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/lt4"
-                    android:layout_width="@dimen/space_26"
-                    android:layout_height="@dimen/space_26"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="9dp"
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
                     android:background="@mipmap/location_cry"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lt4"
                     android:layout_marginTop="4dp"
                     android:gravity="center"
                     android:text="免扰时段"
                     android:textColor="@color/index_black"
-                    android:textSize="@dimen/text_size_16"/>
-            </RelativeLayout>
+                    android:textSize="@dimen/text_size_12"/>
+            </LinearLayout>
 
             <View
                 android:layout_width="1px"
                 android:layout_height="match_parent"
                 android:background="@color/main_bg"/>
 
-            <RelativeLayout
-                android:id="@+id/location_blood_plu"
+            <LinearLayout
+                android:id="@+id/gps_command"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/lt5"
-                    android:layout_width="@dimen/space_26"
-                    android:layout_height="@dimen/space_26"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="9dp"
-                    android:background="@mipmap/blood_plu_img"/>
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/location_track"
+                    android:visibility="visible"/>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/lt5"
                     android:layout_marginTop="4dp"
-                    android:gravity="center"
-                    android:text="执行监听"
+                    android:text="定位记录"
                     android:textColor="@color/index_black"
-                    android:textSize="@dimen/text_size_16"/>
-            </RelativeLayout>
+                    android:textSize="@dimen/text_size_12"
+                    android:visibility="visible"/>
+            </LinearLayout>
         </LinearLayout>
 
         <View
@@ -233,8 +206,10 @@
                 android:layout_height="match_parent"
                 android:background="@color/main_bg"/>
 
+
+
             <LinearLayout
-                android:id="@+id/sleep_time"
+                android:id="@+id/location_rall"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -245,15 +220,24 @@
                 <TextView
                     android:layout_width="@dimen/space_22"
                     android:layout_height="@dimen/space_22"
-                    android:background="@mipmap/sleep_times"/>
+                    android:background="@mipmap/location_rall"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="允许呼入"
+                    android:text="立即定位"
                     android:textColor="@color/index_black"
                     android:textSize="@dimen/text_size_12"/>
+                <TextView
+                    android:id="@+id/tv_little"
+                    android:layout_width="@dimen/space_11"
+                    android:layout_height="@dimen/space_11"
+                    android:layout_marginEnd="@dimen/space_6"
+                    android:layout_marginTop="@dimen/space_9"
+                    android:background="@drawable/choice_remidesr_assess"
+                    android:visibility="gone"/>
+
             </LinearLayout>
 
             <View
@@ -261,8 +245,9 @@
                 android:layout_height="match_parent"
                 android:background="@color/main_bg"/>
 
+
             <LinearLayout
-                android:id="@+id/gps_command"
+                android:id="@+id/location_blood_plu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -273,17 +258,24 @@
                 <TextView
                     android:layout_width="@dimen/space_22"
                     android:layout_height="@dimen/space_22"
-                    android:background="@mipmap/location_track"
-                    android:visibility="visible"/>
+                    android:background="@mipmap/blood_plu_img"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="定位记录"
+                    android:text="执行监听"
                     android:textColor="@color/index_black"
-                    android:textSize="@dimen/text_size_12"
-                    android:visibility="visible"/>
+                    android:textSize="@dimen/text_size_12"/>
+                <TextView
+                    android:id="@+id/tv_little1"
+                    android:layout_width="@dimen/space_11"
+                    android:layout_height="@dimen/space_11"
+                    android:layout_marginEnd="@dimen/space_6"
+                    android:layout_marginTop="@dimen/space_9"
+                    android:background="@drawable/ic_loading_rotate"
+                    android:visibility="gone"/>
+
             </LinearLayout>
 
             <View
