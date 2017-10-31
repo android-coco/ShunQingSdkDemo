@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.baidu.location.BDAbstractLocationListener;
@@ -52,15 +51,15 @@ public class LocationActivity extends BaseActiciy
     ImageView img_According;// 显示或不显示自己的位子
 
     //    @BindView(id = R.id.location_rall, click = true)
-    RelativeLayout location_rall;
+    LinearLayout location_rall;
     //    @BindView(id = R.id.location_log, click = true)
-    RelativeLayout location_log;
+    LinearLayout location_log;
     //    @BindView(id = R.id.location_report, click = true)
-    RelativeLayout location_report;
+    LinearLayout location_report;
     //    @BindView(id = R.id.location_cry, click = true)
-    RelativeLayout location_cry;
+    LinearLayout location_cry;
     //    @BindView(id = R.id.location_blood_plu, click = true)
-    RelativeLayout location_blood_plu;
+    LinearLayout location_blood_plu;
     //    @BindView(id = R.id.location_sos, click = true)
     LinearLayout location_sos;
     //    @BindView(id = R.id.sleep_time, click = true)
@@ -223,21 +222,21 @@ public class LocationActivity extends BaseActiciy
         img_According = (ImageView) findViewById(R.id.img_According);
         img_According.setOnClickListener(this);
 
-        location_rall = (RelativeLayout) findViewById(R.id.location_rall);
+        location_rall = (LinearLayout) findViewById(R.id.location_rall);
         location_rall.setOnClickListener(this);
 
-        location_log = (RelativeLayout) findViewById(R.id.location_log);
+        location_log = (LinearLayout) findViewById(R.id.location_log);
         location_log.setOnClickListener(this);
 
 
-        location_report = (RelativeLayout) findViewById(R.id.location_report);
+        location_report = (LinearLayout) findViewById(R.id.location_report);
         location_report.setOnClickListener(this);
 
 
-        location_cry = (RelativeLayout) findViewById(R.id.location_cry);
+        location_cry = (LinearLayout) findViewById(R.id.location_cry);
         location_cry.setOnClickListener(this);
 
-        location_blood_plu = (RelativeLayout) findViewById(R.id.location_blood_plu);
+        location_blood_plu = (LinearLayout) findViewById(R.id.location_blood_plu);
         location_blood_plu.setOnClickListener(this);
 
 
@@ -579,7 +578,7 @@ public class LocationActivity extends BaseActiciy
         {
             // 终端设置
             Intent i = new Intent(aty, SzActivity.class);
-            i.putExtra(SzActivity.DATA_ACTION, jsonEquipmentModel.getDatas().get(0));
+            i.putExtra(JbSzActivity.DATA_ACTION, jsonEquipmentModel.getDatas().get(0));
             showActivity(aty, i);
         }
 
