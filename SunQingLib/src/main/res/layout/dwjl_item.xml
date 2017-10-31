@@ -3,7 +3,8 @@
                 android:id="@+id/list_child"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:background="@drawable/btn_found_list_bg"
+                android:orientation="horizontal">
 
     <TextView
         android:id="@+id/timing_open"
@@ -13,23 +14,23 @@
         android:layout_centerInParent="true"
         android:layout_marginLeft="4dp"
         android:background="@mipmap/opend"
-        android:visibility="gone"
-        android:gravity="center" />
+        android:gravity="center"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_toRightOf="@id/timing_open"
         android:orientation="vertical"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:paddingBottom="10dp"
-        android:paddingTop="10dp" >
+        android:paddingTop="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:visibility="visible">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -41,7 +42,7 @@
                 android:text="定位方式："
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/timing_name"
@@ -51,16 +52,16 @@
                 android:gravity="center_vertical"
                 android:paddingRight="4.0dip"
                 android:text="基站"
-                android:textColor="@android:color/black"
+                android:textColor="@color/index_black"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_5"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,7 +73,7 @@
                 android:text="当时位置："
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/timing_time"
@@ -82,16 +83,16 @@
                 android:gravity="center_vertical"
                 android:paddingRight="4.0dip"
                 android:text="湖南常德就了解了解了解了解了"
-                android:textColor="@android:color/black"
+                android:textColor="@color/index_black"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_5"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -103,7 +104,7 @@
                 android:text="当时状态："
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/timing_interval"
@@ -113,16 +114,16 @@
                 android:gravity="center_vertical"
                 android:paddingRight="4.0dip"
                 android:text="SOS报警"
-                android:textColor="@android:color/black"
+                android:textColor="@color/index_black"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_5"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -134,7 +135,7 @@
                 android:text="定位时间："
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/timing_cycle"
@@ -143,33 +144,33 @@
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:text="2015-10-21 17:46:09"
-                android:textColor="@android:color/black"
-                android:textSize="12sp" />
+                android:textColor="@color/index_black"
+                android:textSize="12sp"/>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:orientation="vertical"
-        android:layout_centerVertical="true"
-        android:visibility="gone"
-        android:layout_alignParentEnd="true">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/timing_edit"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginBottom="10dp"
-            android:text="电量：10%"
-            android:gravity="center_vertical"/>
+            android:gravity="center_vertical"
+            android:text="电量：10%"/>
 
         <TextView
             android:id="@+id/timing_del"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
-            android:text="信号：10%"
-            android:gravity="center_vertical"/>
+            android:gravity="center_vertical"
+            android:text="信号：10%"/>
     </LinearLayout>
 </RelativeLayout>
