@@ -549,7 +549,7 @@ public class LocationActivity extends BaseActiciy
                                 JsonLjDWModel.class);
                         if ("0".equals(jsonEquipmentModel.getResultCode()))
                         {
-                            YHViewInject.create().showTips("发送立即定位成功");
+                            YHViewInject.create().showTips("发送立即定位成功,稍后更新位置！");
                         } else if ("5".equals(jsonEquipmentModel.getResultCode()))
                         {
                             YHViewInject.create().showTips("设备不在线");

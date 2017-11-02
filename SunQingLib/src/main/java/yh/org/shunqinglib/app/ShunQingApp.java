@@ -31,6 +31,7 @@ import javax.net.ssl.SSLSession;
 
 import okhttp3.OkHttpClient;
 import yh.org.shunqinglib.R;
+import yh.org.shunqinglib.utils.YhResource;
 
 /**
  * @author hao
@@ -73,7 +74,8 @@ public class ShunQingApp extends Application
         {
             height = 960;
         }
-        LogUtils.e(TAG, "ShunQingApp onCreate() height：" + height + " width：" + width);
+        LogUtils.e(TAG,getString(YhResource.getIdByName(this,"string","wm")));
+        LogUtils.e(TAG, "ShunQingApp onCreate() height：" + height + " width：" + width + " ");
         mHandler.postDelayed(new Runnable()
         {
 
