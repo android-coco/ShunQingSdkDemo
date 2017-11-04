@@ -81,9 +81,9 @@ public class ZxJtActivity extends BaseActiciy
     }
     private void getTiems()
     {
-        final String[] lang = {"5", "10", "15", "20", "30", "40", "50", "60"};
+        final String[] lang = {"0","5", "10", "15", "20", "30", "40", "50", "60"};
         new AlertDialog.Builder(this)
-                .setTitle("选择监听时间(分)")
+                .setTitle("选择监听时间(分),0代表一直监听")
                 // 标题
                 .setSingleChoiceItems(lang, 0,
                         new DialogInterface.OnClickListener()

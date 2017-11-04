@@ -36,33 +36,33 @@ public class DwSdAddActivity extends BaseActiciy implements OnCheckedChangeListe
     //星期选择
 //    @BindView(id = R.id.x_1)
     CheckBox x_1;
-//    @BindView(id = R.id.x_2)
+    //    @BindView(id = R.id.x_2)
     CheckBox x_2;
-//    @BindView(id = R.id.x_3)
+    //    @BindView(id = R.id.x_3)
     CheckBox x_3;
-//    @BindView(id = R.id.x_4)
+    //    @BindView(id = R.id.x_4)
     CheckBox x_4;
-//    @BindView(id = R.id.x_5)
+    //    @BindView(id = R.id.x_5)
     CheckBox x_5;
-//    @BindView(id = R.id.x_6)
+    //    @BindView(id = R.id.x_6)
     CheckBox x_6;
-//    @BindView(id = R.id.x_7)
+    //    @BindView(id = R.id.x_7)
     CheckBox x_7;
-//    @BindView(id = R.id.add, click = true)
+    //    @BindView(id = R.id.add, click = true)
     Button add;
 
     //日期选择
 //    @BindView(id = R.id.stime_1, click = true)
     EditText stime_1;
-//    @BindView(id = R.id.stime_2, click = true)
+    //    @BindView(id = R.id.stime_2, click = true)
     EditText stime_2;
-//    @BindView(id = R.id.etime_1, click = true)
+    //    @BindView(id = R.id.etime_1, click = true)
     EditText etime_1;
-//    @BindView(id = R.id.etime_2, click = true)
+    //    @BindView(id = R.id.etime_2, click = true)
     EditText etime_2;
-//    @BindView(id = R.id.times, click = true)
+    //    @BindView(id = R.id.times, click = true)
     EditText times;
-//    @BindView(id = R.id.timingpostion_name)
+    //    @BindView(id = R.id.timingpostion_name)
     EditText timingpostion_name;
     String week = "";//星期
 
@@ -131,7 +131,7 @@ public class DwSdAddActivity extends BaseActiciy implements OnCheckedChangeListe
     public void widgetClick(View v)
     {
         super.widgetClick(v);
-        String bh1,bm1,eh1,em1;
+        String bh1, bm1, eh1, em1;
         int i = v.getId();
         if (i == R.id.add)
         {
@@ -298,8 +298,13 @@ public class DwSdAddActivity extends BaseActiciy implements OnCheckedChangeListe
                             YHLoadingDialog.cancel();
                             EventBus.getDefault().post(new EventBusBean());
                             finish();
-                        }
-                        else
+                        } else if ("5".equals(resultCode))
+                        {
+                            YHViewInject.create().showTips("添加成功,但是设备不在线,设备启动后同步");
+                            YHLoadingDialog.cancel();
+                            EventBus.getDefault().post(new EventBusBean());
+                            finish();
+                        } else
                         {
                             YHViewInject.create().showTips("添加失败");
                         }
@@ -424,12 +429,12 @@ public class DwSdAddActivity extends BaseActiciy implements OnCheckedChangeListe
     /**
      * 选择时间
      */
-    private void showTime(int hour,int minute)
+    private void showTime(int hour, int minute)
     {
         final Calendar calendar = Calendar.getInstance();
         //final int hour = calendar.get(Calendar.HOUR_OF_DAY);
         //final int minute = calendar.get(Calendar.MINUTE);
-        LogUtils.e(TAG,hour + "  " + minute);
+        LogUtils.e(TAG, hour + "  " + minute);
         final TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                 setting, hour, minute, true);
         timePickerDialog.show();
@@ -452,16 +457,14 @@ public class DwSdAddActivity extends BaseActiciy implements OnCheckedChangeListe
                     if (hour < 10)
                     {
                         h = "0" + hour;
-                    }
-                    else
+                    } else
                     {
                         h = hour + "";
                     }
                     if (minute < 10)
                     {
                         m = "0" + minute;
-                    }
-                    else
+                    } else
                     {
                         m = minute + "";
                     }
@@ -474,16 +477,14 @@ public class DwSdAddActivity extends BaseActiciy implements OnCheckedChangeListe
                     if (hour < 10)
                     {
                         h1 = "0" + hour;
-                    }
-                    else
+                    } else
                     {
                         h1 = hour + "";
                     }
                     if (minute < 10)
                     {
                         m1 = "0" + minute;
-                    }
-                    else
+                    } else
                     {
                         m1 = minute + "";
                     }
