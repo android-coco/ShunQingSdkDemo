@@ -56,7 +56,7 @@ publish{
     userOrg = 'androidcoco'//https://bintray.com用户名
     groupId = 'org.yh.yhframe'//jcenter上的路径
     artifactId = 'WatchLib'//项目名称
-    publishVersion = '1.0.3'//版本号
+    publishVersion = '1.0.4'//版本号
     desc = '手表定位SDK,基于百度地图'//描述，不重要
     website = siteUrl//项目主页
 }
