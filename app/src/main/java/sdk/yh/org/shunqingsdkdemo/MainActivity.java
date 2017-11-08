@@ -5,7 +5,8 @@ import android.widget.Button;
 
 import org.yh.library.ui.BindView;
 
-import yh.org.shunqinglib.aty.LocationActivity;
+import yh.org.shunqinglib.aty.LocationByBDActivity;
+import yh.org.shunqinglib.aty.LocationByGDActivity;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.utils.GlobalUtils;
 
@@ -16,7 +17,9 @@ public class MainActivity extends BaseActiciy
 {
 
     @BindView(id = R.id.ok, click = true)
-    public Button ok;
+    Button ok;
+    @BindView(id = R.id.ok1, click = true)
+    Button ok1;
 
     @Override
     public void setRootView()
@@ -28,7 +31,7 @@ public class MainActivity extends BaseActiciy
     public void initWidget()
     {
         super.initWidget();
-        ok.setText("继承BaseActiciy调用");
+        toolbar.setTitle("继承BaseActiciy调用");
     }
 
     @Override
@@ -40,7 +43,12 @@ public class MainActivity extends BaseActiciy
             case R.id.ok:
                 GlobalUtils.HOME_HOST = "http://115.159.123.101:8085";//接口地址
                 GlobalUtils.DEIVER_SN = "A100004DC57E0D";//SN号
-                showActivity(aty, LocationActivity.class);
+                showActivity(aty, LocationByBDActivity.class);
+                break;
+            case R.id.ok1:
+                GlobalUtils.HOME_HOST = "http://115.159.123.101:8085";//接口地址
+                GlobalUtils.DEIVER_SN = "A100004DC57E0D";//SN号
+                showActivity(aty, LocationByGDActivity.class);
                 break;
         }
     }

@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 
-import yh.org.shunqinglib.aty.LocationActivity;
+import yh.org.shunqinglib.aty.LocationByBDActivity;
+import yh.org.shunqinglib.aty.LocationByGDActivity;
 import yh.org.shunqinglib.utils.GlobalUtils;
 
 /**
@@ -15,22 +15,31 @@ import yh.org.shunqinglib.utils.GlobalUtils;
  */
 public class Main2Activity extends AppCompatActivity
 {
-    Button ok;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ok = (Button) findViewById(R.id.ok);
-        ok.setText("继承AppCompatActivity调用");
-        ok.setOnClickListener(new View.OnClickListener()
+        setTitle("继承AppCompatActivity调用");
+        findViewById(R.id.ok).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
                 GlobalUtils.HOME_HOST = "http://115.159.123.101:8085";//接口地址
                 GlobalUtils.DEIVER_SN = "123456789012345";//SN号
-                showActivity(Main2Activity.this, LocationActivity.class);
+                showActivity(Main2Activity.this, LocationByBDActivity.class);
+            }
+        });
+
+        findViewById(R.id.ok1).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                GlobalUtils.HOME_HOST = "http://115.159.123.101:8085";//接口地址
+                GlobalUtils.DEIVER_SN = "123456789012345";//SN号
+                showActivity(Main2Activity.this, LocationByGDActivity.class);
             }
         });
     }
