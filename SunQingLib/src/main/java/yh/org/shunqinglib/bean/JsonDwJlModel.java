@@ -158,10 +158,11 @@ public class JsonDwJlModel extends YHModel
             this.signal = signal;
         }
 
+
         @Override
         public String toString()
         {
-            return "LocateRecordModel{" +
+            return "DwJlModel{" +
                     "id='" + id + '\'' +
                     ", dataType='" + dataType + '\'' +
                     ", datetime='" + datetime + '\'' +

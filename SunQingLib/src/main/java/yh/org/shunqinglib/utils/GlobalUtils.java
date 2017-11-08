@@ -3,7 +3,6 @@ package yh.org.shunqinglib.utils;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 
 /**
  * Created by yhlyl on 2017/10/24.
@@ -105,9 +104,18 @@ public class GlobalUtils
     /*时间戳转换成字符窜*/
     public static String getDateToString(long time)
     {
-        Date d = new Date(time);
-        SimpleDateFormat sf = new SimpleDateFormat("yyyy年MM月dd日");
-        return sf.format(d);
+        String str = "";
+        long msl = time * 1000;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+        try
+        {
+            str = sdf.format(msl);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return str;
     }
 
 
@@ -126,8 +134,8 @@ public class GlobalUtils
         {
             return null;
         }
-        String start = str.substring(0,num);
-        String end = str.substring(num,str.length());
+        String start = str.substring(0, num);
+        String end = str.substring(num, str.length());
         String newStr = start + splitStr + end;
         return newStr;
     }
