@@ -10,14 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme">
-        <!-- 百度地图Key -->
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="a9G8YTwtEP6DlGtXMQefGFktB0m0eTMC"/>
         <!-- 高德地图key-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="decd5ddab60da11f9a225e59f983ea29"/>
+        <!-- 百度地图Key -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="a9G8YTwtEP6DlGtXMQefGFktB0m0eTMC"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
