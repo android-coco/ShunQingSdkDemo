@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:fitsSystemWindows="true">
+
+    <include
+        android:id="@+id/top"
+        layout="@layout/basetitle"/>
+
+    <LinearLayout
+        android:id="@+id/buttom_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_70"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#dcdcdc"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_70"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/sleep_time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/sleep_times"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="允许呼入"
+                    android:textColor="@color/index_black"
+                    android:textSize="@dimen/text_size_12"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/main_bg"/>
+
+            <LinearLayout
+                android:id="@+id/location_log"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/location_log"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="定位时段"
+                    android:textColor="@color/index_black"
+                    android:textSize="@dimen/text_size_12"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/main_bg"/>
+
+            <LinearLayout
+                android:id="@+id/location_report"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/location_report"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="闹钟"
+                    android:textColor="@color/index_black"
+                    android:textSize="@dimen/text_size_12"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/main_bg"/>
+
+            <LinearLayout
+                android:id="@+id/location_cry"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/location_cry"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="免扰时段"
+                    android:textColor="@color/index_black"
+                    android:textSize="@dimen/text_size_12"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/main_bg"/>
+
+            <LinearLayout
+                android:id="@+id/gps_command"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/location_track"
+                    android:visibility="visible"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="定位记录"
+                    android:textColor="@color/index_black"
+                    android:textSize="@dimen/text_size_12"
+                    android:visibility="visible"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/main_bg"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_70"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/location_sos"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/contacts"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="指定拨号"
+                    android:textColor="@color/index_black"
+                    android:textSize="@dimen/text_size_12"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/main_bg"/>
+
+
+            <LinearLayout
+                android:id="@+id/location_rall"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/location_rall"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="立即定位"
+                    android:textColor="@color/index_black"
+                    android:textSize="@dimen/text_size_12"/>
+
+                <TextView
+                    android:id="@+id/tv_little"
+                    android:layout_width="@dimen/space_11"
+                    android:layout_height="@dimen/space_11"
+                    android:layout_marginEnd="@dimen/space_6"
+                    android:layout_marginTop="@dimen/space_9"
+                    android:background="@drawable/choice_remidesr_assess"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/main_bg"/>
+
+
+            <LinearLayout
+                android:id="@+id/location_blood_plu"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/blood_plu_img"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="执行监听"
+                    android:textColor="@color/index_black"
+                    android:textSize="@dimen/text_size_12"/>
+
+                <TextView
+                    android:id="@+id/tv_little1"
+                    android:layout_width="@dimen/space_11"
+                    android:layout_height="@dimen/space_11"
+                    android:layout_marginEnd="@dimen/space_6"
+                    android:layout_marginTop="@dimen/space_9"
+                    android:background="@drawable/ic_loading_rotate"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/main_bg"
+                android:visibility="visible"/>
+
+            <LinearLayout
+                android:id="@+id/location_track"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/location_track"
+                    android:visibility="visible"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="SOS"
+                    android:textColor="@color/index_black"
+                    android:textSize="@dimen/text_size_12"
+                    android:visibility="visible"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/main_bg"
+                android:visibility="visible"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_found_list_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
+                    android:background="@mipmap/location_track"
+                    android:visibility="visible"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="亲情号码"
+                    android:textColor="@color/index_black"
+                    android:textSize="@dimen/text_size_12"
+                    android:visibility="visible"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/buttom_view"
+        android:layout_below="@id/top">
+
+        <com.amap.api.maps.MapView
+            android:id="@+id/bmapView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:clickable="true"/>
+
+        <yh.org.shunqinglib.view.SeismicWaveView
+            android:id="@+id/seismicwaveview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top">
+
+        <RelativeLayout
+            android:id="@+id/rl_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_90"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/space_10"
+            android:paddingTop="@dimen/space_10">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/space_10"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_street"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|start"
+                    android:text="正在定位"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_18"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="正在定位"
+                    android:textColor="@color/main_tab_bottom_notsel"
+                    android:textSize="@dimen/text_size_16"
+                    android:visibility="visible"/>
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="正在定位"
+                    android:textColor="@color/main_tab_bottom_notsel"
+                    android:textSize="@dimen/text_size_16"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_gohome"
+                android:layout_width="@dimen/space_90"
+                android:layout_height="@dimen/space_40"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/space_10"
+                android:background="@drawable/select_btn_watch"
+                android:visibility="gone">
+
+                <!-- android:background="@drawable/guardian_btn_selector" -->
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/imageView1"
+                    android:gravity="center"
+                    android:text="到这里"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_16"/>
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="@dimen/space_18"
+                    android:layout_height="@dimen/space_18"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="2dp"
+                    android:background="@mipmap/positioningarrow"
+                    android:contentDescription="@null"/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_top"
+            android:layout_marginEnd="@dimen/space_10"
+            android:orientation="vertical">
+
+            <!-- <RelativeLayout -->
+            <!-- android:layout_width="44dp" -->
+            <!-- android:layout_height="44dp" -->
+            <!-- android:layout_gravity="end" -->
+            <!-- android:layout_marginTop="@dimen/space_10" -->
+            <!-- android:background="@color/white" -->
+            <!-- android:gravity="center" > -->
+
+            <ImageView
+                android:id="@+id/img_position_of"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@mipmap/img_position_true"
+                android:contentDescription="@null"/>
+            <!-- </RelativeLayout> -->
+
+
+            <!-- <RelativeLayout -->
+            <!-- android:layout_width="44dp" -->
+            <!-- android:layout_height="44dp" -->
+            <!-- android:layout_gravity="end" -->
+            <!-- android:layout_marginTop="@dimen/space_10" -->
+            <!-- android:background="@color/white" -->
+            <!-- android:gravity="center" > -->
+
+            <ImageView
+                android:id="@+id/img_According"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@mipmap/img_according_false"
+                android:contentDescription="@null"
+                android:visibility="gone"/>
+            <!-- </RelativeLayout> -->
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/space_46"
+            android:background="#eeffffff"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:layout_width="@dimen/space_26"
+                    android:layout_height="@dimen/space_26"
+                    android:layout_marginEnd="@dimen/space_10"
+                    android:layout_marginStart="@dimen/space_24"
+                    android:background="@mipmap/location_diretion"
+                    android:contentDescription="@null"/>
+
+                <TextView
+                    android:id="@+id/diretion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center_horizontal"
+                    android:text="- -"
+                    android:textSize="@dimen/text_size_18"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                />
+
+            <LinearLayout
+                android:id="@+id/location_information"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:layout_width="@dimen/space_26"
+                    android:layout_height="@dimen/space_26"
+                    android:layout_marginEnd="@dimen/space_10"
+                    android:layout_marginStart="@dimen/space_24"
+                    android:contentDescription="@null"/>
+
+                <TextView
+                    android:id="@+id/distance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center_horizontal"
+                    android:text="- -"
+                    android:textSize="@dimen/text_size_18"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@id/linearLayout1"
+            />
+
+        <ImageView
+            android:id="@+id/navigation_btn"
+            android:layout_width="@dimen/space_48"
+            android:layout_height="@dimen/space_48"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/space_24"
+            android:layout_marginTop="@dimen/space_64"
+            android:background="@mipmap/location_button"
+            android:contentDescription="@null"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

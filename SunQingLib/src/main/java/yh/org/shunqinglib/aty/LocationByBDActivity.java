@@ -39,10 +39,12 @@ import yh.org.shunqinglib.bean.JsonEquipmentModel;
 import yh.org.shunqinglib.bean.JsonLjDWModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
 
-
-public class LocationActivity extends BaseActiciy
+/**
+ * 百度地图
+ */
+public class LocationByBDActivity extends BaseActiciy
 {
-    private static final String TAG = LocationActivity.class.getSimpleName();
+    private static final String TAG = LocationByBDActivity.class.getSimpleName();
     //    @BindView(id = R.id.bmapView)
     MapView mMapView = null;
     //    @BindView(id = R.id.img_position_of, click = true)
@@ -92,7 +94,7 @@ public class LocationActivity extends BaseActiciy
     @Override
     public void setRootView()
     {
-        setContentView(R.layout.activity_location);
+        setContentView(R.layout.activity_bd_location);
     }
 
     @Override
