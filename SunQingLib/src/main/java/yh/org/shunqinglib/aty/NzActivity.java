@@ -17,7 +17,7 @@ import org.yh.library.utils.JsonUitl;
 import org.yh.library.utils.LogUtils;
 import org.yh.library.utils.StringUtils;
 import org.yh.library.view.YHRecyclerView;
-import org.yh.library.view.YhSheetDialog;
+import org.yh.library.view.YHSheetDialog;
 import org.yh.library.view.loading.dialog.YHLoadingDialog;
 import org.yh.library.view.yhrecyclerview.ProgressStyle;
 
@@ -196,12 +196,12 @@ public class NzActivity extends BaseActiciy implements I_YHItemClickListener<Jso
     @Override
     public void onItemClick(View view, final JsonNzModel.NzModel nzModel, int i)
     {
-        new YhSheetDialog(aty)
+        new YHSheetDialog(aty)
                 .builder()
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
-                .addSheetItem("编辑", YhSheetDialog.SheetItemColor.Blue,
-                        new YhSheetDialog.OnSheetItemClickListener()
+                .addSheetItem("编辑", YHSheetDialog.SheetItemColor.Blue,
+                        new YHSheetDialog.OnSheetItemClickListener()
                         {
                             @Override
                             public void onClick(int which)
@@ -211,8 +211,8 @@ public class NzActivity extends BaseActiciy implements I_YHItemClickListener<Jso
                                 showActivity(aty, i);
                             }
                         })
-                .addSheetItem("删除", YhSheetDialog.SheetItemColor.Red,
-                        new YhSheetDialog.OnSheetItemClickListener()
+                .addSheetItem("删除", YHSheetDialog.SheetItemColor.Red,
+                        new YHSheetDialog.OnSheetItemClickListener()
                         {
                             @Override
                             public void onClick(int which)

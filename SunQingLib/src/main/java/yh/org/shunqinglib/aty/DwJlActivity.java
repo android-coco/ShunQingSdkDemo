@@ -15,7 +15,7 @@ import org.yh.library.ui.YHViewInject;
 import org.yh.library.utils.JsonUitl;
 import org.yh.library.utils.LogUtils;
 import org.yh.library.view.YHRecyclerView;
-import org.yh.library.view.YhSheetDialog;
+import org.yh.library.view.YHSheetDialog;
 import org.yh.library.view.loading.dialog.YHLoadingDialog;
 import org.yh.library.view.yhrecyclerview.ProgressStyle;
 
@@ -211,13 +211,13 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
     @Override
     public void onItemClick(View view, final JsonDwJlModel.DwJlModel dwJlModel, int i)
     {
-        new YhSheetDialog(aty)
+        new YHSheetDialog(aty)
                 .builder()
                 .setCancelable(false)
                 .setCanceledOnTouchOutside(false)
                 .setTitle("警告：删除后无法恢复！")
-                .addSheetItem("删除", YhSheetDialog.SheetItemColor.Red,
-                        new YhSheetDialog.OnSheetItemClickListener()
+                .addSheetItem("删除", YHSheetDialog.SheetItemColor.Red,
+                        new YHSheetDialog.OnSheetItemClickListener()
                         {
                             @Override
                             public void onClick(int which)
