@@ -106,7 +106,7 @@ public class GlobalUtils
     {
         String str = "";
         long msl = time * 1000;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日hh时mm分ss秒");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒");
         try
         {
             str = sdf.format(msl);
