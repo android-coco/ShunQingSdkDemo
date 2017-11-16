@@ -15,7 +15,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
-        android:padding="10dp" >
+        android:padding="20dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="执行周期："
+                android:textSize="@dimen/space_16"
                 android:textColor="@color/black" />
 
             <org.yh.library.view.YHLabelsView
@@ -102,13 +103,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_marginBottom="@dimen/space_10"
             android:orientation="horizontal" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="开始时间："
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/space_16"/>
 
             <EditText
                 android:id="@+id/stime_1"
@@ -123,7 +127,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="时"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/space_16"/>
 
             <EditText
                 android:id="@+id/stime_2"
@@ -138,7 +143,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="分"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/space_16"/>
         </LinearLayout>
 
         <LinearLayout
@@ -151,7 +157,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="结束时间："
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/space_16"/>
 
             <EditText
                 android:id="@+id/etime_1"
@@ -166,7 +173,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="时"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/space_16"/>
 
             <EditText
                 android:id="@+id/etime_2"
@@ -181,20 +189,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="分"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/space_16"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="@dimen/space_10"
             android:orientation="horizontal" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="时隔时间："
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/space_16"/>
 
             <EditText
                 android:id="@+id/times"
@@ -209,7 +220,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="分"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/space_16"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -222,12 +234,15 @@
 
         <Button
             android:id="@+id/add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="添            加"
+            style="@style/editTextWithDel_layout"
+            android:layout_height="@dimen/space_48"
+            android:layout_marginLeft="@dimen/space_46"
+            android:layout_marginRight="@dimen/space_46"
+            android:layout_marginTop="@dimen/space_56"
+            android:background="@drawable/login_btn_selector"
+            android:text="添    加"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_18" />
+            android:textSize="@dimen/text_size_20" />
     </LinearLayout>
 
 </LinearLayout>

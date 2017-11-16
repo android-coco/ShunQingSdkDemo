@@ -166,6 +166,7 @@ public class DwSdAddActivity extends BaseActiciy //implements OnCheckedChangeLis
             String name = timingpostion_name.getText().toString().trim();
             String times = this.times.getText().toString().trim();
             ArrayList<Integer> weeks = labelsView.getSelectLabels();
+            week = "";
             //获取选中的星期
             for (int j = 0; j < weeks.size(); j++)
             {
