@@ -6,7 +6,6 @@ import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
@@ -28,18 +27,11 @@ import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonMdrSdModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
 
-import static yh.org.shunqinglib.R.id.x_1;
-import static yh.org.shunqinglib.R.id.x_2;
-import static yh.org.shunqinglib.R.id.x_3;
-import static yh.org.shunqinglib.R.id.x_4;
-import static yh.org.shunqinglib.R.id.x_5;
-import static yh.org.shunqinglib.R.id.x_6;
-import static yh.org.shunqinglib.R.id.x_7;
 
 /**
  * 免打扰定位时段
  */
-public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnCheckedChangeListener
+public class MdrSdEditActivity extends BaseActiciy //implements CompoundButton.OnCheckedChangeListener
 {
     public static final String DATA_ACTION = "mdrSdModel";
     //星期选择
@@ -421,83 +413,83 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
                         }).show();
     }
 
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-    {
-        int i = buttonView.getId();
-        if (i == x_1)
-        {
-            if (isChecked)
-            {
-                week += "1";
-            } else
-            {
-                week = week.replace("1", "");
-            }
-
-        } else if (i == x_2)
-        {
-            if (isChecked)
-            {
-                week += "2";
-            } else
-            {
-                week = week.replace("2", "");
-            }
-
-        } else if (i == x_3)
-        {
-            if (isChecked)
-            {
-                week += "3";
-            } else
-            {
-                week = week.replace("3", "");
-            }
-
-        } else if (i == x_4)
-        {
-            if (isChecked)
-            {
-                week += "4";
-            } else
-            {
-                week = week.replace("4", "");
-            }
-
-        } else if (i == x_5)
-        {
-            if (isChecked)
-            {
-                week += "5";
-            } else
-            {
-                week = week.replace("5", "");
-            }
-
-        } else if (i == x_6)
-        {
-            if (isChecked)
-            {
-                week += "6";
-            } else
-            {
-                week = week.replace("6", "");
-            }
-
-        } else if (i == x_7)
-        {
-            if (isChecked)
-            {
-                week += "7";
-            } else
-            {
-                week = week.replace("7", "");
-            }
-
-        }
-        LogUtils.e("aaaaaaa:", week);
-    }
+//    @Override
+//    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+//    {
+//        int i = buttonView.getId();
+//        if (i == x_1)
+//        {
+//            if (isChecked)
+//            {
+//                week += "1";
+//            } else
+//            {
+//                week = week.replace("1", "");
+//            }
+//
+//        } else if (i == x_2)
+//        {
+//            if (isChecked)
+//            {
+//                week += "2";
+//            } else
+//            {
+//                week = week.replace("2", "");
+//            }
+//
+//        } else if (i == x_3)
+//        {
+//            if (isChecked)
+//            {
+//                week += "3";
+//            } else
+//            {
+//                week = week.replace("3", "");
+//            }
+//
+//        } else if (i == x_4)
+//        {
+//            if (isChecked)
+//            {
+//                week += "4";
+//            } else
+//            {
+//                week = week.replace("4", "");
+//            }
+//
+//        } else if (i == x_5)
+//        {
+//            if (isChecked)
+//            {
+//                week += "5";
+//            } else
+//            {
+//                week = week.replace("5", "");
+//            }
+//
+//        } else if (i == x_6)
+//        {
+//            if (isChecked)
+//            {
+//                week += "6";
+//            } else
+//            {
+//                week = week.replace("6", "");
+//            }
+//
+//        } else if (i == x_7)
+//        {
+//            if (isChecked)
+//            {
+//                week += "7";
+//            } else
+//            {
+//                week = week.replace("7", "");
+//            }
+//
+//        }
+//        LogUtils.e("aaaaaaa:", week);
+//    }
 
     /**
      * 选择时间

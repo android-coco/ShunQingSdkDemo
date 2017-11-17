@@ -3,6 +3,7 @@ package yh.org.shunqinglib.aty;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
@@ -133,8 +134,10 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
         final EditText inputServer = new EditText(aty);
         inputServer.setInputType(InputType.TYPE_CLASS_PHONE);
         inputServer.setHint("请输入号码");
+        InputFilter[] filters = {new InputFilter.LengthFilter(16)}; // 设置最大长度为6个字符
+        inputServer.setFilters(filters);
         AlertDialog.Builder builder = new AlertDialog.Builder(aty);
-        builder.setTitle("请输入号码").setIcon(android.R.drawable.ic_dialog_info).setView(inputServer)
+        builder.setTitle("请输入号码").setView(inputServer)
                 .setNegativeButton("取消", null);
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
         {
