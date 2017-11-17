@@ -6,7 +6,6 @@ import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -18,14 +17,24 @@ import org.yh.library.okhttp.callback.HttpCallBack;
 import org.yh.library.ui.YHViewInject;
 import org.yh.library.utils.JsonUitl;
 import org.yh.library.utils.LogUtils;
+import org.yh.library.view.YHLabelsView;
 import org.yh.library.view.loading.dialog.YHLoadingDialog;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import yh.org.shunqinglib.R;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonMdrSdModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
+
+import static yh.org.shunqinglib.R.id.x_1;
+import static yh.org.shunqinglib.R.id.x_2;
+import static yh.org.shunqinglib.R.id.x_3;
+import static yh.org.shunqinglib.R.id.x_4;
+import static yh.org.shunqinglib.R.id.x_5;
+import static yh.org.shunqinglib.R.id.x_6;
+import static yh.org.shunqinglib.R.id.x_7;
 
 /**
  * 免打扰定位时段
@@ -34,21 +43,22 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
 {
     public static final String DATA_ACTION = "mdrSdModel";
     //星期选择
-//    @BindView(id = R.id.x_1)
-    CheckBox x_1;
-//    @BindView(id = R.id.x_2)
-    CheckBox x_2;
-//    @BindView(id = R.id.x_3)
-    CheckBox x_3;
-//    @BindView(id = R.id.x_4)
-    CheckBox x_4;
-//    @BindView(id = R.id.x_5)
-    CheckBox x_5;
-//    @BindView(id = R.id.x_6)
-    CheckBox x_6;
-//    @BindView(id = R.id.x_7)
-    CheckBox x_7;
-//    @BindView(id = R.id.add, click = true)
+    YHLabelsView labelsView;
+////    @BindView(id = R.id.x_1)
+//    CheckBox x_1;
+////    @BindView(id = R.id.x_2)
+//    CheckBox x_2;
+////    @BindView(id = R.id.x_3)
+//    CheckBox x_3;
+////    @BindView(id = R.id.x_4)
+//    CheckBox x_4;
+////    @BindView(id = R.id.x_5)
+//    CheckBox x_5;
+////    @BindView(id = R.id.x_6)
+//    CheckBox x_6;
+////    @BindView(id = R.id.x_7)
+//    CheckBox x_7;
+////    @BindView(id = R.id.add, click = true)
     Button add;
 
     //日期选择
@@ -78,26 +88,43 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
     private void initView()
     {
         //星期选择
-        x_1 = (CheckBox) findViewById(R.id.x_1);
-        x_2 = (CheckBox) findViewById(R.id.x_2);
-        x_3 = (CheckBox) findViewById(R.id.x_3);
-        x_4 = (CheckBox) findViewById(R.id.x_4);
-        x_5 = (CheckBox) findViewById(R.id.x_5);
-        x_6 = (CheckBox) findViewById(R.id.x_6);
-        x_7 = (CheckBox) findViewById(R.id.x_7);
+        labelsView = (YHLabelsView) findViewById(R.id.labels);
+        ArrayList<String> label = new ArrayList<>();
+        label.add("周一");
+        label.add("周二");
+        label.add("周三");
+        label.add("周四");
+        label.add("周五");
+        label.add("周六");
+        label.add("周日");
+        labelsView.setLabels(label);
+        labelsView.setSelectType(YHLabelsView.SelectType.MULTI);
+        labelsView.setMaxSelect(0);
+//        labelsView.setOnLabelClickListener(new YHLabelsView.OnLabelClickListener() {
+//            @Override
+//            public void onLabelClick(View label, String labelText, int position) {
+//                YHViewInject.create().showTips(position + " : " + labelText);
+//                LogUtils.e(TAG,labelsView.getSelectLabels());
+//            }
+//        });
         add = (Button) findViewById(R.id.add);
         add.setOnClickListener(this);
         //日期选择
         stime_1 = (EditText) findViewById(R.id.stime_1);
+        stime_1.setFocusable(false);
         stime_1.setOnClickListener(this);
         stime_2 = (EditText) findViewById(R.id.stime_2);
+        stime_2.setFocusable(false);
         stime_2.setOnClickListener(this);
         etime_1 = (EditText) findViewById(R.id.etime_1);
+        etime_1.setFocusable(false);
         etime_1.setOnClickListener(this);
         etime_2 = (EditText) findViewById(R.id.etime_2);
+        etime_2.setFocusable(false);
         etime_2.setOnClickListener(this);
 
         times = (EditText) findViewById(R.id.times);
+        times.setFocusable(false);
         times.setOnClickListener(this);
 
         timingpostion_name = (EditText) findViewById(R.id.timingpostion_name);
@@ -109,13 +136,13 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
         toolbar.setLeftTitleText("返回");
         toolbar.setMainTitle("编辑免打扰时段");
 
-        x_1.setOnCheckedChangeListener(this);
-        x_2.setOnCheckedChangeListener(this);
-        x_3.setOnCheckedChangeListener(this);
-        x_4.setOnCheckedChangeListener(this);
-        x_5.setOnCheckedChangeListener(this);
-        x_6.setOnCheckedChangeListener(this);
-        x_7.setOnCheckedChangeListener(this);
+//        x_1.setOnCheckedChangeListener(this);
+//        x_2.setOnCheckedChangeListener(this);
+//        x_3.setOnCheckedChangeListener(this);
+//        x_4.setOnCheckedChangeListener(this);
+//        x_5.setOnCheckedChangeListener(this);
+//        x_6.setOnCheckedChangeListener(this);
+//        x_7.setOnCheckedChangeListener(this);
         InputFilter[] filters = {new InputFilter.LengthFilter(6)}; // 设置最大长度为6个字符
         timingpostion_name.setFilters(filters);
     }
@@ -142,40 +169,36 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
             //timingpostion_name.setText(dwSdModel.name);
             byte[] weeks = mdrSdModel.getWeek().getBytes();
             week = mdrSdModel.getWeek();
+            int[] weekInt = new int[weeks.length];
             for (int i = 0; i < weeks.length; i++)
             {
+
                 switch (weeks[i])
                 {
                     case 49:
-                        x_1.setChecked(true);
-                        // week += "1";
+                        weekInt[i] = 0;
                         break;
                     case 50:
-                        x_2.setChecked(true);
-                        // week += "2";
+                        weekInt[i] = 1;
                         break;
                     case 51:
-                        x_3.setChecked(true);
-                        // week += "3";
+                        weekInt[i] = 2;
                         break;
                     case 52:
-                        x_4.setChecked(true);
-                        // week += "4";
+                        weekInt[i] = 3;
                         break;
                     case 53:
-                        x_5.setChecked(true);
-                        // week += "5";
+                        weekInt[i] = 4;
                         break;
                     case 54:
-                        x_6.setChecked(true);
-                        // week += "6";
+                        weekInt[i] = 5;
                         break;
                     case 55:
-                        x_7.setChecked(true);
-                        // week += "7";
+                        weekInt[i] = 6;
                         break;
                 }
             }
+            labelsView.setSelects(weekInt);
         }
     }
 
@@ -193,6 +216,13 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
             String em = etime_2.getText().toString().trim();
             String times = this.times.getText().toString().trim();
             String name = timingpostion_name.getText().toString().trim();
+            ArrayList<Integer> weeks = labelsView.getSelectLabels();
+            week = "";
+            //获取选中的星期
+            for (int j = 0; j < weeks.size(); j++)
+            {
+                week += weeks.get(j) + 1;
+            }
             if ("".equals(week))
             {
                 YHViewInject.create().showTips("执行周期不能为空！");
@@ -395,7 +425,7 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
     {
         int i = buttonView.getId();
-        if (i == R.id.x_1)
+        if (i == x_1)
         {
             if (isChecked)
             {
@@ -405,7 +435,7 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
                 week = week.replace("1", "");
             }
 
-        } else if (i == R.id.x_2)
+        } else if (i == x_2)
         {
             if (isChecked)
             {
@@ -415,7 +445,7 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
                 week = week.replace("2", "");
             }
 
-        } else if (i == R.id.x_3)
+        } else if (i == x_3)
         {
             if (isChecked)
             {
@@ -425,7 +455,7 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
                 week = week.replace("3", "");
             }
 
-        } else if (i == R.id.x_4)
+        } else if (i == x_4)
         {
             if (isChecked)
             {
@@ -435,7 +465,7 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
                 week = week.replace("4", "");
             }
 
-        } else if (i == R.id.x_5)
+        } else if (i == x_5)
         {
             if (isChecked)
             {
@@ -445,7 +475,7 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
                 week = week.replace("5", "");
             }
 
-        } else if (i == R.id.x_6)
+        } else if (i == x_6)
         {
             if (isChecked)
             {
@@ -455,7 +485,7 @@ public class MdrSdEditActivity extends BaseActiciy implements CompoundButton.OnC
                 week = week.replace("6", "");
             }
 
-        } else if (i == R.id.x_7)
+        } else if (i == x_7)
         {
             if (isChecked)
             {
