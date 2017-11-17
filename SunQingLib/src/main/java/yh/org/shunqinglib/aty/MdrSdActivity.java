@@ -249,7 +249,7 @@ public class MdrSdActivity extends BaseActiciy implements I_YHItemClickListener<
                     public void onFailure(int errorNo, String strMsg)
                     {
                         super.onFailure(errorNo, strMsg);
-                        YHViewInject.create().showTips("删除失败");
+                        YHViewInject.create().showTips("删除失败" + strMsg);
                     }
 
                     @Override
