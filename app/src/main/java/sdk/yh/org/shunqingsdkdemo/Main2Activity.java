@@ -26,8 +26,8 @@ public class Main2Activity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                GlobalUtils.HOME_HOST = "http://115.159.123.101:8085";//接口地址
-                GlobalUtils.DEIVER_SN = "A100004DC57E0D";//SN号
+                GlobalUtils.HOME_HOST = "http://www.shunqing365.net";//接口地址
+                GlobalUtils.DEIVER_SN = "123456789012345";//SN号
                 showActivity(Main2Activity.this, LocationByBDActivity.class);
             }
         });
@@ -37,8 +37,8 @@ public class Main2Activity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                GlobalUtils.HOME_HOST = "http://115.159.123.101:8085";//接口地址
-                GlobalUtils.DEIVER_SN = "A100004DC57E0D";//SN号
+                GlobalUtils.HOME_HOST = "http://www.shunqing365.net";//接口地址
+                GlobalUtils.DEIVER_SN = "123456789012345";//SN号
                 showActivity(Main2Activity.this, LocationByGDActivity.class);
             }
         });
