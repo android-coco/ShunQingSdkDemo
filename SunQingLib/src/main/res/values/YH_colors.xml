@@ -11,4 +11,7 @@
     <color name="main_page_bg">#0cc478</color>
     <!-- 按钮点击颜色 -->
     <color name="main_bluebtn_bg">#0fa567</color>
+    <color name="dialog_editext_color">#b4b4b4</color>
+    <color name="dialog_black">#333333</color>
+    <color name="round_bnt_no">#c8c8c8</color>
 </resources>

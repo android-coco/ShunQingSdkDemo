@@ -41,7 +41,7 @@
                 android:paddingRight="4.0dip"
                 android:text="定位方式："
                 android:textColor="@android:color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/space_16"
                 android:textStyle="bold"/>
 
             <TextView
@@ -53,7 +53,7 @@
                 android:paddingRight="4.0dip"
                 android:text="基站"
                 android:textColor="@color/index_black"
-                android:textSize="12sp"
+                android:textSize="@dimen/space_16"
                 android:textStyle="bold"/>
         </LinearLayout>
 
@@ -72,7 +72,7 @@
                 android:paddingRight="4.0dip"
                 android:text="当时位置："
                 android:textColor="@android:color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/space_16"
                 android:textStyle="bold"/>
 
             <TextView
@@ -84,7 +84,7 @@
                 android:paddingRight="4.0dip"
                 android:text="湖南常德就了解了解了解了解了"
                 android:textColor="@color/index_black"
-                android:textSize="12sp"
+                android:textSize="@dimen/space_16"
                 android:textStyle="bold"/>
         </LinearLayout>
 
@@ -103,7 +103,7 @@
                 android:paddingRight="4.0dip"
                 android:text="当时状态："
                 android:textColor="@android:color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/space_16"
                 android:textStyle="bold"/>
 
             <TextView
@@ -115,7 +115,7 @@
                 android:paddingRight="4.0dip"
                 android:text="SOS报警"
                 android:textColor="@color/index_black"
-                android:textSize="12sp"
+                android:textSize="@dimen/space_16"
                 android:textStyle="bold"/>
         </LinearLayout>
 
@@ -134,7 +134,7 @@
                 android:paddingRight="4.0dip"
                 android:text="定位时间："
                 android:textColor="@android:color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/space_16"
                 android:textStyle="bold"/>
 
             <TextView
@@ -145,7 +145,7 @@
                 android:gravity="center_vertical"
                 android:text="2015-10-21 17:46:09"
                 android:textColor="@color/index_black"
-                android:textSize="12sp"/>
+                android:textSize="@dimen/space_16"/>
         </LinearLayout>
     </LinearLayout>
 

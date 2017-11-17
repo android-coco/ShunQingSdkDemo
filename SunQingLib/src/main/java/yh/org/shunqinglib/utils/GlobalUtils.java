@@ -68,7 +68,8 @@ public class GlobalUtils
 
     //立即定位
     public static final String TERMINAL_LOCATE = "/interface/terminal_locate";
-
+    // 用户xml文件名
+    public static final String user_xml = "user";
 
     /**
      * 去掉前后的逗号
