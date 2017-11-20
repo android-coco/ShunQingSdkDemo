@@ -42,12 +42,12 @@ public class MainActivity extends BaseActiciy
         {
             case R.id.ok:
                 GlobalUtils.HOME_HOST = "http://www.shunqing365.net";//接口地址
-                GlobalUtils.DEIVER_SN = "A100004DC57E0D";//SN号
+                GlobalUtils.DEIVER_SN = "A100004DC61119883";//SN号
                 showActivity(aty, LocationByBDActivity.class);
                 break;
             case R.id.ok1:
                 GlobalUtils.HOME_HOST = "http://www.shunqing365.net";//接口地址
-                GlobalUtils.DEIVER_SN = "123456789012345";//SN号
+                GlobalUtils.DEIVER_SN = "1234516789012345";//SN号
                 showActivity(aty, LocationByGDActivity.class);
                 break;
         }

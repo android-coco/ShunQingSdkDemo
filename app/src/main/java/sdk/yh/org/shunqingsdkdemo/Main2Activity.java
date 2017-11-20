@@ -27,7 +27,7 @@ public class Main2Activity extends AppCompatActivity
             public void onClick(View view)
             {
                 GlobalUtils.HOME_HOST = "http://www.shunqing365.net";//接口地址
-                GlobalUtils.DEIVER_SN = "A100004DC57E0D";//SN号
+                GlobalUtils.DEIVER_SN = "A100004DC69883";//SN号
                 showActivity(Main2Activity.this, LocationByBDActivity.class);
             }
         });
