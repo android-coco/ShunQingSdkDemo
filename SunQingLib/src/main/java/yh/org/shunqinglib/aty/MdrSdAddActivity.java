@@ -1,8 +1,6 @@
 package yh.org.shunqinglib.aty;
 
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
@@ -298,7 +296,7 @@ public class MdrSdAddActivity extends BaseActiciy //implements OnCheckedChangeLi
 
         } else if (i == R.id.times)
         {
-            getTiems();
+           // getTiems();
 
         }
     }
@@ -357,25 +355,25 @@ public class MdrSdAddActivity extends BaseActiciy //implements OnCheckedChangeLi
                 }, TAG);
     }
 
-    private void getTiems()
-    {
-        final String[] lang = {"5", "10", "15", "20", "30", "40", "50", "60"};
-        new AlertDialog.Builder(this)
-                .setTitle("选择时隔时间(分)")
-                // 标题
-                .setSingleChoiceItems(lang, 0,
-                        new DialogInterface.OnClickListener()
-                        {// 设置条目
-                            public void onClick(DialogInterface dialog,
-                                                int which)
-                            {// 响应事件
-                                // do something
-                                // 关闭对话框
-                                dialog.dismiss();
-                                times.setText(lang[which]);
-                            }
-                        }).show();
-    }
+//    private void getTiems()
+//    {
+//        final String[] lang = {"5", "10", "15", "20", "30", "40", "50", "60"};
+//        new AlertDialog.Builder(this)
+//                .setTitle("选择时隔时间(分)")
+//                // 标题
+//                .setSingleChoiceItems(lang, 0,
+//                        new DialogInterface.OnClickListener()
+//                        {// 设置条目
+//                            public void onClick(DialogInterface dialog,
+//                                                int which)
+//                            {// 响应事件
+//                                // do something
+//                                // 关闭对话框
+//                                dialog.dismiss();
+//                                times.setText(lang[which]);
+//                            }
+//                        }).show();
+//    }
 
 
 //    @Override

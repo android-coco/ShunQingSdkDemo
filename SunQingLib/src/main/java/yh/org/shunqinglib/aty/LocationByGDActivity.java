@@ -215,6 +215,17 @@ public class LocationByGDActivity extends BaseActiciy implements AMapLocationLis
                             addMaker();
                         }
                     });
+                } else
+                {
+                    runOnUiThread(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            textStreet.setText("暂无手表信息,请确认您的SN号是否正确！");
+                            textAddress.setVisibility(View.GONE);
+                        }
+                    });
                 }
             }
 
@@ -407,7 +418,14 @@ public class LocationByGDActivity extends BaseActiciy implements AMapLocationLis
         int i = v.getId();
         if (i == R.id.location_blood_plu)//执行监听
         {
-            showActivity(aty, ZxJtActivity.class);
+            if (StringUtils.isEmpty(jsonEquipmentModel) || StringUtils.isEmpty
+                    (jsonEquipmentModel.getDatas()))
+            {
+                YHViewInject.create().showTips("数据加载中或者无法获取手表数据！");
+            } else
+            {
+                showActivity(aty, ZxJtActivity.class);
+            }
         } else if (i == R.id.img_position_of)//回到终端位置
         {
             addMaker();
@@ -425,10 +443,25 @@ public class LocationByGDActivity extends BaseActiciy implements AMapLocationLis
             showActivity(aty, DwJlActivity.class);
         } else if (i == R.id.location_rall)//立即定位
         {
-            ljDW();
+            if (StringUtils.isEmpty(jsonEquipmentModel) || StringUtils.isEmpty
+                    (jsonEquipmentModel.getDatas()))
+            {
+                YHViewInject.create().showTips("数据加载中或者无法获取手表数据！");
+            } else
+            {
+                ljDW();
+            }
+
         } else if (i == R.id.location_sos)//指定拨号
         {
-            showActivity(aty, ZdBhActivity.class);
+            if (StringUtils.isEmpty(jsonEquipmentModel) || StringUtils.isEmpty
+                    (jsonEquipmentModel.getDatas()))
+            {
+                YHViewInject.create().showTips("数据加载中或者无法获取手表数据！");
+            } else
+            {
+                showActivity(aty, ZdBhActivity.class);
+            }
         } else if (i == R.id.sleep_time)//允许呼入
         {
             showActivity(aty, YxFrActivity.class);
@@ -478,9 +511,10 @@ public class LocationByGDActivity extends BaseActiciy implements AMapLocationLis
     protected void onMenuClick()
     {
         super.onMenuClick();
-        if (StringUtils.isEmpty(jsonEquipmentModel))
+        if (StringUtils.isEmpty(jsonEquipmentModel) || StringUtils.isEmpty
+                (jsonEquipmentModel.getDatas()))
         {
-            YHViewInject.create().showTips("数据加载中请稍候！");
+            YHViewInject.create().showTips("数据加载中或者无法获取手表数据！");
         } else
         {
             // 终端设置

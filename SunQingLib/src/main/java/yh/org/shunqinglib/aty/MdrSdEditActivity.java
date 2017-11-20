@@ -370,6 +370,12 @@ public class MdrSdEditActivity extends BaseActiciy //implements CompoundButton.O
                             EventBus.getDefault().post(new EventBusBean());
                             YHLoadingDialog.cancel();
                             finish();
+                        }else if ("5".equals(resultCode))
+                        {
+                            YHViewInject.create().showTips("修改成功,但是设备不在线,设备启动后同步");
+                            YHLoadingDialog.cancel();
+                            EventBus.getDefault().post(new EventBusBean());
+                            finish();
                         } else
                         {
                             YHViewInject.create().showTips("修改失败");

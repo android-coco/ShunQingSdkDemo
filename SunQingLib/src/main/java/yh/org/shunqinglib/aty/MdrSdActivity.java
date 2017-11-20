@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.yh.library.adapter.I_YHItemClickListener;
@@ -239,7 +240,13 @@ public class MdrSdActivity extends BaseActiciy implements I_YHItemClickListener<
                             YHViewInject.create().showTips("删除成功");
                             data.remove(mdrSdModel);
                             mAdapter.notifyDataSetChanged();
-                        } else
+                        }  else if ("5".equals(resultCode))
+                        {
+                            YHViewInject.create().showTips("删除成功,但是设备不在线,设备启动后同步");
+                            YHLoadingDialog.cancel();
+                            EventBus.getDefault().post(new EventBusBean());
+                            finish();
+                        }else
                         {
                             YHViewInject.create().showTips("删除失败");
                         }

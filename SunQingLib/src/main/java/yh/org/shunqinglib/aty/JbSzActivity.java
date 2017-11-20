@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import org.greenrobot.eventbus.EventBus;
+import org.yh.library.bean.EventBusBean;
 import org.yh.library.okhttp.YHRequestFactory;
 import org.yh.library.okhttp.callback.HttpCallBack;
 import org.yh.library.ui.YHViewInject;
@@ -243,6 +245,12 @@ public class JbSzActivity extends BaseActiciy
                         {
                             YHViewInject.create().showTips("修改成功");
                             YHLoadingDialog.cancel();
+                            finish();
+                        }else if ("5".equals(resultCode))
+                        {
+                            YHViewInject.create().showTips("修改成功,但是设备不在线,设备启动后同步");
+                            YHLoadingDialog.cancel();
+                            EventBus.getDefault().post(new EventBusBean());
                             finish();
                         }
                         else
