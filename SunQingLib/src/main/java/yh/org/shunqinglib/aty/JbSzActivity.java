@@ -52,7 +52,7 @@ public class JbSzActivity extends BaseActiciy
 
     private void initView()
     {
-        terminal_affections = new EditText[4];
+        terminal_affections = new EditText[3];
         btalow_on = (ImageView) findViewById(R.id.btalow_on);
         btalow_on.setOnClickListener(this);
         btalow_off = (ImageView) findViewById(R.id.btalow_off);
@@ -68,8 +68,8 @@ public class JbSzActivity extends BaseActiciy
         terminal_affections[1] = terminal_affection1;
         terminal_affection2 = (EditText) findViewById(R.id.terminal_affection2);
         terminal_affections[2] = terminal_affection2;
-        terminal_affection3 = (EditText) findViewById(R.id.terminal_affection3);
-        terminal_affections[3] = terminal_affection3;
+//        terminal_affection3 = (EditText) findViewById(R.id.terminal_affection3);
+//        terminal_affections[3] = terminal_affection3;
         lt_sos_call = (RelativeLayout) findViewById(R.id.lt_sos_call);
         lt_sos_call.setOnClickListener(this);
     }
@@ -245,6 +245,7 @@ public class JbSzActivity extends BaseActiciy
                         {
                             YHViewInject.create().showTips("修改成功");
                             YHLoadingDialog.cancel();
+                            EventBus.getDefault().post(new EventBusBean());
                             finish();
                         }else if ("5".equals(resultCode))
                         {

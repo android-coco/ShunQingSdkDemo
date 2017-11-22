@@ -4,12 +4,19 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+import org.yh.library.bean.EventBusBean;
+import org.yh.library.okhttp.YHRequestFactory;
+import org.yh.library.okhttp.callback.HttpCallBack;
 import org.yh.library.ui.YHViewInject;
+import org.yh.library.utils.JsonUitl;
 import org.yh.library.utils.StringUtils;
 
 import yh.org.shunqinglib.R;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonEquipmentModel;
+import yh.org.shunqinglib.utils.GlobalUtils;
 
 /**
  * 作者：游浩 on 2017/10/31 10:45
@@ -22,7 +29,6 @@ public class SzActivity extends BaseActiciy
 
     RelativeLayout sz, dwsd, nz, mdrsd, yxfj, dwjl;
     JsonEquipmentModel.EquipmentModel equipmentModel;//设备model
-
     @Override
     public void setRootView()
     {
@@ -50,9 +56,9 @@ public class SzActivity extends BaseActiciy
     public void initData()
     {
         super.initData();
-        equipmentModel = (JsonEquipmentModel.EquipmentModel) getIntent().getSerializableExtra
-                (JbSzActivity.DATA_ACTION);
+        getLastLoction();
     }
+
 
     @Override
     public void initWidget()
@@ -102,5 +108,47 @@ public class SzActivity extends BaseActiciy
         {
             showActivity(aty, DwJlActivity.class);
         }
+    }
+
+    JsonEquipmentModel jsonEquipmentModel = null;
+
+    //获取最后位置
+    private void getLastLoction()
+    {
+        //"{\"sns\":\"123456789012345\"}"
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils
+                .DEVER_INFO, null, "{\"sns\":\"" + GlobalUtils.DEIVER_SN + "\"}", new HttpCallBack()
+        {
+            @Override
+            public void onSuccess(String t)
+            {
+                super.onSuccess(t);
+                jsonEquipmentModel = JsonUitl.stringToTObject
+                        (t, JsonEquipmentModel.class);
+                if (!StringUtils.isEmpty(jsonEquipmentModel) && !StringUtils.isEmpty
+                        (jsonEquipmentModel.getDatas()))
+                {
+                    equipmentModel = jsonEquipmentModel.getDatas().get(0);
+                }
+            }
+
+            @Override
+            public void onFailure(int errorNo, String strMsg)
+            {
+                super.onFailure(errorNo, strMsg);
+            }
+
+            @Override
+            public void onFinish()
+            {
+                super.onFinish();
+            }
+        }, TAG);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void ploginOut(EventBusBean msg)
+    {
+        getLastLoction();
     }
 }
