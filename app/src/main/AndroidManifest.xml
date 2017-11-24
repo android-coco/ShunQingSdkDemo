@@ -18,14 +18,14 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="a9G8YTwtEP6DlGtXMQefGFktB0m0eTMC"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Main2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity">
+        <activity android:name=".MainActivity">
         </activity>
     </application>
 
