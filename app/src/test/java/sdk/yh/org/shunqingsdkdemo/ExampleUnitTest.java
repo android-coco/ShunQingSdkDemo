@@ -3,6 +3,8 @@ package sdk.yh.org.shunqingsdkdemo;
 import org.junit.Test;
 import org.yh.library.utils.StringUtils;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -22,5 +24,6 @@ public class ExampleUnitTest
             keynum = keynum.substring(0, keynum.length()-1);
         }
         System.out.print(keynum);
+        System.out.print(Arrays.toString("||".split("\\|")));
     }
 }
