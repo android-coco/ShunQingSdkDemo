@@ -12,11 +12,17 @@ public class GlobalUtils
 {
     public static String HOME_HOST = "http://115.159.123.101:8085";//IP地址
     public static String DEIVER_SN = "123456789012345";//SN号
+    public static String USER_UID = "29";//用户ID
     //终端信息
     public static final String DEVER_INFO = "/interface/terminal_profile";
     //修改终端信息
     public static final String DEVER_MODIFY = "/interface/terminal_modify";
-
+    //我的终端
+    public static final String TERMINAL_LIST = "/interface/terminal_data";
+    //添加终端
+    public static final String TERMINAL_ADD = "/interface/terminal_addnew";
+    //删除终端
+    public static final String TERMINAL_DEL = "/interface/terminal_unbound";
 
     //定位时段列表
     public static final String REPORT_LIST = "/interface/report_list";
@@ -103,11 +109,11 @@ public class GlobalUtils
     }
 
     /*时间戳转换成字符窜*/
-    public static String getDateToString(long time)
+    public static String getDateToString(long time,String format)
     {
         String str = "";
         long msl = time * 1000;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒");
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
         try
         {
             str = sdf.format(msl);
