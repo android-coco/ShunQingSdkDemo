@@ -35,6 +35,8 @@
         <activity android:name=".aty.LocationByBDActivity"/>
         <!-- 定位高德地图 -->
         <activity android:name=".aty.LocationByGDActivity"/>
+        <!-- 定位高德地图 守护365 -->
+        <activity android:name=".aty.LocationByGD2Activity"/>
         <!-- 指定拨号 -->
         <activity android:name=".aty.ZdBhActivity"/>
         <!-- 定位时段 -->
@@ -61,8 +63,11 @@
         <activity android:name=".aty.NzEditActivity"/>
         <!-- 基本设置 -->
         <activity android:name=".aty.JbSzActivity"/>
+        <activity android:name=".aty.JbSz365Activity"/>
         <!-- 基本设置 -->
         <activity android:name=".aty.SzActivity"/>
+        <!-- 添加设备 -->
+        <activity android:name=".aty.AddTerminalActivity"/>
     </application>
 
 </manifest>

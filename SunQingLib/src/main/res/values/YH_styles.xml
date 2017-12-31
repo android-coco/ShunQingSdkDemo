@@ -1,3 +1,13 @@
+<!DOCTYPE resources [
+    <!ELEMENT resources (style)*>
+    <!ELEMENT style (item)*>
+    <!ATTLIST style
+        name CDATA #REQUIRED
+        parent CDATA #IMPLIED>
+    <!ELEMENT item (#PCDATA)>
+    <!ATTLIST item
+        name CDATA #REQUIRED>
+    ]>
 <resources>
     <!--
         //要设置主题，隐藏原来自带的，我是直接在style中设置了
@@ -27,5 +37,18 @@
         <item name="android:layout_marginLeft">@dimen/space_16</item>
         <item name="android:layout_marginRight">@dimen/space_16</item>
     </style>
-
+    <!-- popupWindow样式-->
+    <style name="menu_item_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/space_45</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/index_black</item>
+        <item name="android:background">@color/white</item>
+    </style>
+    <!-- popupWindow样式-->
+    <style name="menu_item_divider_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/px_1</item>
+        <item name="android:background">@color/main_bg</item>
+    </style>
 </resources>

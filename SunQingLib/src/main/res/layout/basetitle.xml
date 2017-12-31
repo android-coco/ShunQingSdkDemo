@@ -19,13 +19,31 @@
         app:contentInsetStart="0dp">
 
         <TextView
-            android:id="@+id/txt_left_title"
+            android:id="@+id/txt_left_title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@mipmap/icon_back_32px"
             android:gravity="center"
             android:maxLines="1"
-            android:text="返回"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/txt_left_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:layout_marginStart="@dimen/space_15"
+            android:layout_marginEnd="@dimen/space_15"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/txt_left_title3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
             android:textColor="#ffffff"
             android:textSize="16sp"
             android:visibility="invisible"/>
@@ -40,18 +58,36 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:text="标题"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:visibility="invisible"/>
-
         <TextView
-            android:id="@+id/txt_right_title"
+            android:id="@+id/txt_right_title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginEnd="10dp"
-            android:drawableEnd="@mipmap/icon_plus"
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/txt_right_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="@dimen/space_15"
+            android:layout_marginEnd="@dimen/space_15"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/txt_right_title3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:gravity="center"
             android:textColor="#ffffff"
             android:textSize="16sp"

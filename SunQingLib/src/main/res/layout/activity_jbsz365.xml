@@ -9,12 +9,14 @@
         android:id="@+id/top"
         layout="@layout/basetitle"/>
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_below="@id/top"
+    android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/rl1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/top"
-        android:layout_marginTop="@dimen/space_16"
         android:background="@color/main_bg"
         android:orientation="vertical">
         <LinearLayout
@@ -489,16 +491,135 @@
                 android:visibility="visible"/>
         </RelativeLayout>
 
-
-        <Button
-            android:id="@+id/save_wacth_set"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="保存"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_16"
-            android:visibility="gone"
-            />
+            android:layout_height="@dimen/space_40"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="14dip"
+                android:layout_marginRight="14dip"
+                android:layout_weight="1"
+                android:gravity="center_vertical|start"
+                android:text="其他设置"
+                android:textSize="@dimen/text_size_16"
+                android:visibility="visible"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#d7d7d7"
+                android:visibility="visible"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/mdr"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_48"
+            android:layout_marginTop="1px"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_12"
+                android:layout_weight="1"
+                android:text="免扰时段"
+                android:textSize="@dimen/text_size_16"/>
+
+            <ImageView
+                android:layout_width="@dimen/space_20"
+                android:layout_height="@dimen/space_20"
+                android:layout_marginEnd="@dimen/space_18"
+                android:background="@mipmap/watch_img"
+                android:contentDescription="@null"
+                android:visibility="visible"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/yxhj"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_48"
+            android:layout_marginTop="1px"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_12"
+                android:layout_weight="1"
+                android:text="允许呼入"
+                android:textSize="@dimen/text_size_16"/>
+
+            <ImageView
+                android:layout_width="@dimen/space_20"
+                android:layout_height="@dimen/space_20"
+                android:layout_marginEnd="@dimen/space_18"
+                android:background="@mipmap/watch_img"
+                android:contentDescription="@null"
+                android:visibility="visible"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/nzsz"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_48"
+            android:layout_marginTop="1px"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_12"
+                android:layout_weight="1"
+                android:text="闹钟设置"
+                android:textSize="@dimen/text_size_16"/>
+
+            <ImageView
+                android:layout_width="@dimen/space_20"
+                android:layout_height="@dimen/space_20"
+                android:layout_marginEnd="@dimen/space_18"
+                android:background="@mipmap/watch_img"
+                android:contentDescription="@null"
+                android:visibility="visible"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/dssb"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_48"
+            android:layout_marginTop="1px"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_12"
+                android:layout_weight="1"
+                android:text="定时上报"
+                android:textSize="@dimen/text_size_16"/>
+
+            <ImageView
+                android:layout_width="@dimen/space_20"
+                android:layout_height="@dimen/space_20"
+                android:layout_marginEnd="@dimen/space_18"
+                android:background="@mipmap/watch_img"
+                android:contentDescription="@null"
+                android:visibility="visible"/>
+        </LinearLayout>
     </LinearLayout>
+</ScrollView>
 
 </RelativeLayout>

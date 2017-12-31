@@ -14,4 +14,8 @@
     <color name="dialog_editext_color">#b4b4b4</color>
     <color name="dialog_black">#333333</color>
     <color name="round_bnt_no">#c8c8c8</color>
+    <color name="colorYellow">#EEEE00</color>
+
+    <color name="colorK">#00FFFF</color>
+    <color name="colorSmallBlack">#3C3C3C</color>
 </resources>
