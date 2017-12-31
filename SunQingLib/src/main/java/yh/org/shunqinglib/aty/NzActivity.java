@@ -29,6 +29,7 @@ import yh.org.shunqinglib.adapter.NzAdapter;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonNzModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
+import yh.org.shunqinglib.view.YhToolbar;
 
 /**
  * 闹钟
@@ -64,9 +65,10 @@ public class NzActivity extends BaseActiciy implements I_YHItemClickListener<Jso
     {
         super.initWidget();
         initView();
-        toolbar.setLeftTitleText("返回");
+        toolbar.setLeftTitleText1("返回");
+        toolbar.setLeftTitleDrawable1(R.mipmap.icon_back_32px, YhToolbar.LEFT,20);
+        toolbar.setRightTitleDrawable1(R.mipmap.icon_plus,YhToolbar.LEFT,30);
         toolbar.setMainTitle("闹钟");
-        toolbar.setRightTitleText("");
 
         id_empty_text.setText("加载中。。。");
         //lineartlayout
@@ -121,16 +123,16 @@ public class NzActivity extends BaseActiciy implements I_YHItemClickListener<Jso
     }
 
     @Override
-    protected void onBackClick()
+    protected void onBackClick(int postion)
     {
-        super.onBackClick();
+        super.onBackClick(postion);
         finish();
     }
 
     @Override
-    protected void onMenuClick()
+    protected void onMenuClick(int positon)
     {
-        super.onMenuClick();
+        super.onMenuClick(positon);
         showActivity(aty, NzAddActivity.class);
     }
 

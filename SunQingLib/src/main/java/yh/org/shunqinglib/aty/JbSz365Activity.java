@@ -14,20 +14,23 @@ import org.yh.library.okhttp.YHRequestFactory;
 import org.yh.library.okhttp.callback.HttpCallBack;
 import org.yh.library.ui.YHViewInject;
 import org.yh.library.utils.JsonUitl;
+import org.yh.library.utils.LogUtils;
 import org.yh.library.utils.StringUtils;
+import org.yh.library.view.YHAlertDialog;
 import org.yh.library.view.loading.dialog.YHLoadingDialog;
 
 import yh.org.shunqinglib.R;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonDwSdModel;
 import yh.org.shunqinglib.bean.JsonEquipmentModel;
+import yh.org.shunqinglib.bean.TerminalJosnBen;
 import yh.org.shunqinglib.utils.GlobalUtils;
 import yh.org.shunqinglib.view.YhToolbar;
 
 /**
  * 基本设置界面
  */
-public class JbSzActivity extends BaseActiciy
+public class JbSz365Activity extends BaseActiciy
 {
     public static final String DATA_ACTION = "equipmentModel";
     // 低电量   开关机
@@ -37,6 +40,10 @@ public class JbSzActivity extends BaseActiciy
             terminal_affection3;
     EditText terminal_name;//设备名称
     LinearLayout del_terminal;//解除绑定
+    LinearLayout mdr;//免打扰
+    LinearLayout yxhj;//允许呼叫
+    LinearLayout nzsz;//闹钟设置
+    LinearLayout dssb;//定时上报
     //SOS号码
     RelativeLayout lt_sos_call;
 
@@ -51,7 +58,7 @@ public class JbSzActivity extends BaseActiciy
     @Override
     public void setRootView()
     {
-        setContentView(R.layout.activity_jbsz);
+        setContentView(R.layout.activity_jbsz365);
         initView();
     }
 
@@ -84,6 +91,17 @@ public class JbSzActivity extends BaseActiciy
         //删除设备
         del_terminal = (LinearLayout) findViewById(R.id.del_device);
         del_terminal.setOnClickListener(this);
+
+        mdr = (LinearLayout) findViewById(R.id.mdr);
+        mdr.setOnClickListener(this);
+
+        yxhj = (LinearLayout) findViewById(R.id.yxhj);
+        yxhj.setOnClickListener(this);
+
+        nzsz = (LinearLayout) findViewById(R.id.nzsz);
+        nzsz.setOnClickListener(this);
+        dssb = (LinearLayout) findViewById(R.id.dssb);
+        dssb.setOnClickListener(this);
     }
 
     @Override
@@ -92,6 +110,7 @@ public class JbSzActivity extends BaseActiciy
         super.initData();
         equipmentModel = (JsonEquipmentModel.EquipmentModel) getIntent().getSerializableExtra
                 (DATA_ACTION);
+        LogUtils.e(TAG,equipmentModel);
         if (!StringUtils.isEmpty(equipmentModel))
         {
             terminal_name_rev.setText(equipmentModel.getKeysos());
@@ -131,15 +150,14 @@ public class JbSzActivity extends BaseActiciy
                 pwonff_off.setVisibility(View.GONE);
             }
             terminal_name.setText(equipmentModel.getName());
-//            if ("0".equals(equipmentModel.getType()))
-//            {
-//                del_terminal.setVisibility(View.VISIBLE);
-//            }
-//            else
-//            {
-//                del_terminal.setVisibility(View.GONE);
-//            }
-            del_terminal.setVisibility(View.GONE);
+            if ("0".equals(equipmentModel.getType()))
+            {
+                del_terminal.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                del_terminal.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -182,7 +200,96 @@ public class JbSzActivity extends BaseActiciy
             power = "1";
             pwonff_on.setVisibility(View.VISIBLE);
             pwonff_off.setVisibility(View.GONE);
+        }else if (i == R.id.del_device)
+        {
+            //删除设备
+            new YHAlertDialog(aty).builder().setMsg("解绑后无法恢复,确认解绑？").setNegativeButton("确定", new View
+                    .OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    delTerminal();
+                }
+            }).setPositiveButton("取消", new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+
+                }
+            }).show();
+        }else if (i == R.id.mdr)
+        {
+            //免打扰
+            showActivity(aty, MdrSdActivity.class);
+        }else if (i == R.id.yxhj)
+        {
+            //允许呼叫
+            showActivity(aty, YxFrActivity.class);
+        }else if (i == R.id.nzsz)
+        {
+            //闹钟设置
+            showActivity(aty, NzActivity.class);
+        }else if (i == R.id.dssb)
+        {
+            //定时上报
+            showActivity(aty, DwSdActivity.class);
         }
+    }
+
+    /**
+     * 删除设备
+     *
+     */
+    private void delTerminal()
+    {
+        YHLoadingDialog.make(aty).setMessage("解绑中。。。")//提示消息
+                .setCancelable(false).show();
+        String params = "{\"uid\":\"" + GlobalUtils.USER_UID + "\",\"sn\":\"" + GlobalUtils.DEIVER_SN + "\"}";
+        YHRequestFactory.getRequestManger().postString(GlobalUtils.HOME_HOST, GlobalUtils.TERMINAL_DEL,
+                null, params, new
+                        HttpCallBack()
+                        {
+                            @Override
+                            public void onSuccess(String t)
+                            {
+                                super.onSuccess(t);
+                                LogUtils.e(TAG, t);
+                                final TerminalJosnBen jsonData = JsonUitl.stringToTObject
+                                        (t, TerminalJosnBen.class);
+                                String resultCode = jsonData.getResultCode();
+                                if ("0".equals(resultCode))
+                                {
+                                    YHViewInject.create().showTips("解绑成功");
+                                    //发送广播
+                                    EventBus.getDefault().post(new EventBusBean());
+                                    finish();
+                                }
+                                else if ("2".equals(resultCode))
+                                {
+                                    YHViewInject.create().showTips("解绑失败,设备不存在");
+                                }
+                                else
+                                {
+                                    YHViewInject.create().showTips("解绑失败,未知原因code" + resultCode);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(int errorNo, String strMsg)
+                            {
+                                super.onFailure(errorNo, strMsg);
+                                YHViewInject.create().showTips("解绑失败" + strMsg);
+                            }
+
+                            @Override
+                            public void onFinish()
+                            {
+                                super.onFinish();
+                                YHLoadingDialog.cancel();
+                            }
+                        }, TAG);
     }
 
     @Override

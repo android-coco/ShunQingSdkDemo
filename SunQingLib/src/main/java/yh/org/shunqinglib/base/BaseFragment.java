@@ -13,6 +13,8 @@ import org.yh.library.utils.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import yh.org.shunqinglib.view.YhToolbar;
+
 import static org.yh.library.utils.SystemUtils.isGranted;
 
 /**
@@ -67,32 +69,32 @@ public abstract class BaseFragment extends YHFragment
         {
             if (!StringUtils.isEmpty(actionBarRes.leftImageDrawable))
             {
-                seLeftImage(actionBarRes.leftImageDrawable);
+                seLeftImage(actionBarRes.leftImageDrawable,20);
             }
         } else
         {
-            seLeftImage(actionBarRes.leftImageId);
+            seLeftImage(actionBarRes.leftImageId,20);
         }
         if (actionBarRes.mainImageId == 0)
         {
             if (!StringUtils.isEmpty(actionBarRes.mainImageDrawable))
             {
-                setMianImage(actionBarRes.mainImageDrawable);
+                setMianImage(actionBarRes.mainImageDrawable,20);
             }
         } else
         {
-            setMianImage(actionBarRes.mainImageId);
+            setMianImage(actionBarRes.mainImageId,20);
         }
 
         if (actionBarRes.rightImageId == 0)
         {
             if (!StringUtils.isEmpty(actionBarRes.rightImageDrawable))
             {
-                setRightImage(actionBarRes.rightImageDrawable);
+                setRightImage(actionBarRes.rightImageDrawable,20);
             }
         } else
         {
-            setRightImage(actionBarRes.rightImageId);
+            setRightImage(actionBarRes.rightImageId,20);
         }
     }
 
@@ -112,32 +114,32 @@ public abstract class BaseFragment extends YHFragment
         {
             if (!StringUtils.isEmpty(actionBarRes.leftImageDrawable))
             {
-                seLeftImage(actionBarRes.leftImageDrawable);
+                seLeftImage(actionBarRes.leftImageDrawable,20);
             }
         } else
         {
-            seLeftImage(actionBarRes.leftImageId);
+            seLeftImage(actionBarRes.leftImageId,20);
         }
         if (actionBarRes.mainImageId == 0)
         {
             if (!StringUtils.isEmpty(actionBarRes.mainImageDrawable))
             {
-                setMianImage(actionBarRes.mainImageDrawable);
+                setMianImage(actionBarRes.mainImageDrawable,20);
             }
         } else
         {
-            setMianImage(actionBarRes.mainImageId);
+            setMianImage(actionBarRes.mainImageId,20);
         }
 
         if (actionBarRes.rightImageId == 0)
         {
             if (!StringUtils.isEmpty(actionBarRes.rightImageDrawable))
             {
-                setRightImage(actionBarRes.rightImageDrawable);
+                setRightImage(actionBarRes.rightImageDrawable,20);
             }
         } else
         {
-            setRightImage(actionBarRes.rightImageId);
+            setRightImage(actionBarRes.rightImageId,20);
         }
     }
     /**
@@ -182,22 +184,22 @@ public abstract class BaseFragment extends YHFragment
     /**
      * 当ActionBar上的返回键被按下时
      */
-    protected void onBackClick()
+    protected void onBackClick(int posion)
     {
         if (null != outsideAty)
         {
-            outsideAty.onBackClick();
+            outsideAty.onBackClick(posion);
         }
     }
 
     /**
      * 当ActionBar上的菜单键被按下时
      */
-    protected void onMenuClick()
+    protected void onMenuClick(int posion)
     {
         if (null != outsideAty)
         {
-            outsideAty.onMenuClick();
+            outsideAty.onMenuClick(posion);
         }
     }
 
@@ -217,44 +219,44 @@ public abstract class BaseFragment extends YHFragment
     /**
      * 设置左边键图标
      */
-    protected void seLeftImage(int resId)
+    protected void seLeftImage(int resId,int size)
     {
         if (outsideAty != null)
         {
-            outsideAty.toolbar.setLeftTitleDrawable(resId);
+            outsideAty.toolbar.setLeftTitleDrawable1(resId, YhToolbar.LEFT,size);
         }
     }
 
     /**
      * 设置左边键图标
      */
-    protected void seLeftImage(Drawable drawable)
+    protected void seLeftImage(Drawable drawable,int size)
     {
         if (outsideAty != null)
         {
-            outsideAty.toolbar.setLeftTitleDrawable(drawable);
+            outsideAty.toolbar.setLeftTitleDrawable1(drawable, YhToolbar.LEFT,size);
         }
     }
 
     /**
      * 设置标题右边图标
      */
-    protected void setRightImage(int resId)
+    protected void setRightImage(int resId,int size)
     {
         if (outsideAty != null)
         {
-            outsideAty.toolbar.setRightTitleDrawable(resId);
+            outsideAty.toolbar.setRightTitleDrawable1(resId, YhToolbar.LEFT,size);
         }
     }
 
     /**
      * 设置标题右边图标
      */
-    protected void setRightImage(Drawable drawable)
+    protected void setRightImage(Drawable drawable,int size)
     {
         if (outsideAty != null)
         {
-            outsideAty.toolbar.setRightTitleDrawable(drawable);
+            outsideAty.toolbar.setRightTitleDrawable1(drawable, YhToolbar.LEFT,size);
         }
     }
 
@@ -262,22 +264,22 @@ public abstract class BaseFragment extends YHFragment
     /**
      * 设置中间图标
      */
-    protected void setMianImage(int resId)
+    protected void setMianImage(int resId,int size)
     {
         if (outsideAty != null)
         {
-            outsideAty.toolbar.setMainTitleDrawable(resId);
+            outsideAty.toolbar.setMainTitleDrawable(resId, YhToolbar.LEFT,size);
         }
     }
 
     /**
      * 设置中间图标
      */
-    protected void setMianImage(Drawable drawable)
+    protected void setMianImage(Drawable drawable,int size)
     {
         if (outsideAty != null)
         {
-            outsideAty.toolbar.setMainTitleDrawable(drawable);
+            outsideAty.toolbar.setMainTitleDrawable(drawable, YhToolbar.LEFT,size);
         }
     }
 }

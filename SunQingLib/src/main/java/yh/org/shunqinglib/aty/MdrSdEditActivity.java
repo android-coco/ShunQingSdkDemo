@@ -26,6 +26,7 @@ import yh.org.shunqinglib.R;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonMdrSdModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
+import yh.org.shunqinglib.view.YhToolbar;
 
 
 /**
@@ -125,7 +126,8 @@ public class MdrSdEditActivity extends BaseActiciy //implements CompoundButton.O
     public void initWidget()
     {
         super.initWidget();
-        toolbar.setLeftTitleText("返回");
+        toolbar.setLeftTitleText1("返回");
+        toolbar.setLeftTitleDrawable1(R.mipmap.icon_back_32px, YhToolbar.LEFT,20);
         toolbar.setMainTitle("编辑免打扰时段");
 
 //        x_1.setOnCheckedChangeListener(this);
@@ -140,9 +142,9 @@ public class MdrSdEditActivity extends BaseActiciy //implements CompoundButton.O
     }
 
     @Override
-    protected void onBackClick()
+    protected void onBackClick(int postion)
     {
-        super.onBackClick();
+        super.onBackClick(postion);
         finish();
     }
 

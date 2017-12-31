@@ -24,6 +24,7 @@ import yh.org.shunqinglib.R;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonNzModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
+import yh.org.shunqinglib.view.YhToolbar;
 
 /**
  * 添加闹钟
@@ -88,9 +89,9 @@ public class NzAddActivity extends BaseActiciy //implements CompoundButton.OnChe
     }
 
     @Override
-    protected void onBackClick()
+    protected void onBackClick(int point)
     {
-        super.onBackClick();
+        super.onBackClick(point);
         finish();
     }
 
@@ -98,7 +99,8 @@ public class NzAddActivity extends BaseActiciy //implements CompoundButton.OnChe
     public void initWidget()
     {
         super.initWidget();
-        toolbar.setLeftTitleText("返回");
+        toolbar.setLeftTitleText1("返回");
+        toolbar.setLeftTitleDrawable1(R.mipmap.icon_back_32px, YhToolbar.LEFT,20);
         toolbar.setMainTitle("添加闹钟");
 
 //        x_1.setOnCheckedChangeListener(this);

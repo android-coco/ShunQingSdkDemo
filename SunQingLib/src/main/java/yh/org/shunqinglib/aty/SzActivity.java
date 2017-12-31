@@ -17,6 +17,7 @@ import yh.org.shunqinglib.R;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonEquipmentModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
+import yh.org.shunqinglib.view.YhToolbar;
 
 /**
  * 作者：游浩 on 2017/10/31 10:45
@@ -56,6 +57,8 @@ public class SzActivity extends BaseActiciy
     public void initData()
     {
         super.initData();
+        equipmentModel = (JsonEquipmentModel.EquipmentModel) getIntent().getSerializableExtra
+                (JbSzActivity.DATA_ACTION);
         getLastLoction();
     }
 
@@ -64,14 +67,15 @@ public class SzActivity extends BaseActiciy
     public void initWidget()
     {
         super.initWidget();
-        toolbar.setLeftTitleText("返回");
+        toolbar.setLeftTitleText1("返回");
+        toolbar.setLeftTitleDrawable1(R.mipmap.icon_back_32px, YhToolbar.LEFT,20);
         toolbar.setMainTitle("终端设置");
     }
 
     @Override
-    protected void onBackClick()
+    protected void onBackClick(int postion)
     {
-        super.onBackClick();
+        super.onBackClick(postion);
         finish();
     }
 

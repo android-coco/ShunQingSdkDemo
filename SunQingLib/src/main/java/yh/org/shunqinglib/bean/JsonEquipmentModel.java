@@ -23,6 +23,8 @@ public class JsonEquipmentModel extends YHModel
     {
         @SerializedName("product_sn")
         private String sn;//终端SN
+        @SerializedName("name")
+        private String name;//终端名称
         @SerializedName("device_type")
         private String deviceType;//终端的型号类型
         @SerializedName("datetime")
@@ -53,6 +55,8 @@ public class JsonEquipmentModel extends YHModel
         private String keysos;//SOS求助号码
         @SerializedName("keynum")
         private String keynum;//以逗号分隔，第一个为主亲情号
+        @SerializedName("type")
+        private String type;//0 自己的， 1为别人授权的
 
         public String getSn()
         {
@@ -214,11 +218,32 @@ public class JsonEquipmentModel extends YHModel
             this.keynum = keynum;
         }
 
+        public String getName()
+        {
+            return name;
+        }
+
+        public void setName(String name)
+        {
+            this.name = name;
+        }
+
+        public String getType()
+        {
+            return type;
+        }
+
+        public void setType(String type)
+        {
+            this.type = type;
+        }
+
         @Override
         public String toString()
         {
             return "EquipmentModel{" +
                     "sn='" + sn + '\'' +
+                    ", name='" + name + '\'' +
                     ", deviceType='" + deviceType + '\'' +
                     ", datetime='" + datetime + '\'' +
                     ", lat=" + lat +
@@ -234,7 +259,8 @@ public class JsonEquipmentModel extends YHModel
                     ", flagBattery='" + flagBattery + '\'' +
                     ", keysos='" + keysos + '\'' +
                     ", keynum='" + keynum + '\'' +
-                    "} " + super.toString();
+                    ", type='" + type + '\'' +
+                    '}';
         }
     }
 

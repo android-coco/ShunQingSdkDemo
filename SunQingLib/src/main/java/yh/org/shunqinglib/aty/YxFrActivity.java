@@ -32,6 +32,7 @@ import yh.org.shunqinglib.adapter.YxFrAdapter;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonYxFrModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
+import yh.org.shunqinglib.view.YhToolbar;
 
 /**
  * 允许呼入 查询
@@ -64,9 +65,11 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
     {
         super.initWidget();
         initView();
-        toolbar.setLeftTitleText("返回");
+        toolbar.setLeftTitleText1("返回");
+        toolbar.setLeftTitleDrawable1(R.mipmap.icon_back_32px, YhToolbar.LEFT,20);
+        toolbar.setRightTitleDrawable1(R.mipmap.icon_plus,YhToolbar.LEFT,30);
         toolbar.setMainTitle("允许呼入");
-        toolbar.setRightTitleText("");
+        toolbar.setRightTitleText1("");
 
         id_empty_text.setText("加载中。。。");
         //lineartlayout
@@ -121,16 +124,16 @@ public class YxFrActivity extends BaseActiciy implements I_YHItemClickListener<J
     }
 
     @Override
-    protected void onBackClick()
+    protected void onBackClick(int postion)
     {
-        super.onBackClick();
+        super.onBackClick(postion);
         finish();
     }
 
     @Override
-    protected void onMenuClick()
+    protected void onMenuClick(int postion)
     {
-        super.onMenuClick();
+        super.onMenuClick(postion);
         final EditText inputServer = new EditText(aty);
         inputServer.setInputType(InputType.TYPE_CLASS_PHONE);
         inputServer.setHint("请输入号码");

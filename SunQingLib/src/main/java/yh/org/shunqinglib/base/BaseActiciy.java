@@ -34,8 +34,12 @@ public abstract class BaseActiciy extends YHActivity
         {
             toolbar = (YhToolbar) findViewById(R.id.simple_toolbar);
             toolbar = bindView(R.id.simple_toolbar);
-            toolbar.setRightTitleClickListener(this);
-            toolbar.setLeftTitleClickListener(this);
+            toolbar.setRightTitleClickListener1(this);
+            toolbar.setRightTitleClickListener2(this);
+            toolbar.setRightTitleClickListener3(this);
+            toolbar.setLeftTitleClickListener1(this);
+            toolbar.setLeftTitleClickListener2(this);
+            toolbar.setLeftTitleClickListener3(this);
         }
         catch (NullPointerException e)
         {
@@ -49,22 +53,38 @@ public abstract class BaseActiciy extends YHActivity
     {
         super.widgetClick(v);
         int i = v.getId();
-        if (i == R.id.txt_right_title)
+        if (i == R.id.txt_right_title1)
         {
-            onMenuClick();
+            onMenuClick(4);
 
-        } else if (i == R.id.txt_left_title)
+        }else  if (i == R.id.txt_right_title2)
         {
-            onBackClick();
+            onMenuClick(5);
+
+        }else  if (i == R.id.txt_right_title3)
+        {
+            onMenuClick(6);
+
+        }else if (i == R.id.txt_left_title1)
+        {
+            onBackClick(1);
+
+        }else if (i == R.id.txt_left_title2)
+        {
+            onBackClick(2);
+
+        }else if (i == R.id.txt_left_title3)
+        {
+            onBackClick(3);
 
         }
     }
 
-    protected void onBackClick()
+    protected void onBackClick(int posion)
     {
     }
 
-    protected void onMenuClick()
+    protected void onMenuClick(int posion)
     {
     }
 }

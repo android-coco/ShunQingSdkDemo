@@ -29,6 +29,7 @@ import yh.org.shunqinglib.adapter.MdrSdAdapter;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonMdrSdModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
+import yh.org.shunqinglib.view.YhToolbar;
 
 /**
  * 免打扰时段查询
@@ -60,9 +61,11 @@ public class MdrSdActivity extends BaseActiciy implements I_YHItemClickListener<
     {
         super.initWidget();
         initView();
-        toolbar.setLeftTitleText("返回");
+        toolbar.setLeftTitleText1("返回");
+        toolbar.setLeftTitleDrawable1(R.mipmap.icon_back_32px, YhToolbar.LEFT,20);
+        toolbar.setRightTitleDrawable1(R.mipmap.icon_plus,YhToolbar.LEFT,30);
         toolbar.setMainTitle("免打扰时段");
-        toolbar.setRightTitleText("");
+        toolbar.setRightTitleText1("");
 
         id_empty_text.setText("加载中。。。");
         //lineartlayout
@@ -117,16 +120,16 @@ public class MdrSdActivity extends BaseActiciy implements I_YHItemClickListener<
     }
 
     @Override
-    protected void onBackClick()
+    protected void onBackClick(int posion)
     {
-        super.onBackClick();
+        super.onBackClick(posion);
         finish();
     }
 
     @Override
-    protected void onMenuClick()
+    protected void onMenuClick(int postion)
     {
-        super.onMenuClick();
+        super.onMenuClick(postion);
         showActivity(aty, MdrSdAddActivity.class);
     }
 

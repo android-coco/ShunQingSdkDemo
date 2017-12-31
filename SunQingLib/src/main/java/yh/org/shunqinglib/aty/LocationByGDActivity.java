@@ -293,8 +293,8 @@ public class LocationByGDActivity extends BaseActiciy implements AMapLocationLis
 
         //toolbar.setLeftTitleText("返回");
         toolbar.setMainTitle("控制中心");
-        toolbar.setRightTitleText("设置");
-        toolbar.setRightTitleDrawable(R.mipmap.img_screening);
+        toolbar.setRightTitleText1("设置");
+        //toolbar.setRightTitleDrawable1(R.mipmap.img_screening, YhToolbar.LEFT);
         if (aMap == null)
         {
             aMap = mMapView.getMap();
@@ -508,9 +508,9 @@ public class LocationByGDActivity extends BaseActiciy implements AMapLocationLis
 
 
     @Override
-    protected void onMenuClick()
+    protected void onMenuClick(int posion)
     {
-        super.onMenuClick();
+        super.onMenuClick(posion);
         if (StringUtils.isEmpty(jsonEquipmentModel) || StringUtils.isEmpty
                 (jsonEquipmentModel.getDatas()))
         {

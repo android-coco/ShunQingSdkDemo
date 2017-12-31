@@ -281,8 +281,7 @@ public class LocationByBDActivity extends BaseActiciy
         initView();
         //toolbar.setLeftTitleText("返回");
         toolbar.setMainTitle("控制中心");
-        toolbar.setRightTitleText("设置");
-        toolbar.setRightTitleDrawable(R.mipmap.img_screening);
+        toolbar.setRightTitleText1("设置");
         mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
         mBaiduMap = mMapView.getMap();
         //地图logo位置
@@ -608,9 +607,9 @@ public class LocationByBDActivity extends BaseActiciy
 
 
     @Override
-    protected void onMenuClick()
+    protected void onMenuClick(int postion)
     {
-        super.onMenuClick();
+        super.onMenuClick(postion);
         if (StringUtils.isEmpty(jsonEquipmentModel) || StringUtils.isEmpty
                 (jsonEquipmentModel.getDatas()))
         {

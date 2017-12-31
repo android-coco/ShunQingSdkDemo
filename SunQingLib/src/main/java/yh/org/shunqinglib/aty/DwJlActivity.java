@@ -28,6 +28,7 @@ import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonDwJlModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
 import yh.org.shunqinglib.view.MyPopup;
+import yh.org.shunqinglib.view.YhToolbar;
 
 
 /**
@@ -63,10 +64,10 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
     {
         super.initWidget();
         initView();
-        toolbar.setLeftTitleText("返回");
+        toolbar.setLeftTitleText1("返回");
+        toolbar.setLeftTitleDrawable1(R.mipmap.icon_back_32px, YhToolbar.LEFT,20);
         toolbar.setMainTitle("定位记录");
-        toolbar.setRightTitleText("筛选");
-        toolbar.setRightTitleDrawable(R.mipmap.img_screening);
+        toolbar.setRightTitleText1("筛选");
 
         id_empty_text.setText("加载中。。。");
         //lineartlayout
@@ -125,16 +126,16 @@ public class DwJlActivity extends BaseActiciy implements I_YHItemClickListener<J
     }
 
     @Override
-    protected void onBackClick()
+    protected void onBackClick(int postion)
     {
-        super.onBackClick();
+        super.onBackClick(postion);
         finish();
     }
 
     @Override
-    protected void onMenuClick()
+    protected void onMenuClick(int positon)
     {
-        super.onMenuClick();
+        super.onMenuClick(positon);
         new MyPopup(aty, toolbar, new MyPopup.PatientOnclick()
         {
             @Override
