@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import yh.org.shunqinglib.aty.LocationByBDActivity;
-import yh.org.shunqinglib.aty.LocationByGDActivity;
+import yh.org.shunqinglib.aty.LocationByGD2Activity;
 import yh.org.shunqinglib.utils.GlobalUtils;
 
 /**
@@ -39,7 +39,7 @@ public class Main2Activity extends AppCompatActivity
             {
                 GlobalUtils.HOME_HOST = "http://www.shunqing365.net";//接口地址
                 GlobalUtils.DEIVER_SN = "123456789012345";//SN号
-                showActivity(Main2Activity.this, LocationByGDActivity.class);
+                showActivity(Main2Activity.this, LocationByGD2Activity.class);
             }
         });
     }
