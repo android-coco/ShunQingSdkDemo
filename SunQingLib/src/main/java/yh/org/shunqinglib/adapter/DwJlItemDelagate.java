@@ -70,7 +70,7 @@ public class DwJlItemDelagate implements I_ItemViewDelegate<JsonDwJlModel.DwJlMo
         holder.setText(R.id.timing_name, locateType);//定位类型
         holder.setText(R.id.timing_time, item.getAddress());//当时位置
         holder.setText(R.id.timing_interval, type);//当时状态
-        holder.setText(R.id.timing_cycle, GlobalUtils.getDateToString(Long.parseLong(item.getDatetime())));//定位时间
+        holder.setText(R.id.timing_cycle, GlobalUtils.getDateToString(Long.parseLong(item.getDatetime()),"yyyy年MM月dd日HH时mm分ss秒"));//定位时间
         holder.setText(R.id.timing_edit, "电量：" + item.getBattery());//电量
         holder.setText(R.id.timing_del, "信号：" + item.getSignal());//信号
     }
