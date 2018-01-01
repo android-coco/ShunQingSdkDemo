@@ -20,6 +20,7 @@ import org.yh.library.okhttp.YHRequestFactory;
 import org.yh.library.okhttp.callback.HttpCallBack;
 import org.yh.library.ui.YHViewInject;
 import org.yh.library.utils.JsonUitl;
+import org.yh.library.utils.PreferenceUtils;
 import org.yh.library.utils.StringUtils;
 import org.yh.library.view.loading.dialog.YHLoadingDialog;
 
@@ -28,7 +29,6 @@ import yh.org.shunqinglib.app.ShunQingApp;
 import yh.org.shunqinglib.base.BaseActiciy;
 import yh.org.shunqinglib.bean.JsonLjDWModel;
 import yh.org.shunqinglib.utils.GlobalUtils;
-import yh.org.shunqinglib.utils.PreferenceHelper;
 import yh.org.shunqinglib.view.YhToolbar;
 
 
@@ -104,7 +104,7 @@ public class ZxJtActivity extends BaseActiciy
         super.initData();
         for (int i = 0; i < autoStrs.length; i++)
         {
-            String number = PreferenceHelper.readString(GlobalUtils.user_xml,
+            String number = PreferenceUtils.readString(aty,GlobalUtils.USER_XML,
                     "number" + i);
             if (StringUtils.isEmpty(number))
             {
@@ -291,7 +291,7 @@ public class ZxJtActivity extends BaseActiciy
                             {
                                 size = (size % 4);
                             }
-                            PreferenceHelper.write(GlobalUtils.user_xml,
+                            PreferenceUtils.write(aty,GlobalUtils.USER_XML,
                                     "number" + size, sNumber);
                         }
                         YHLoadingDialog.cancel();

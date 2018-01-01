@@ -1,6 +1,7 @@
 package yh.org.shunqinglib.aty;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -41,13 +42,16 @@ import org.yh.library.bean.EventBusBean;
 import org.yh.library.okhttp.YHRequestFactory;
 import org.yh.library.okhttp.callback.HttpCallBack;
 import org.yh.library.ui.I_PermissionListener;
+import org.yh.library.ui.YHActivityStack;
 import org.yh.library.ui.YHViewInject;
 import org.yh.library.utils.Constants;
 import org.yh.library.utils.DensityUtils;
 import org.yh.library.utils.JsonUitl;
 import org.yh.library.utils.LogUtils;
+import org.yh.library.utils.PreferenceUtils;
 import org.yh.library.utils.StringUtils;
 import org.yh.library.utils.SystemUtils;
+import org.yh.library.view.YHAlertDialog;
 import org.yh.library.view.YHRecyclerView;
 import org.yh.library.view.yhrecyclerview.ProgressStyle;
 
@@ -137,6 +141,7 @@ public class LocationByGD2Activity extends BaseActiciy implements AMapLocationLi
     private String c_sn = "";//当前SN号
     TerminalJosnBen.TerminalModel c_termianlModel = null;//当前终端
 
+
     @Override
     public void setRootView()
     {
@@ -148,9 +153,26 @@ public class LocationByGD2Activity extends BaseActiciy implements AMapLocationLi
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        if (StringUtils.isEmpty(GlobalUtils.USER_UID))
+        {
+            throw new IllegalArgumentException("用户ID,未设置！");
+        }
+        if (StringUtils.isEmpty(GlobalUtils.PACKAGE_STR))
+        {
+            throw new IllegalArgumentException("包名,未设置！");
+        }
+        if (StringUtils.isEmpty(GlobalUtils.LOGIN_ACTIVITY_NAME))
+        {
+            throw new IllegalArgumentException("登录Acitivty名称,未设置！");
+        }
+        if (StringUtils.isEmpty(GlobalUtils.HOME_HOST))
+        {
+            throw new IllegalArgumentException("主机地址未设置,未设置！");
+        }
         //在activity执行onCreate时执行mMapView.onCreate(savedInstanceState)，创建地图
         mMapView.onCreate(savedInstanceState);
     }
+
 
     @Override
     public void initData()
@@ -512,7 +534,7 @@ public class LocationByGD2Activity extends BaseActiciy implements AMapLocationLi
     {
         super.initWidget();
 
-        //toolbar.setLeftTitleText("返回");
+        toolbar.setLeftTitleText1("登出");
 //        toolbar.setLeftTitleDrawable1(YhResource.getIdByName(this, "mipmap", "logo"), YhToolbar
 //                .LEFT, 30);
         toolbar.setMainTitle("护卫365");
@@ -885,6 +907,38 @@ public class LocationByGD2Activity extends BaseActiciy implements AMapLocationLi
                 }, 6000L, 9000L, 9000L, TAG);
     }
 
+    @Override
+    protected void onBackClick(int posion)
+    {
+        super.onBackClick(posion);
+        switch (posion)
+        {
+            case 1:
+
+                new YHAlertDialog(aty).builder().setMsg("是否退出当前账号").setNegativeButton("确定", new View
+                        .OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        PreferenceUtils.clean(aty, GlobalUtils.USER_XML);//清空用户信息退出
+                        YHActivityStack.create().finishAllActivity();
+                        Intent intent = new Intent();
+                        intent.setComponent(new ComponentName(GlobalUtils.PACKAGE_STR, GlobalUtils.LOGIN_ACTIVITY_NAME));
+                        startActivity(intent);
+
+                    }
+                }).setPositiveButton("取消", new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+
+                    }
+                }).show();
+                break;
+        }
+    }
 
     @Override
     protected void onMenuClick(int postion)
@@ -893,9 +947,6 @@ public class LocationByGD2Activity extends BaseActiciy implements AMapLocationLi
         switch (postion)
         {
             case 1:
-
-                break;
-            case 4:
                 if (StringUtils.isEmpty(jsonEquipmentModel) || StringUtils.isEmpty
                         (jsonEquipmentModel.getDatas()))
                 {
@@ -911,7 +962,7 @@ public class LocationByGD2Activity extends BaseActiciy implements AMapLocationLi
 //            showActivity(aty, i);
                 }
                 break;
-            case 5:
+            case 2:
                 showActivity(aty, AddTerminalActivity.class);
                 break;
         }
@@ -1033,6 +1084,23 @@ public class LocationByGD2Activity extends BaseActiciy implements AMapLocationLi
         getData();
     }
 
+    @Override
+    public void onMapClick(LatLng latLng)
+    {
+        if (centerMarker.isInfoWindowShown())
+        {
+            centerMarker.hideInfoWindow();//这个是隐藏infowindow窗口的方法
+        }
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker)
+    {
+        centerMarker = marker;
+        return false;
+    }
+
+
     // 按两下返回键退出程序
     private long exitTime = 0;
 
@@ -1072,19 +1140,5 @@ public class LocationByGD2Activity extends BaseActiciy implements AMapLocationLi
 
     }
 
-    @Override
-    public void onMapClick(LatLng latLng)
-    {
-        if (centerMarker.isInfoWindowShown())
-        {
-            centerMarker.hideInfoWindow();//这个是隐藏infowindow窗口的方法
-        }
-    }
 
-    @Override
-    public boolean onMarkerClick(Marker marker)
-    {
-        centerMarker = marker;
-        return false;
-    }
 }

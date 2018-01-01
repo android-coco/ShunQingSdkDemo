@@ -9,10 +9,15 @@ import java.util.Arrays;
  */
 
 public class GlobalUtils
-{
-    public static String HOME_HOST = "http://115.159.123.101:8085";//IP地址
-    public static String DEIVER_SN = "123456789012345";//SN号
-    public static String USER_UID = "29";//用户ID
+{   //http://115.159.123.101:8085
+    public static String HOME_HOST = "";//IP地址
+    public static String DEIVER_SN = "";//SN号
+    public static String USER_UID = "";//用户ID
+    //包名
+    public static String PACKAGE_STR = "";
+    //登录activity名称
+    public static String LOGIN_ACTIVITY_NAME = "";
+
     //终端信息
     public static final String DEVER_INFO = "/interface/terminal_profile";
     //修改终端信息
@@ -75,7 +80,7 @@ public class GlobalUtils
     //立即定位
     public static final String TERMINAL_LOCATE = "/interface/terminal_locate";
     // 用户xml文件名
-    public static final String user_xml = "user";
+    public static final String USER_XML = "user";
 
     /**
      * 去掉前后的逗号

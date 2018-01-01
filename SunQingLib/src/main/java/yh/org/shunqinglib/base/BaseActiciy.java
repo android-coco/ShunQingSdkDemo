@@ -55,15 +55,15 @@ public abstract class BaseActiciy extends YHActivity
         int i = v.getId();
         if (i == R.id.txt_right_title1)
         {
-            onMenuClick(4);
+            onMenuClick(1);
 
         }else  if (i == R.id.txt_right_title2)
         {
-            onMenuClick(5);
+            onMenuClick(2);
 
         }else  if (i == R.id.txt_right_title3)
         {
-            onMenuClick(6);
+            onMenuClick(3);
 
         }else if (i == R.id.txt_left_title1)
         {
