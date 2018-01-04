@@ -3,6 +3,7 @@ package yh.org.shunqinglib.aty;
 import android.Manifest;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -534,7 +535,7 @@ public class LocationByGD2Activity extends BaseActiciy implements AMapLocationLi
     {
         super.initWidget();
 
-        toolbar.setLeftTitleText1("登出");
+ //       toolbar.setLeftTitleText1("登出");
 //        toolbar.setLeftTitleDrawable1(YhResource.getIdByName(this, "mipmap", "logo"), YhToolbar
 //                .LEFT, 30);
         toolbar.setMainTitle("护卫365");
@@ -650,7 +651,9 @@ public class LocationByGD2Activity extends BaseActiciy implements AMapLocationLi
         mMapStart = new LatLng(mCurrentLat, mCurrentLon);
         markerStart = new MarkerOptions();
         markerStart.position(mMapStart);
-        markerStart.icon(bdSt);
+//        markerStart.icon(bdSt);
+        markerStart.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
+                .decodeResource(getResources(),R.mipmap.icon_gcoding)));
         // myMarker =
         centerMarker = aMap.addMarker(markerStart);
         centerMarker.setTitle(c_termianlModel.getName());
