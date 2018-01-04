@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -383,9 +384,9 @@ public class LocationByGD2Activity extends BaseActiciy implements AMapLocationLi
                                     "yyyy-MM-dd HH:mm:ss");
                             textStreet.setText(time + " " + locateType);
                             String address = jsonEquipmentModel.getDatas().get(0).getAddress();
-                            if (!StringUtils.isEmpty(address) && address.length() > 12)
+                            if (!StringUtils.isEmpty(address) && address.length() > 20)
                             {
-                                address = GlobalUtils.addStr(12, "\n", address);
+                                address = GlobalUtils.addStr(20, "\n", address);
                             }
                             textAddress.setText(address);
                             int battery = Integer.parseInt(jsonEquipmentModel.getDatas().get(0)
@@ -538,6 +539,7 @@ public class LocationByGD2Activity extends BaseActiciy implements AMapLocationLi
  //       toolbar.setLeftTitleText1("登出");
 //        toolbar.setLeftTitleDrawable1(YhResource.getIdByName(this, "mipmap", "logo"), YhToolbar
 //                .LEFT, 30);
+        toolbar.setBackgroundColor(Color.parseColor("#222222"));
         toolbar.setMainTitle("护卫365");
         toolbar.setRightTitleDrawable1(R.mipmap.config_set, YhToolbar.LEFT, 20);
         toolbar.setRightTitleDrawable2(R.mipmap.icon_plus, YhToolbar.LEFT, 30);

@@ -391,18 +391,18 @@
         <RelativeLayout
             android:id="@+id/rl_top"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/space_90"
+            android:layout_height="@dimen/space_70"
             android:background="@color/white"
             android:paddingBottom="@dimen/space_10"
             android:paddingTop="@dimen/space_10">
             <ImageView
                 android:id="@+id/battery"
-                android:layout_width="@dimen/space_32"
-                android:layout_height="@dimen/space_16"
+                android:layout_width="@dimen/space_20"
+                android:layout_height="@dimen/space_10"
                 android:layout_alignParentEnd="true"
+                android:layout_gravity="end|center"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_gravity="end|center"
                 android:background="@mipmap/b1"/>
             <LinearLayout
                 android:layout_width="wrap_content"

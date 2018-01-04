@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--默认主题-->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--按钮颜色-->
+    <color name="colorButtonDown">#3F51B5</color>
+    <color name="colorButtonUp">#303F9F</color>
+
     <!-- 标准颜色 -->
     <color name="main_bg">#ebebeb</color>
     <color name="index_black">#333333</color>
@@ -18,4 +24,6 @@
 
     <color name="colorK">#00FFFF</color>
     <color name="colorSmallBlack">#3C3C3C</color>
+
+
 </resources>
