@@ -8,7 +8,6 @@ import android.view.View;
 
 import org.yh.library.utils.PreferenceUtils;
 
-import yh.org.shunqinglib.aty.LocationByBDActivity;
 import yh.org.shunqinglib.aty.LocationByGD2Activity;
 import yh.org.shunqinglib.utils.GlobalUtils;
 
@@ -28,9 +27,9 @@ public class Main2Activity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                GlobalUtils.HOME_HOST = "http://www.shunqing365.net";//接口地址
-                GlobalUtils.DEIVER_SN = "A100004DC69883";//SN号
-                showActivity(Main2Activity.this, LocationByBDActivity.class);
+//                GlobalUtils.HOME_HOST = "http://www.shunqing365.net";//接口地址
+//                GlobalUtils.DEIVER_SN = "A100004DC69883";//SN号
+//                showActivity(Main2Activity.this, LocationByBDActivity.class);
             }
         });
 

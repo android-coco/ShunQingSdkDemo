@@ -426,7 +426,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="正在定位"
-                    android:textColor="@color/main_tab_bottom_notsel"
+                    android:textColor="@color/colorSmallBlack1"
                     android:textSize="@dimen/text_size_16"
                     android:visibility="visible"/>
 

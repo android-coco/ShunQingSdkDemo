@@ -7,7 +7,6 @@ import android.widget.Button;
 import org.yh.library.ui.BindView;
 import org.yh.library.utils.PreferenceUtils;
 
-import yh.org.shunqinglib.aty.LocationByBDActivity;
 import yh.org.shunqinglib.aty.LocationByGD2Activity;
 import yh.org.shunqinglib.utils.GlobalUtils;
 
@@ -43,9 +42,9 @@ public class MainActivity extends Base365Activity
         switch (v.getId())
         {
             case R.id.ok:
-                GlobalUtils.HOME_HOST = "http://www.shunqing365.net";//接口地址
-                GlobalUtils.DEIVER_SN = "A8888888888888";//SN号
-                showActivity(aty, LocationByBDActivity.class);
+//                GlobalUtils.HOME_HOST = "http://www.shunqing365.net";//接口地址
+//                GlobalUtils.DEIVER_SN = "A8888888888888";//SN号
+//                showActivity(aty, LocationByBDActivity.class);
                 break;
             case R.id.ok1:
 //                GlobalUtils.HOME_HOST = "http://www.shunqing365.net";//接口地址
